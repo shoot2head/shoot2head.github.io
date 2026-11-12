@@ -347,6 +347,23 @@
         margin: 0;
         flex: 1;
       }
+      .prompt-text.collapsed {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .prompt-toggle {
+        align-self: flex-start;
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--green);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 2px 0;
+      }
       .copy-btn {
         font-family: var(--mono);
         font-size: 13.5px;
@@ -989,6 +1006,7 @@
       body.view-light-active .prompt-card { background: #ffffff; border-color: #e3e0ee; box-shadow: 0 1px 4px rgba(76, 29, 149, 0.06); }
       body.view-light-active .prompt-num { color: #6d28d9; text-shadow: none; background: #f5f1ff; border-color: #e0d4fa; }
       body.view-light-active .prompt-text { color: #221a38; }
+      body.view-light-active .prompt-toggle { color: #6d28d9; }
       body.view-light-active .copy-btn { color: #6d28d9; border-color: #c4b5fd; }
       body.view-light-active .copy-btn:hover { border-color: #7c3aed; background: #f1ebff; }
       body.view-light-active .copy-btn.copied { background: #7c3aed; border-color: #7c3aed; color: #ffffff; }
@@ -1866,6 +1884,29 @@
           });
         });
 
+        /* Long prompt texts start collapsed (first line only) — tap to expand */
+        document.querySelectorAll(".prompt-card .prompt-text").forEach(function (textEl) {
+          if ((textEl.textContent || "").trim().length <= 80) return;
+          if (textEl.nextElementSibling && textEl.nextElementSibling.classList.contains("prompt-toggle")) return;
+          textEl.classList.add("collapsed");
+          var t = document.createElement("button");
+          t.className = "prompt-toggle";
+          t.type = "button";
+          t.textContent = "আরও দেখো ↓";
+          t.setAttribute("aria-expanded", "false");
+          textEl.after(t);
+        });
+        document.addEventListener("click", function (e) {
+          var t = e.target.closest(".prompt-toggle");
+          if (!t) return;
+          var card = t.closest(".prompt-card");
+          var textEl = card && card.querySelector(".prompt-text");
+          if (!textEl) return;
+          var collapsed = textEl.classList.toggle("collapsed");
+          t.textContent = collapsed ? "আরও দেখো ↓" : "কম দেখো ↑";
+          t.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        });
+
         document.querySelectorAll(".copy-master").forEach(function (btn) {
           btn.addEventListener("click", function () {
             var box = btn.closest(".master-box");
@@ -2260,9 +2301,11 @@
         const slot = p.img
           ? '<div class="sample-slot ' + slotCls + '"><img src="' + esc(p.img) + '" alt=""></div>'
           : '<div class="sample-slot ' + slotCls + '"><span class="sample-label">Sample</span><span class="sample-note">নমুনা ছবি শীঘ্রই আসছে — Google Drive থেকে পরে যোগ করা হবে</span></div>';
+        const longText = (p.text || "").trim().length > 80;
         return '<div class="prompt-card">' + slot +
           '<div class="prompt-top"><span class="prompt-num">' + esc(p.num || "") + '</span><button class="copy-btn" type="button">Copy</button></div>' +
-          '<p class="prompt-text">' + esc(p.text || "") + '</p></div>';
+          '<p class="prompt-text' + (longText ? " collapsed" : "") + '">' + esc(p.text || "") + '</p>' +
+          (longText ? '<button class="prompt-toggle" type="button" aria-expanded="false">আরও দেখো ↓</button>' : "") + '</div>';
       }
       function bindCopyButtons(root) {
         root.querySelectorAll(".prompt-card .copy-btn").forEach(function (btn) {
