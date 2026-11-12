@@ -2096,7 +2096,6 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
       import { getDatabase, ref, onValue, runTransaction, push, set, query, orderByChild, limitToLast, remove, get } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
       import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-      import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js";
       const firebaseConfig = {
         apiKey: "AIzaSyA4rzQpJ6rnEpY8BczhifPh7_WWanaznZU",
         authDomain: "shoot2head.firebaseapp.com",
@@ -2106,12 +2105,11 @@
         messagingSenderId: "266452695929",
         appId: "1:266452695929:web:b0670d364c326c8b434da8"
       };
-      let db = null, app = null, auth = null, storage = null;
+      let db = null, app = null, auth = null;
       try {
         app = initializeApp(firebaseConfig);
         db = getDatabase(app);
         auth = getAuth(app);
-        storage = getStorage(app);
       } catch (e) { /* Firebase unavailable - site keeps working without it */ }
       function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
       /* Visitor counter: +1 per page load, shown in the footer */
@@ -2323,6 +2321,19 @@
           const items = []; snap.forEach(function (c) { items.push(Object.assign({ id: c.key }, c.val())); });
           renderAdminPromptList(items);
         }).catch(function () { if (el) el.innerHTML = '<p class="muted">লোড করা যাচ্ছে না।</p>'; });
+      }
+      /* Photo uploads go to Cloudinary (free account zpu6kgau, unsigned preset) */
+      const CLOUDINARY_CLOUD = "zpu6kgau";
+      const CLOUDINARY_PRESET = "shoot2head_unsigned";
+      function uploadPromptPhoto(file) {
+        if (!file) return Promise.resolve("");
+        const fd = new FormData();
+        fd.append("file", file);
+        fd.append("upload_preset", CLOUDINARY_PRESET);
+        fd.append("folder", "shoot2head-prompts");
+        return fetch("https://api.cloudinary.com/v1_1/" + CLOUDINARY_CLOUD + "/image/upload", { method: "POST", body: fd })
+          .then(function (r) { return r.json(); })
+          .then(function (j) { if (!j.secure_url) throw new Error("Cloudinary upload failed"); return j.secure_url; });
       }
       const promptForm = document.getElementById("promptForm");
       if (db && promptForm) {
