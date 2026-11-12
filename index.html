@@ -1250,16 +1250,14 @@
       <!-- Visitor reviews (Firebase) -->
       <section class="reviews-section" id="reviewsSection">
         <h2 class="page-title">ভিজিটর <span class="accent">রিভিউ</span></h2>
-        <p class="page-sub">সাইটটা কেমন লাগলো? Google দিয়ে লগইন করে রিভিউ লেখো — তোমার নাম আর প্রোফাইল ছবি রিভিউতে দেখা যাবে। একটা অ্যাকাউন্ট থেকে একটাই রিভিউ, সাথে একটা ছবি যোগ করতে পারবে।</p>
         <div class="review-list" id="reviewList"><p class="muted">রিভিউ লোড হচ্ছে…</p></div>
         <div class="review-login" id="reviewLoginBox">
-          <button class="dl-btn" type="button" id="googleLoginBtn" style="border:none;cursor:pointer">Google দিয়ে লগইন করে রিভিউ লেখো →</button>
-          <p class="muted">লগইন করলে তোমার Google নাম আর প্রোফাইল ছবি রিভিউতে দেখাবে।</p>
+          <button class="dl-btn" type="button" id="googleLoginBtn" style="border:none;cursor:pointer">Google দিয়ে লগইন →</button>
         </div>
         <form class="review-form" id="reviewForm" hidden>
-          <div class="review-user"><img id="reviewUserPhoto" alt=""><div><b id="reviewUserName"></b><br><small class="muted">তোমার রিভিউ — এডিট বা ডিলিট করতে পারবে</small></div><button type="button" id="reviewLogoutBtn">লগআউট</button></div>
+          <div class="review-user"><img id="reviewUserPhoto" alt=""><div><b id="reviewUserName"></b></div><button type="button" id="reviewLogoutBtn">লগআউট</button></div>
           <textarea id="reviewText" maxlength="300" rows="3" placeholder="তোমার রিভিউ লেখো…" required></textarea>
-          <label class="muted">রিভিউর ছবি (একটা, ঐচ্ছিক) <input type="file" id="reviewPhoto" accept="image/*"></label>
+          <label class="muted">ছবি (ঐচ্ছিক) <input type="file" id="reviewPhoto" accept="image/*"></label>
           <button class="dl-btn" type="submit" style="border:none;cursor:pointer">রিভিউ পাঠাও →</button>
           <p class="muted" id="reviewMsg"></p>
         </form>
@@ -2163,7 +2161,7 @@
       }
       function renderReviews(items) {
         if (!listEl) return;
-        if (!items.length) { listEl.innerHTML = '<p class="muted">এখনো কোনো রিভিউ নেই — প্রথম রিভিউটা তুমিই দাও!</p>'; return; }
+        if (!items.length) { listEl.innerHTML = '<p class="muted">এখনো কোনো রিভিউ নেই।</p>'; return; }
         listEl.innerHTML = items.map(reviewItemHTML).join("");
         listEl.querySelectorAll("[data-edit-review]").forEach(function (b) {
           b.addEventListener("click", function () {
