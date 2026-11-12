@@ -1028,6 +1028,17 @@
 .admin-stat span { font-size: 12.5px; color: #5a6b5f; }
 .danger-btn { font-family: inherit; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #d32f2f; background: #fff; color: #d32f2f; cursor: pointer; }
 .mini-btn { font-family: inherit; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #9fd3ae; background: #fff; color: #0c7a34; cursor: pointer; }
+.review-head { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.review-head img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
+.review-head .avatar-fallback { width:36px; height:36px; border-radius:50%; background:#0c7a34; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; flex:none; }
+.review-photo { width:100%; border-radius:10px; margin:8px 0 4px; display:block; }
+.review-own { display:flex; gap:8px; margin-top:8px; }
+.review-own button { padding:6px 12px; border-radius:8px; border:1px solid #d8e1ee; background:#fff; cursor:pointer; font:inherit; font-size:13px; }
+.review-own button.danger { color:#b3261e; border-color:#f0c6c2; }
+.review-login { display:grid; gap:10px; margin-top:8px; }
+.review-user { display:flex; align-items:center; gap:10px; }
+.review-user img { width:40px; height:40px; border-radius:50%; object-fit:cover; }
+.review-user button { padding:6px 12px; border-radius:8px; border:1px solid #d8e1ee; background:#fff; cursor:pointer; font:inherit; font-size:13px; margin-left:auto; }
 .review-form select { padding: 11px 13px; border: 1px solid #d8e1ee; border-radius: 10px; font: inherit; width: 100%; background: #fff; }
 
       /* ---------- sample media slots (Drive links wired in later) ---------- */
@@ -1239,11 +1250,16 @@
       <!-- Visitor reviews (Firebase) -->
       <section class="reviews-section" id="reviewsSection">
         <h2 class="page-title">ভিজিটর <span class="accent">রিভিউ</span></h2>
-        <p class="page-sub">সাইটটা কেমন লাগলো? নিচে তোমার রিভিউ লেখো — সবাই দেখতে পাবে।</p>
+        <p class="page-sub">সাইটটা কেমন লাগলো? Google দিয়ে লগইন করে রিভিউ লেখো — তোমার নাম আর প্রোফাইল ছবি রিভিউতে দেখা যাবে। একটা অ্যাকাউন্ট থেকে একটাই রিভিউ, সাথে একটা ছবি যোগ করতে পারবে।</p>
         <div class="review-list" id="reviewList"><p class="muted">রিভিউ লোড হচ্ছে…</p></div>
-        <form class="review-form" id="reviewForm">
-          <input type="text" id="reviewName" maxlength="40" placeholder="তোমার নাম" required>
+        <div class="review-login" id="reviewLoginBox">
+          <button class="dl-btn" type="button" id="googleLoginBtn" style="border:none;cursor:pointer">Google দিয়ে লগইন করে রিভিউ লেখো →</button>
+          <p class="muted">লগইন করলে তোমার Google নাম আর প্রোফাইল ছবি রিভিউতে দেখাবে।</p>
+        </div>
+        <form class="review-form" id="reviewForm" hidden>
+          <div class="review-user"><img id="reviewUserPhoto" alt=""><div><b id="reviewUserName"></b><br><small class="muted">তোমার রিভিউ — এডিট বা ডিলিট করতে পারবে</small></div><button type="button" id="reviewLogoutBtn">লগআউট</button></div>
           <textarea id="reviewText" maxlength="300" rows="3" placeholder="তোমার রিভিউ লেখো…" required></textarea>
+          <label class="muted">রিভিউর ছবি (একটা, ঐচ্ছিক) <input type="file" id="reviewPhoto" accept="image/*"></label>
           <button class="dl-btn" type="submit" style="border:none;cursor:pointer">রিভিউ পাঠাও →</button>
           <p class="muted" id="reviewMsg"></p>
         </form>
@@ -2005,6 +2021,7 @@
           window.scrollTo(0, 0);
           try { history.replaceState(null, "", name === "home" ? window.location.pathname : "#" + name); } catch (e) {}
         }
+        window.showView = showView;
 
         document.querySelectorAll("[data-goto]").forEach(function (el) {
           el.addEventListener("click", function () {
@@ -2094,8 +2111,8 @@
     </script>
       <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-      import { getDatabase, ref, onValue, runTransaction, push, set, query, orderByChild, limitToLast, remove, get } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
-      import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+      import { getDatabase, ref, onValue, runTransaction, push, set, update, query, orderByChild, limitToLast, remove, get } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+      import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
       const firebaseConfig = {
         apiKey: "AIzaSyA4rzQpJ6rnEpY8BczhifPh7_WWanaznZU",
         authDomain: "shoot2head.firebaseapp.com",
@@ -2122,36 +2139,123 @@
           countEl.textContent = (typeof v === "number") ? v.toLocaleString("en-IN") : "—";
         }, function () { countEl.textContent = "—"; });
       }
-      /* Reviews: latest 10, newest first; anyone can post (no login) */
+      /* Reviews (Google Maps style): Google login required, one review per account + one per IP, one photo per review */
       const listEl = document.getElementById("reviewList");
       const formEl = document.getElementById("reviewForm");
       const msgEl = document.getElementById("reviewMsg");
+      const loginBoxEl = document.getElementById("reviewLoginBox");
+      const googleBtn = document.getElementById("googleLoginBtn");
+      let reviewUser = null;   /* signed-in user for reviews */
+      let myReview = null;     /* my existing review, if any */
+      let lastReviewItems = [];
+      let editingReview = false;
+      function ipKey(ip) { return String(ip || "").replace(/[.#$\[\]]/g, "_"); }
+      function getMyIp() {
+        return fetch("https://api.ipify.org?format=json").then(function (r) { return r.json(); }).then(function (j) { return j.ip || ""; }).catch(function () { return ""; });
+      }
+      function reviewItemHTML(r) {
+        const d = r.time ? new Date(r.time).toLocaleDateString("bn-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
+        const avatar = r.photo ? '<img src="' + esc(r.photo) + '" alt="">' : '<span class="avatar-fallback">' + esc((r.name || "ভ").charAt(0)) + '</span>';
+        const img = r.img ? '<img class="review-photo" src="' + esc(r.img) + '" alt="রিভিউর ছবি">' : "";
+        const own = (reviewUser && r.uid && r.uid === reviewUser.uid)
+          ? '<div class="review-own"><button type="button" data-edit-review="1">এডিট</button><button type="button" class="danger" data-del-review="1">ডিলিট</button></div>' : "";
+        return '<div class="review-item"><div class="review-head">' + avatar + '<b>' + esc(r.name || "ভিজিটর") + '</b></div><p>' + esc(r.text || "") + '</p>' + img + '<small>' + esc(d) + '</small>' + own + '</div>';
+      }
+      function renderReviews(items) {
+        if (!listEl) return;
+        if (!items.length) { listEl.innerHTML = '<p class="muted">এখনো কোনো রিভিউ নেই — প্রথম রিভিউটা তুমিই দাও!</p>'; return; }
+        listEl.innerHTML = items.map(reviewItemHTML).join("");
+        listEl.querySelectorAll("[data-edit-review]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (!myReview) return;
+            editingReview = true;
+            const t = document.getElementById("reviewText"); if (t) t.value = myReview.text || "";
+            if (msgEl) msgEl.textContent = "এডিট করছো — সেভ করলে আগের রিভিউ আপডেট হবে।";
+            formEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+        });
+        listEl.querySelectorAll("[data-del-review]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (!reviewUser || !myReview) return;
+            if (b.getAttribute("data-armed") !== "1") { b.setAttribute("data-armed", "1"); b.textContent = "নিশ্চিত? মুছে দাও"; return; }
+            const updates = {};
+            updates["reviews/" + reviewUser.uid] = null;
+            if (myReview.ip) updates["reviewIps/" + ipKey(myReview.ip)] = null;
+            update(ref(db), updates).then(function () {
+              myReview = null; editingReview = false;
+              if (msgEl) msgEl.textContent = "তোমার রিভিউ মুছে দেওয়া হয়েছে।";
+            }).catch(function () { alert("মোছা যায়নি — আবার চেষ্টা করো।"); });
+          });
+        });
+      }
+      function refreshReviewAuthUI() {
+        if (loginBoxEl) loginBoxEl.hidden = !!reviewUser;
+        if (formEl) formEl.hidden = !reviewUser;
+        if (reviewUser) {
+          const ph = document.getElementById("reviewUserPhoto");
+          const nm = document.getElementById("reviewUserName");
+          if (ph) { ph.src = reviewUser.photoURL || ""; ph.style.display = reviewUser.photoURL ? "" : "none"; }
+          if (nm) nm.textContent = reviewUser.displayName || reviewUser.email || "ভিজিটর";
+        }
+        if (reviewUser) myReview = lastReviewItems.find(function (r) { return r.uid === reviewUser.uid; }) || null;
+        renderReviews(lastReviewItems);
+      }
       if (db && listEl) {
         const reviewsQ = query(ref(db, "reviews"), orderByChild("time"), limitToLast(10));
         onValue(reviewsQ, function (snap) {
           const items = [];
           snap.forEach(function (child) { items.push(child.val()); });
           items.reverse();
-          if (!items.length) { listEl.innerHTML = '<p class="muted">এখনো কোনো রিভিউ নেই — প্রথম রিভিউটা তুমিই দাও!</p>'; return; }
-          listEl.innerHTML = items.map(function (r) {
-            const d = r.time ? new Date(r.time).toLocaleDateString("bn-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
-            return '<div class="review-item"><b>' + esc(r.name || "ভিজিটর") + '</b><p>' + esc(r.text || "") + '</p><small>' + esc(d) + '</small></div>';
-          }).join("");
+          lastReviewItems = items;
+          if (reviewUser) myReview = items.find(function (r) { return r.uid === reviewUser.uid; }) || null;
+          renderReviews(items);
         }, function () { listEl.innerHTML = '<p class="muted">রিভিউ এখন লোড করা যাচ্ছে না।</p>'; });
       }
-      if (db && formEl) {
+      if (auth && googleBtn) {
+        googleBtn.addEventListener("click", function () {
+          signInWithPopup(auth, new GoogleAuthProvider()).catch(function () {
+            alert("Google লগইন হয়নি — পপ-আপ ব্লক থাকলে allow করে আবার চেষ্টা করো।");
+          });
+        });
+        const rLogout = document.getElementById("reviewLogoutBtn");
+        if (rLogout) rLogout.addEventListener("click", function () { signOut(auth); });
+        onAuthStateChanged(auth, function (user) {
+          reviewUser = user;
+          myReview = null;
+          editingReview = false;
+          refreshReviewAuthUI();
+        });
+      }
+      if (formEl) {
         formEl.addEventListener("submit", function (e) {
           e.preventDefault();
-          const name = document.getElementById("reviewName").value.trim();
+          if (!db) { if (msgEl) msgEl.textContent = "রিভিউ সিস্টেম এখন বন্ধ আছে — একটু পরে চেষ্টা করো।"; return; }
+          if (!reviewUser) { alert("আগে Google দিয়ে লগইন করো।"); return; }
           const text = document.getElementById("reviewText").value.trim();
-          if (!name || !text) return;
+          if (!text) return;
+          const file = document.getElementById("reviewPhoto").files[0] || null;
           if (msgEl) msgEl.textContent = "পাঠানো হচ্ছে…";
-          set(push(ref(db, "reviews")), { name: name.slice(0, 40), text: text.slice(0, 300), time: Date.now() }).then(function () {
-            formEl.reset();
-            if (msgEl) msgEl.textContent = "ধন্যবাদ! তোমার রিভিউ জমা হয়েছে।";
-          }).catch(function () {
-            if (msgEl) msgEl.textContent = "পাঠানো যায়নি — একটু পরে আবার চেষ্টা করো।";
-          });
+          const doSave = function (imgUrl) {
+            const finish = function (ip) {
+              const data = { uid: reviewUser.uid, name: (reviewUser.displayName || reviewUser.email || "ভিজিটর").slice(0, 40), photo: reviewUser.photoURL || "", text: text.slice(0, 300), time: Date.now(), ip: ip || "" };
+              if (imgUrl) data.img = imgUrl;
+              else if (editingReview && myReview && myReview.img) data.img = myReview.img;
+              const updates = {};
+              updates["reviews/" + reviewUser.uid] = data;
+              if (!editingReview && ip) updates["reviewIps/" + ipKey(ip)] = reviewUser.uid;
+              update(ref(db), updates).then(function () {
+                formEl.reset();
+                editingReview = false;
+                if (msgEl) msgEl.textContent = "ধন্যবাদ! তোমার রিভিউ জমা হয়েছে।";
+              }).catch(function () {
+                if (msgEl) msgEl.textContent = "জমা হয়নি — এই অ্যাকাউন্ট বা IP থেকে ইতিমধ্যে একটা রিভিউ থাকতে পারে। আগেরটা ডিলিট করলে আবার লিখতে পারবে।";
+              });
+            };
+            if (editingReview) finish(myReview ? (myReview.ip || "") : "");
+            else getMyIp().then(finish);
+          };
+          if (file) uploadToCloudinary(file, "shoot2head-reviews").then(doSave).catch(function () { if (msgEl) msgEl.textContent = "ছবি আপলোড হয়নি — ছবি ছাড়া আবার চেষ্টা করো।"; });
+          else doSave("");
         });
       }
       /* ---------- Prompt pages render from RTDB (hardcoded cards stay as fallback) ---------- */
@@ -2213,7 +2317,7 @@
             if (loginMsg) loginMsg.textContent = "ভুল পিন — আবার চেষ্টা করো।";
           });
         });
-        onAuthStateChanged(auth, function (user) { showAdminDash(!!user); });
+        onAuthStateChanged(auth, function (user) { showAdminDash(!!user && user.email === ADMIN_EMAIL); });
         const logoutBtn = document.getElementById("adminLogoutBtn");
         if (logoutBtn) logoutBtn.addEventListener("click", function () { signOut(auth); });
       }
@@ -2239,12 +2343,18 @@
         if (!items.length) { el.innerHTML = '<p class="muted">কোনো রিভিউ নেই।</p>'; return; }
         el.innerHTML = items.map(function (r) {
           const d = r.time ? new Date(r.time).toLocaleDateString("bn-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
-          return '<div class="admin-item"><b>' + esc(r.name || "ভিজিটর") + '</b> <small>' + esc(d) + '</small><p style="margin:6px 0">' + esc(r.text || "") + '</p><div class="row"><button class="danger-btn" type="button" data-del-review="' + esc(r.id) + '">ডিলিট</button></div></div>';
+          const avatar = r.photo ? '<img src="' + esc(r.photo) + '" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px">' : "";
+          const img = r.img ? '<br><img src="' + esc(r.img) + '" alt="" style="max-width:180px;border-radius:8px;margin-top:6px">' : "";
+          return '<div class="admin-item">' + avatar + '<b>' + esc(r.name || "ভিজিটর") + '</b> <small>' + esc(d) + '</small><p style="margin:6px 0">' + esc(r.text || "") + '</p>' + img + '<div class="row"><button class="danger-btn" type="button" data-del-review="' + esc(r.id) + '" data-del-ip="' + esc(r.ip || "") + '">ডিলিট</button></div></div>';
         }).join("");
         el.querySelectorAll("[data-del-review]").forEach(function (b) {
           b.addEventListener("click", function () {
-            if (!confirm("এই রিভিউটা মুছে দেবো?")) return;
-            remove(ref(db, "reviews/" + b.getAttribute("data-del-review"))).catch(function () { alert("মোছা যায়নি — আবার চেষ্টা করো।"); });
+            if (b.getAttribute("data-armed") !== "1") { b.setAttribute("data-armed", "1"); b.textContent = "নিশ্চিত? মুছে দাও"; return; }
+            const updates = {};
+            updates["reviews/" + b.getAttribute("data-del-review")] = null;
+            const ip = b.getAttribute("data-del-ip");
+            if (ip) updates["reviewIps/" + ipKey(ip)] = null;
+            update(ref(db), updates).catch(function () { alert("মোছা যায়নি — আবার চেষ্টা করো।"); });
           });
         });
       }
@@ -2265,8 +2375,11 @@
         el.querySelectorAll("[data-del-page]").forEach(function (b) {
           b.addEventListener("click", function () {
             const id = b.getAttribute("data-del-page");
-            if (!confirm("এই পেজটা আর তার সব প্রম্পট মুছে দেবো?")) return;
-            remove(ref(db, "pages/" + id)).then(function () { return remove(ref(db, "prompts/" + id)); }).catch(function () { alert("মোছা যায়নি — আবার চেষ্টা করো।"); });
+            if (b.getAttribute("data-armed") !== "1") { b.setAttribute("data-armed", "1"); b.textContent = "নিশ্চিত? মুছে দাও"; return; }
+            const updates = {};
+            updates["pages/" + id] = null;
+            updates["prompts/" + id] = null;
+            update(ref(db), updates).catch(function () { alert("মোছা যায়নি — আবার চেষ্টা করো।"); });
           });
         });
       }
@@ -2307,7 +2420,7 @@
         el.querySelectorAll("[data-del-prompt]").forEach(function (b) {
           b.addEventListener("click", function () {
             const pageId = document.getElementById("promptPageSelect").value;
-            if (!confirm("এই প্রম্পটটা মুছে দেবো?")) return;
+            if (b.getAttribute("data-armed") !== "1") { b.setAttribute("data-armed", "1"); b.textContent = "নিশ্চিত? মুছে দাও"; return; }
             remove(ref(db, "prompts/" + pageId + "/" + b.getAttribute("data-del-prompt"))).then(function () { loadAdminPromptList(); }).catch(function () { alert("মোছা যায়নি — আবার চেষ্টা করো।"); });
           });
         });
@@ -2325,16 +2438,17 @@
       /* Photo uploads go to Cloudinary (free account zpu6kgau, unsigned preset) */
       const CLOUDINARY_CLOUD = "zpu6kgau";
       const CLOUDINARY_PRESET = "shoot2head_unsigned";
-      function uploadPromptPhoto(file) {
+      function uploadToCloudinary(file, folder) {
         if (!file) return Promise.resolve("");
         const fd = new FormData();
         fd.append("file", file);
         fd.append("upload_preset", CLOUDINARY_PRESET);
-        fd.append("folder", "shoot2head-prompts");
+        if (folder) fd.append("folder", folder);
         return fetch("https://api.cloudinary.com/v1_1/" + CLOUDINARY_CLOUD + "/image/upload", { method: "POST", body: fd })
           .then(function (r) { return r.json(); })
           .then(function (j) { if (!j.secure_url) throw new Error("Cloudinary upload failed"); return j.secure_url; });
       }
+      function uploadPromptPhoto(file) { return uploadToCloudinary(file, "shoot2head-prompts"); }
       const promptForm = document.getElementById("promptForm");
       if (db && promptForm) {
         const sel = document.getElementById("promptPageSelect");
