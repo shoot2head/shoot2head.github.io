@@ -1003,6 +1003,15 @@
       /* ---------- in-list ad (after every 2 prompts) ---------- */
       .inline-ad { margin-top: 12px; }
       .inline-ad + .prompt-grid { margin-top: 12px; }
+.reviews-section { margin-top: 40px; }
+.review-list { display: grid; gap: 12px; margin: 16px 0; }
+.review-item { background: #ffffff; border: 1px solid #e2e8e2; border-radius: 12px; padding: 14px 16px; }
+.review-item b { display: block; font-size: 14px; margin-bottom: 4px; }
+.review-item p { margin: 0; color: #3d4f44; font-size: 14.5px; line-height: 1.6; }
+.review-item small { color: #8a978d; font-size: 12px; }
+.review-form { display: grid; gap: 10px; margin-top: 8px; }
+.review-form input, .review-form textarea { padding: 11px 13px; border: 1px solid #d8e1ee; border-radius: 10px; font: inherit; width: 100%; }
+.review-form input:focus, .review-form textarea:focus { outline: 2px solid #0c7a34; outline-offset: 0; border-color: #0c7a34; }
 
       /* ---------- sample media slots (Drive links wired in later) ---------- */
       .sample-slot {
@@ -1202,6 +1211,19 @@
             <button class="dl-btn" type="button" data-goto="refer" style="border:none;cursor:pointer">Refer &amp; Earn পেজ খোলো →</button>
           </div>
         </div>
+      </section>
+
+      <!-- Visitor reviews (Firebase) -->
+      <section class="reviews-section" id="reviewsSection">
+        <h2 class="page-title">ভিজিটর <span class="accent">রিভিউ</span></h2>
+        <p class="page-sub">সাইটটা কেমন লাগলো? নিচে তোমার রিভিউ লেখো — সবাই দেখতে পাবে।</p>
+        <div class="review-list" id="reviewList"><p class="muted">রিভিউ লোড হচ্ছে…</p></div>
+        <form class="review-form" id="reviewForm">
+          <input type="text" id="reviewName" maxlength="40" placeholder="তোমার নাম" required>
+          <textarea id="reviewText" maxlength="300" rows="3" placeholder="তোমার রিভিউ লেখো…" required></textarea>
+          <button class="dl-btn" type="submit" style="border:none;cursor:pointer">রিভিউ পাঠাও →</button>
+          <p class="muted" id="reviewMsg"></p>
+        </form>
       </section>
 
       <!-- Coffee support card -->
@@ -1630,6 +1652,7 @@
           <a href="https://www.youtube.com/@itzprabir" target="_blank" rel="noopener">YouTube — @itzprabir</a>
         </div>
         <div class="footer-note">© 2026 Prabir2.O Labs • shoot2head.dev • Made by Prabir 2.O, Sonarpur, West Bengal</div>
+        <div class="footer-note">👁 মোট ভিজিটর: <b id="visitorCount">…</b></div>
       </div>
     </footer>
 
@@ -1955,5 +1978,66 @@
         }
       })();
     </script>
-  </body>
+      <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+      import { getDatabase, ref, onValue, runTransaction, push, set, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4rzQpJ6rnEpY8BczhifPh7_WWanaznZU",
+        authDomain: "shoot2head.firebaseapp.com",
+        databaseURL: "https://shoot2head-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "shoot2head",
+        storageBucket: "shoot2head.firebasestorage.app",
+        messagingSenderId: "266452695929",
+        appId: "1:266452695929:web:b0670d364c326c8b434da8"
+      };
+      let db = null;
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getDatabase(app);
+      } catch (e) { /* Firebase unavailable - site keeps working without it */ }
+      function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+      /* Visitor counter: +1 per page load, shown in the footer */
+      const countEl = document.getElementById("visitorCount");
+      if (db && countEl) {
+        const visitsRef = ref(db, "stats/visits");
+        runTransaction(visitsRef, function (n) { return (n || 0) + 1; }).catch(function () {});
+        onValue(visitsRef, function (snap) {
+          const v = snap.val();
+          countEl.textContent = (typeof v === "number") ? v.toLocaleString("en-IN") : "—";
+        }, function () { countEl.textContent = "—"; });
+      }
+      /* Reviews: latest 10, newest first; anyone can post (no login) */
+      const listEl = document.getElementById("reviewList");
+      const formEl = document.getElementById("reviewForm");
+      const msgEl = document.getElementById("reviewMsg");
+      if (db && listEl) {
+        const reviewsQ = query(ref(db, "reviews"), orderByChild("time"), limitToLast(10));
+        onValue(reviewsQ, function (snap) {
+          const items = [];
+          snap.forEach(function (child) { items.push(child.val()); });
+          items.reverse();
+          if (!items.length) { listEl.innerHTML = '<p class="muted">এখনো কোনো রিভিউ নেই — প্রথম রিভিউটা তুমিই দাও!</p>'; return; }
+          listEl.innerHTML = items.map(function (r) {
+            const d = r.time ? new Date(r.time).toLocaleDateString("bn-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
+            return '<div class="review-item"><b>' + esc(r.name || "ভিজিটর") + '</b><p>' + esc(r.text || "") + '</p><small>' + esc(d) + '</small></div>';
+          }).join("");
+        }, function () { listEl.innerHTML = '<p class="muted">রিভিউ এখন লোড করা যাচ্ছে না।</p>'; });
+      }
+      if (db && formEl) {
+        formEl.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("reviewName").value.trim();
+          const text = document.getElementById("reviewText").value.trim();
+          if (!name || !text) return;
+          if (msgEl) msgEl.textContent = "পাঠানো হচ্ছে…";
+          set(push(ref(db, "reviews")), { name: name.slice(0, 40), text: text.slice(0, 300), time: Date.now() }).then(function () {
+            formEl.reset();
+            if (msgEl) msgEl.textContent = "ধন্যবাদ! তোমার রিভিউ জমা হয়েছে।";
+          }).catch(function () {
+            if (msgEl) msgEl.textContent = "পাঠানো যায়নি — একটু পরে আবার চেষ্টা করো।";
+          });
+        });
+      }
+    </script>
+</body>
 </html>
