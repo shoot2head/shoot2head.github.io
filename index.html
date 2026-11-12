@@ -1028,6 +1028,7 @@
 .admin-stat span { font-size: 12.5px; color: #5a6b5f; }
 .danger-btn { font-family: inherit; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #d32f2f; background: #fff; color: #d32f2f; cursor: pointer; }
 .mini-btn { font-family: inherit; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #9fd3ae; background: #fff; color: #0c7a34; cursor: pointer; }
+.review-num { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; border-radius:50%; background:#0c7a34; color:#fff; font-weight:700; font-size:14px; margin-bottom:8px; padding:0 6px; }
 .review-head { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
 .review-head img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
 .review-head .avatar-fallback { width:36px; height:36px; border-radius:50%; background:#0c7a34; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; flex:none; }
@@ -2151,13 +2152,13 @@
       function getMyIp() {
         return fetch("https://api.ipify.org?format=json").then(function (r) { return r.json(); }).then(function (j) { return j.ip || ""; }).catch(function () { return ""; });
       }
-      function reviewItemHTML(r) {
+      function reviewItemHTML(r, i) {
         const d = r.time ? new Date(r.time).toLocaleDateString("bn-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
         const avatar = r.photo ? '<img src="' + esc(r.photo) + '" alt="">' : '<span class="avatar-fallback">' + esc((r.name || "ভ").charAt(0)) + '</span>';
         const img = r.img ? '<img class="review-photo" src="' + esc(r.img) + '" alt="রিভিউর ছবি">' : "";
         const own = (reviewUser && r.uid && r.uid === reviewUser.uid)
           ? '<div class="review-own"><button type="button" data-edit-review="1">এডিট</button><button type="button" class="danger" data-del-review="1">ডিলিট</button></div>' : "";
-        return '<div class="review-item"><div class="review-head">' + avatar + '<b>' + esc(r.name || "ভিজিটর") + '</b></div><p>' + esc(r.text || "") + '</p>' + img + '<small>' + esc(d) + '</small>' + own + '</div>';
+        return '<div class="review-item"><span class="review-num">' + (i + 1) + '</span><div class="review-head">' + avatar + '<b>' + esc(r.name || "ভিজিটর") + '</b></div><p>' + esc(r.text || "") + '</p>' + img + '<small>' + esc(d) + '</small>' + own + '</div>';
       }
       function renderReviews(items) {
         if (!listEl) return;
@@ -2339,11 +2340,11 @@
       function renderAdminReviews(items) {
         const el = document.getElementById("adminReviewList"); if (!el) return;
         if (!items.length) { el.innerHTML = '<p class="muted">কোনো রিভিউ নেই।</p>'; return; }
-        el.innerHTML = items.map(function (r) {
+        el.innerHTML = items.map(function (r, i) {
           const d = r.time ? new Date(r.time).toLocaleDateString("bn-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
           const avatar = r.photo ? '<img src="' + esc(r.photo) + '" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px">' : "";
           const img = r.img ? '<br><img src="' + esc(r.img) + '" alt="" style="max-width:180px;border-radius:8px;margin-top:6px">' : "";
-          return '<div class="admin-item">' + avatar + '<b>' + esc(r.name || "ভিজিটর") + '</b> <small>' + esc(d) + '</small><p style="margin:6px 0">' + esc(r.text || "") + '</p>' + img + '<div class="row"><button class="danger-btn" type="button" data-del-review="' + esc(r.id) + '" data-del-ip="' + esc(r.ip || "") + '">ডিলিট</button></div></div>';
+          return '<div class="admin-item"><span class="review-num">' + (i + 1) + '</span> ' + avatar + '<b>' + esc(r.name || "ভিজিটর") + '</b> <small>' + esc(d) + '</small><p style="margin:6px 0">' + esc(r.text || "") + '</p>' + img + '<div class="row"><button class="danger-btn" type="button" data-del-review="' + esc(r.id) + '" data-del-ip="' + esc(r.ip || "") + '">ডিলিট</button></div></div>';
         }).join("");
         el.querySelectorAll("[data-del-review]").forEach(function (b) {
           b.addEventListener("click", function () {
