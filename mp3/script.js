@@ -251,6 +251,117 @@ function playTrackObjects(tracks, startIndex = 0) {
   renderQueue();
 }
 
+// ============ DOWNLOADS — 1 GB limit, saves to the phone's Downloads folder ============
+const DOWNLOAD_LIMIT_BYTES = 1024 * 1024 * 1024; // 1 GB
+const DOWNLOAD_KEY = 'shoot2head_downloaded_bytes';
+
+function getDownloadedBytes() {
+  return parseInt(localStorage.getItem(DOWNLOAD_KEY) || '0', 10) || 0;
+}
+function addDownloadedBytes(n) {
+  const total = getDownloadedBytes() + n;
+  localStorage.setItem(DOWNLOAD_KEY, String(total));
+  updateDownloadsBar();
+  return total;
+}
+function formatBytes(n) {
+  if (n === 0) return '0 MB';
+  if (n >= 1073741824) return (n / 1073741824).toFixed(2) + ' GB';
+  if (n >= 1048576) return (n / 1048576).toFixed(1) + ' MB';
+  if (n >= 1024) return Math.round(n / 1024) + ' KB';
+  return n + ' B';
+}
+function updateDownloadsBar() {
+  const el = document.getElementById('downloadUsage');
+  if (el) el.textContent = formatBytes(getDownloadedBytes()) + ' / 1 GB';
+  const bar = document.getElementById('downloadUsageBar');
+  if (bar) bar.style.width = Math.min(100, (getDownloadedBytes() / DOWNLOAD_LIMIT_BYTES) * 100) + '%';
+}
+function setDownloadStatus(msg) {
+  const el = document.getElementById('downloadStatus');
+  if (!el) return;
+  el.textContent = msg;
+  clearTimeout(setDownloadStatus._t);
+  setDownloadStatus._t = setTimeout(() => { el.textContent = ''; }, 6000);
+}
+function sanitizeFilename(s) {
+  return String(s || 'song').replace(/[\\/:*?"<>|]/g, '').replace(/\s+/g, ' ').trim().slice(0, 80) || 'song';
+}
+
+async function resolveDownload(track) {
+  if (track.audioUrl) {
+    // Library songs: real MP3 files. HEAD gives the exact size for the limit check.
+    let size = null;
+    try {
+      const head = await fetch(track.audioUrl, { method: 'HEAD' });
+      const len = head.headers.get('content-length');
+      if (len) size = parseInt(len, 10);
+    } catch (e) { /* size unknown — still downloadable */ }
+    return { url: track.audioUrl, ext: 'mp3', size };
+  }
+  if (track.source === 'youtube') {
+    // Best audio-only stream, proxied through the same service used for search.
+    const data = await fetchWithTimeout(`https://yt.chocolatemoo53.com/api/v1/videos/${track.videoId}?local=true`, 10000);
+    if (!data) return null;
+    const fmts = (data.adaptiveFormats || []).filter(f => (f.type || '').startsWith('audio/') && f.url);
+    if (!fmts.length) return null;
+    fmts.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0));
+    const best = fmts[0];
+    const ext = (best.type || '').includes('webm') ? 'webm' : 'm4a';
+    return { url: best.url, ext, size: parseInt(best.clen || '0', 10) || null };
+  }
+  return null;
+}
+
+async function downloadTrack(track, btn) {
+  if (!track || (btn && btn.dataset.busy === '1')) return;
+  if (btn) { btn.dataset.busy = '1'; btn.textContent = '…'; }
+  try {
+    const dl = await resolveDownload(track);
+    if (!dl) throw new Error('no-audio');
+    if (dl.size && getDownloadedBytes() + dl.size > DOWNLOAD_LIMIT_BYTES) {
+      setDownloadStatus('1 GB limit reached. Delete some songs from your phone, then press Clear to reset the counter.');
+      if (btn) btn.textContent = '⬇';
+      return;
+    }
+    const res = await fetch(dl.url);
+    if (!res.ok) throw new Error('fetch-failed');
+    const total = dl.size || parseInt(res.headers.get('content-length') || '0', 10) || 0;
+    const reader = res.body.getReader();
+    const chunks = [];
+    let received = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      received += value.length;
+      if (btn && total) btn.textContent = Math.round((received / total) * 100) + '%';
+    }
+    if (getDownloadedBytes() + received > DOWNLOAD_LIMIT_BYTES) {
+      setDownloadStatus('This song would go over the 1 GB limit. It was not saved.');
+      if (btn) btn.textContent = '⬇';
+      return;
+    }
+    const blob = new Blob(chunks, { type: dl.ext === 'mp3' ? 'audio/mpeg' : 'audio/webm' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = sanitizeFilename(track.title + ' - ' + track.artist) + '.' + dl.ext;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    addDownloadedBytes(received);
+    setDownloadStatus('Saved to Downloads: ' + a.download);
+    if (btn) btn.textContent = '✓';
+  } catch (e) {
+    console.log('Download failed:', e);
+    setDownloadStatus('Download failed. Check your connection and try again — or just play the song instead.');
+    if (btn) btn.textContent = '⬇';
+  } finally {
+    if (btn) delete btn.dataset.busy;
+  }
+}
+
 // ============ STATE ============
 let currentTrackIndex = 0;
 let isPlaying = false;
@@ -282,6 +393,12 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAll();
   setupAudioEvents();
   updateNowPlayingBar();
+  updateDownloadsBar();
+  document.getElementById('resetDownloadsBtn')?.addEventListener('click', () => {
+    localStorage.removeItem(DOWNLOAD_KEY);
+    updateDownloadsBar();
+    setDownloadStatus('Download counter cleared. Delete the files from your phone too if you already removed them.');
+  });
 });
 
 // ============ EVENT LISTENERS ============
@@ -798,6 +915,7 @@ function renderQueue() {
 function createCard(item, type) {
   const isLiked = type === 'track' && likedTracks.has(item.id);
   const heart = type === 'track' ? `<button class="track-like${isLiked ? ' liked' : ''}" data-id="${item.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>` : '';
+  const dlBtn = type === 'track' ? `<button class="track-download" data-id="${item.id}" title="Download">⬇</button>` : '';
   
   switch (type) {
     case 'playlist':
@@ -838,7 +956,7 @@ function createCard(item, type) {
             <div class="title">${item.title}</div>
             <div class="artist">${item.artist}</div>
           </div>
-          ${heart}
+          ${heart}${dlBtn}
         </div>
       `;
     case 'category':
@@ -870,6 +988,7 @@ function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
       ${showAlbum ? `<div class="track-album">${track.album}</div>` : ''}
       <div class="track-duration">${track.duration}</div>
       <button class="track-like${isLiked ? ' liked' : ''}" data-id="${track.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>
+      <button class="track-download" data-id="${track.id}" title="Download">⬇</button>
     </div>
   `;
 }
@@ -879,6 +998,7 @@ function attachCardListeners(container) {
   container.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.classList.contains('track-like')) return;
+      if (e.target.classList.contains('track-download')) return;
       const type = card.dataset.type;
       const id = card.dataset.id;
       handleCardClick(type, id);
@@ -888,6 +1008,12 @@ function attachCardListeners(container) {
       e.stopPropagation();
       const id = toTrackId(e.target.dataset.id);
       toggleLike(id);
+    });
+    // Download button on track cards
+    card.querySelector('.track-download')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const t = findTrackById(e.target.dataset.id);
+      downloadTrack(t, e.target);
     });
   });
 }
@@ -912,6 +1038,7 @@ function attachTrackRowListeners(container, trackIds, isLikedView = false) {
   container.querySelectorAll('.track-row').forEach(row => {
     row.addEventListener('click', (e) => {
       if (e.target.classList.contains('track-like')) return;
+      if (e.target.classList.contains('track-download')) return;
       const index = parseInt(row.dataset.index);
       const trackIdsToPlay = isLikedView 
         ? trackList.filter(t => likedTracks.has(t.id)).map(t => t.id)
@@ -922,6 +1049,11 @@ function attachTrackRowListeners(container, trackIds, isLikedView = false) {
       e.stopPropagation();
       const id = parseInt(e.target.dataset.id);
       toggleLike(id);
+    });
+    row.querySelector('.track-download')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const t = findTrackById(e.target.dataset.id);
+      downloadTrack(t, e.target);
     });
   });
 }

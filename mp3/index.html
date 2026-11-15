@@ -111,6 +111,12 @@
             <h2>Your Library</h2>
             <button class="create-btn" id="createPlaylistBtn">+ Create Playlist</button>
           </div>
+          <div class="downloads-bar" id="downloadsBar">
+            <span>Downloads: <span id="downloadUsage">0 MB / 1 GB</span></span>
+            <span id="downloadStatus"></span>
+            <button class="btn" id="resetDownloadsBtn">Clear</button>
+          </div>
+          <div class="download-usage-track"><div class="download-usage-fill" id="downloadUsageBar"></div></div>
           <div class="filter-chips" id="libraryFilters">
             <button class="filter-chip active" data-filter="playlists">Playlists</button>
             <button class="filter-chip" data-filter="artists">Artists</button>

@@ -94,6 +94,12 @@ a { text-decoration: none; color: inherit; }
 .track-like:hover { background: #2a0a0a; }
 .track-like.liked { color: #ff0000; }
 .track-like.liked:hover { background: #2a0a0a; }
+.track-download { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; transition: background 0.1s; }
+.track-download:hover { background: #2a0a0a; }
+.downloads-bar { display: flex; align-items: center; gap: 12px; padding: 10px 0 6px; color: #bbb; font-size: 14px; flex-wrap: wrap; }
+.downloads-bar #downloadStatus { color: #888; font-size: 13px; }
+.download-usage-track { height: 6px; background: #222; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+.download-usage-fill { height: 100%; background: #ff0000; width: 0%; transition: width 0.3s; }
 
 /* artist sections */
 .artist-sections { display: flex; flex-direction: column; gap: 40px; }
