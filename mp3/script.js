@@ -7,7 +7,7 @@ const artists = {
 };
 
 // Demo tracks - single editable array for future audio server
-const trackList = [
+let trackList = [
   { id: 1, title: 'Dreamy Tone', artist: 'Prabir', artistId: 'prabir', duration: '2:45', durationSec: 165, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist1'] },
   { id: 2, title: 'Upbeat Demo', artist: 'Prabir', artistId: 'prabir', duration: '3:12', durationSec: 192, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist1', 'playlist3'] },
   { id: 3, title: 'Midnight Chill', artist: 'Prabir', artistId: 'prabir', duration: '4:20', durationSec: 260, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist2'] },
@@ -17,54 +17,12 @@ const trackList = [
   { id: 7, title: 'Binary Sunset', artist: 'Abhijit', artistId: 'abhijit', duration: '4:15', durationSec: 255, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist2'] },
   { id: 8, title: 'Circuit Breaker', artist: 'Abhijit', artistId: 'abhijit', duration: '3:05', durationSec: 185, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist1'] },
   { id: 9, title: 'Digital Horizon', artist: 'Abhijit', artistId: 'abhijit', duration: '3:50', durationSec: 230, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist3'] },
-  { id: 101, title: 'Tu Mil Jaaye (From "KING")', artist: 'Sachin-Jigar, Ed Sheeran, Arijit Singh, Kumaar, Madhubanti Bagchi', artistId: '', duration: '5:15', durationSec: 315, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717121/shoot2head-mp3/Tu_Mil_Jaaye_From_KING.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 102, title: 'Mangal Rang (From "Ramayana")', artist: 'A.R. Rahman, Arijit Singh, Shreya Ghoshal, Kumar Vishwas', artistId: '', duration: '4:37', durationSec: 277, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717041/shoot2head-mp3/Mangal_Rang_From_Ramayana.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 103, title: 'Mahiya', artist: 'Badshah, Shreya Ghoshal, Hiten', artistId: '', duration: '2:29', durationSec: 149, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717026/shoot2head-mp3/Mahiya.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 104, title: 'Dard-e-Dil Dard-e-Jigar (From "Gunmaaster G9")', artist: 'Himesh Reshammiya, AKASA, Sonia Kapoor Reshammiya', artistId: '', duration: '5:24', durationSec: 324, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716946/shoot2head-mp3/Dard-e-Dil_Dard-e-Jigar_From_Gunmaaster_G9.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 105, title: 'Main Ram (From "Ramayana")', artist: 'Prateek Walia, Sachet Tandon, Kumar Vishwas', artistId: '', duration: '3:41', durationSec: 221, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717032/shoot2head-mp3/Main_Ram_From_Ramayana.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 106, title: 'Teri Sexy Beauty (From "Maatrubhumi: May War Rest in Peace")', artist: 'Salman Khan, Muskaan, Sajid Khan', artistId: '', duration: '3:34', durationSec: 214, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717115/shoot2head-mp3/Teri_Sexy_Beauty_From_Maatrubhumi_May_War_Rest_in_Peace.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 107, title: 'Do Din Ki Zindagi (From "Gunmaaster G9")', artist: 'Himesh Reshammiya, Shreya Ghoshal, Vishal Mishra, Junaid Wasi', artistId: '', duration: '5:38', durationSec: 338, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716968/shoot2head-mp3/Do_Din_Ki_Zindagi_From_Gunmaaster_G9.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 108, title: 'Chann (From "Udta Teer")', artist: 'Sachin-Jigar, Arijit Singh, Amitabh Bhattacharya', artistId: '', duration: '3:38', durationSec: 218, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716939/shoot2head-mp3/Chann_From_Udta_Teer.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 109, title: 'OO EY', artist: 'Nikhita Gandhi', artistId: '', duration: '1:56', durationSec: 116, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717050/shoot2head-mp3/OO_EY.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 110, title: 'Mudd Na Sajna', artist: 'Madhubanti Bagchi, Siddharth Amit Bhavsar', artistId: '', duration: '3:52', durationSec: 232, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717043/shoot2head-mp3/Mudd_Na_Sajna.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 111, title: 'Judi Jodi (From "Ramayana")', artist: 'A.R. Rahman, Shreya Ghoshal, Kumar Vishwas', artistId: '', duration: '3:59', durationSec: 239, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717004/shoot2head-mp3/Judi_Jodi_From_Ramayana.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 112, title: 'Saawan Aaya Hai (From "Yeh Prem Mol Liya")', artist: 'Himesh Reshammiya, Shreya Ghoshal, Keshav Anand, Mayur Puri', artistId: '', duration: '4:21', durationSec: 261, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717083/shoot2head-mp3/Saawan_Aaya_Hai_From_Yeh_Prem_Mol_Liya.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 113, title: 'Daur E Aashiqui', artist: 'Salman Ali, Anushkaa Banerjee, Shabbir Ahmed', artistId: '', duration: '4:46', durationSec: 286, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716952/shoot2head-mp3/Daur_E_Aashiqui.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 114, title: 'Shree Hanuman Chalisa (From "Ramayana")', artist: 'A.R. Rahman, Shankar Mahadevan, Diljit Dosanjh, Sukhwinder Singh, Mohit Chauhan, Kailash Kher', artistId: '', duration: '6:58', durationSec: 418, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717091/shoot2head-mp3/Shree_Hanuman_Chalisa_From_Ramayana.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 115, title: 'Mahiya Ve', artist: 'Varun Jain', artistId: '', duration: '2:58', durationSec: 178, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717019/shoot2head-mp3/Mahiya_Ve.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 116, title: 'Ravana Tandav (From "Ramayana") [Hindi]', artist: 'A.R. Rahman, Vishal Dadlani, Kumar Vishwas', artistId: '', duration: '3:14', durationSec: 194, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717068/shoot2head-mp3/Ravana_Tandav_From_Ramayana_Hindi.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 117, title: 'Jhumka Patola (From "Yeh Prem Mol Liya")', artist: 'Himesh Reshammiya, Shreya Ghoshal, Sonia Kapoor Reshammiya', artistId: '', duration: '4:47', durationSec: 287, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716992/shoot2head-mp3/Jhumka_Patola_From_Yeh_Prem_Mol_Liya.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 118, title: 'SUMWALI DAAV (From "Trap Aiba")', artist: 'Emiway Bantai', artistId: '', duration: '2:43', durationSec: 163, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717072/shoot2head-mp3/SUMWALI_DAAV_From_Trap_Aiba.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 119, title: 'Jaan-E-Jaan (From "Between Distances")', artist: 'Aditya Rikhari, Farhan Khan, Ravator', artistId: '', duration: '2:27', durationSec: 147, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716981/shoot2head-mp3/Jaan-E-Jaan_From_Between_Distances.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 120, title: 'Saanwre', artist: 'Raj Barman, Sameer Husain', artistId: '', duration: '3:20', durationSec: 200, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717077/shoot2head-mp3/Saanwre.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 121, title: 'Teri Ore', artist: 'Palak Muchhal, Shahid Mallya, Javed-Mohsin, Vishal Pandey, Sheetal Sharma', artistId: '', duration: '4:08', durationSec: 248, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717111/shoot2head-mp3/Teri_Ore.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 122, title: 'Tab Se', artist: 'Raghav Chaitanya, Mehtab Ali Niazi', artistId: '', duration: '4:44', durationSec: 284, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717105/shoot2head-mp3/Tab_Se.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 123, title: 'Rani Tu Hi Diwali', artist: 'Manan Bhardwaj', artistId: '', duration: '2:32', durationSec: 152, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717063/shoot2head-mp3/Rani_Tu_Hi_Diwali.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 124, title: 'O Mysaa Re (From "Mysaa") [Hindi]', artist: 'Jakes Bejoy, Sindhuja Srinivasan, Neha Sandeep Shitole', artistId: '', duration: '4:39', durationSec: 279, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717045/shoot2head-mp3/O_Mysaa_Re_From_Mysaa_Hindi.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 125, title: 'Aaj Sajeya Ve', artist: 'Abhay Jodhpurkar, Jay Mehta, Rini Chandra', artistId: '', duration: '3:33', durationSec: 213, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716920/shoot2head-mp3/Aaj_Sajeya_Ve.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 126, title: 'Fidaa', artist: 'Arslan Nizami', artistId: '', duration: '3:11', durationSec: 191, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716973/shoot2head-mp3/Fidaa.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 127, title: 'Dil Mera Rota Chala Jaye', artist: 'Krish Mondal, Kishore Mondal, Jyotica Tangri, Amol- Abhishek, Amol Shrivastava, Abhishek Talented', artistId: '', duration: '3:15', durationSec: 195, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716963/shoot2head-mp3/Dil_Mera_Rota_Chala_Jaye.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 128, title: 'Karam Farma De (From "Meethe Mein Kya Hai")', artist: 'Kumaar, Amit Trivedi, Shahid Mallya', artistId: '', duration: '3:24', durationSec: 204, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717010/shoot2head-mp3/Karam_Farma_De_From_Meethe_Mein_Kya_Hai.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 129, title: 'Dhola Ji (From "Suryaa")', artist: 'Shreya Ghoshal, Javed Ali, Swaroop Khan', artistId: '', duration: '5:19', durationSec: 319, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716959/shoot2head-mp3/Dhola_Ji_From_Suryaa.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 130, title: 'Ichak Dana (From "Meethe Mein Kya Hai")', artist: 'Kumaar, Amit Trivedi, Nakash Aziz', artistId: '', duration: '2:43', durationSec: 163, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716977/shoot2head-mp3/Ichak_Dana_From_Meethe_Mein_Kya_Hai.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 131, title: 'So Swaezy', artist: 'Yo Yo Honey Singh, Hommie Dilliwala', artistId: '', duration: '3:25', durationSec: 205, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717096/shoot2head-mp3/So_Swaezy.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 132, title: 'MERI KISMAT MEIN', artist: 'Raj Barman, Shabab Azmi', artistId: '', duration: '2:42', durationSec: 162, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717014/shoot2head-mp3/MERI_KISMAT_MEIN.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 133, title: 'RUDE', artist: 'Nikhita Gandhi, Dino James', artistId: '', duration: '2:45', durationSec: 165, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717059/shoot2head-mp3/RUDE.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 134, title: 'Baarish', artist: 'Raj Barman, Rubai', artistId: '', duration: '3:42', durationSec: 222, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716925/shoot2head-mp3/Baarish.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 135, title: 'Begum Bewafa', artist: 'Sonu Nigam, Bosco Martis, Vishie, Vikas Bedi, Aditya Seal', artistId: '', duration: '3:25', durationSec: 205, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716929/shoot2head-mp3/Begum_Bewafa.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 136, title: 'Promise', artist: 'Sachet Tandon, Parampara Tandon, Kausar Munir, Sachet-Parampara', artistId: '', duration: '3:11', durationSec: 191, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717054/shoot2head-mp3/Promise.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 137, title: 'Jai Hind (From "Maatrubhumi: May War Rest in Peace")', artist: 'Himesh Reshammiya, Stebin Ben, Sameer Anjaan', artistId: '', duration: '6:28', durationSec: 388, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716988/shoot2head-mp3/Jai_Hind_From_Maatrubhumi_May_War_Rest_in_Peace.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 138, title: 'Bin Kasoor', artist: 'AKASA, Aniket Shukla', artistId: '', duration: '2:44', durationSec: 164, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716933/shoot2head-mp3/Bin_Kasoor.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 139, title: 'Suniyo Zara (From "Suryaa")', artist: 'Kumar Sanu, Udit Narayan, Anupam Amod, RAAHEE', artistId: '', duration: '4:10', durationSec: 250, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717099/shoot2head-mp3/Suniyo_Zara_From_Suryaa.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 140, title: 'Makhmali', artist: 'Rito Riba, Saaheal', artistId: '', duration: '3:00', durationSec: 180, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794717034/shoot2head-mp3/Makhmali.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
-  { id: 141, title: 'Joganiya', artist: 'Rito Riba, Siddhant Kaushal', artistId: '', duration: '3:05', durationSec: 185, audioUrl: 'https://res.cloudinary.com/zpu6kgau/video/upload/v1794716996/shoot2head-mp3/Joganiya.mp3', album: 'Taaza Tunes', albumId: '', playlistIds: ['taaza-tunes'] },
 ];
 
-const playlists = [
+let playlists = [
   { id: 'playlist1', title: 'Late Night Coding', description: 'Perfect beats for deep focus sessions', cover: 'logo.png', trackIds: [1, 2, 6, 8], owner: 'You' },
   { id: 'playlist2', title: 'Chill Vibes Only', description: 'Wind down with atmospheric sounds', cover: 'logo.png', trackIds: [3, 4, 7], owner: 'You' },
   { id: 'playlist3', title: 'Weekend Energy', description: 'High energy tracks for the weekend', cover: 'logo.png', trackIds: [2, 5, 6, 9], owner: 'You' },
-  { id: 'taaza-tunes', title: 'Taaza Tunes', description: 'Latest Songs • Just Updated', cover: 'logo.png', trackIds: [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141], owner: 'shoot2head' },
 ];
 
 const albums = [
@@ -251,6 +209,120 @@ function playTrackObjects(tracks, startIndex = 0) {
   renderQueue();
 }
 
+// ============ IN-APP OFFLINE DOWNLOADS (IndexedDB) ============
+// Downloads live INSIDE the app, so a downloaded song plays offline — like an MP3
+// stored on the phone. Clearing the browser's site data removes them.
+const DL_DB_NAME = 'shoot2head-downloads';
+const DL_STORE = 'tracks';
+let dlDbPromise = null;
+let downloadedIds = new Set();
+
+function openDlDb() {
+  if (dlDbPromise) return dlDbPromise;
+  dlDbPromise = new Promise((resolve, reject) => {
+    const req = indexedDB.open(DL_DB_NAME, 1);
+    req.onupgradeneeded = () => { req.result.createObjectStore(DL_STORE, { keyPath: 'id' }); };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+  return dlDbPromise;
+}
+async function saveDownloadedTrack(track, blob, ext, size) {
+  const db = await openDlDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DL_STORE, 'readwrite');
+    tx.objectStore(DL_STORE).put({
+      id: track.id, title: track.title, artist: track.artist,
+      duration: track.duration, durationSec: track.durationSec || 0,
+      ext, size, blob, downloadedAt: Date.now(),
+      source: track.source || '', videoId: track.videoId || '', audioUrl: track.audioUrl || ''
+    });
+    tx.oncomplete = resolve;
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function getDownloadedTrack(id) {
+  try {
+    const db = await openDlDb();
+    return await new Promise((resolve, reject) => {
+      const req = db.transaction(DL_STORE, 'readonly').objectStore(DL_STORE).get(id);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+  } catch (e) { return null; }
+}
+async function listDownloadedTracks() {
+  try {
+    const db = await openDlDb();
+    return await new Promise((resolve, reject) => {
+      const req = db.transaction(DL_STORE, 'readonly').objectStore(DL_STORE).getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => reject(req.error);
+    });
+  } catch (e) { return []; }
+}
+async function deleteDownloadedTrack(id) {
+  const db = await openDlDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DL_STORE, 'readwrite');
+    tx.objectStore(DL_STORE).delete(id);
+    tx.oncomplete = resolve;
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function playDownloadedById(id) {
+  const entry = await getDownloadedTrack(id);
+  if (!entry) return;
+  playTrackObjects([{
+    id: entry.id, title: entry.title, artist: entry.artist,
+    duration: entry.duration, durationSec: entry.durationSec,
+    audioUrl: entry.audioUrl, source: entry.source, videoId: entry.videoId
+  }], 0);
+}
+async function renderDownloaded() {
+  const listEl = document.getElementById('downloadedList');
+  const emptyEl = document.getElementById('downloadedEmpty');
+  if (!listEl) return;
+  const items = await listDownloadedTracks();
+  downloadedIds = new Set(items.map(t => t.id));
+  // Mark already-downloaded buttons on the current view
+  document.querySelectorAll('.track-download').forEach(b => {
+    const id = toTrackId(b.dataset.id);
+    b.textContent = downloadedIds.has(id) ? '✓' : '⬇';
+  });
+  if (emptyEl) emptyEl.style.display = items.length ? 'none' : 'block';
+  listEl.innerHTML = items.map(e => `
+    <div class="track-row downloaded-row" data-id="${e.id}">
+      <div class="track-num">↓</div>
+      <div class="track-main">
+        <img src="logo.png" alt="${e.title}">
+        <div class="track-text">
+          <div class="title">${e.title}</div>
+          <div class="artist">${e.artist}</div>
+        </div>
+      </div>
+      <div class="track-album"></div>
+      <div class="track-duration">${e.duration}</div>
+      <button class="track-remove" data-id="${e.id}" title="Remove download">✕</button>
+    </div>`).join('');
+  listEl.querySelectorAll('.downloaded-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      if (e.target.classList.contains('track-remove')) return;
+      playDownloadedById(toTrackId(row.dataset.id));
+    });
+    row.querySelector('.track-remove')?.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const rid = toTrackId(e.target.dataset.id);
+      const entry = await getDownloadedTrack(rid);
+      await deleteDownloadedTrack(rid);
+      if (entry) localStorage.setItem(DOWNLOAD_KEY, String(Math.max(0, getDownloadedBytes() - (entry.size || 0))));
+      updateDownloadsBar();
+      renderDownloaded();
+      setDownloadStatus('Removed from the app: ' + (entry ? entry.title : ''));
+    });
+  });
+}
+
 // ============ DOWNLOADS — 1 GB limit, saves to the phone's Downloads folder ============
 const DOWNLOAD_LIMIT_BYTES = 1024 * 1024 * 1024; // 1 GB
 const DOWNLOAD_KEY = 'shoot2head_downloaded_bytes';
@@ -320,7 +392,7 @@ async function downloadTrack(track, btn) {
     const dl = await resolveDownload(track);
     if (!dl) throw new Error('no-audio');
     if (dl.size && getDownloadedBytes() + dl.size > DOWNLOAD_LIMIT_BYTES) {
-      setDownloadStatus('1 GB limit reached. Delete some songs from your phone, then press Clear to reset the counter.');
+      setDownloadStatus('1 GB limit reached. Remove a downloaded song below, or press Clear to remove them all.');
       if (btn) btn.textContent = '⬇';
       return;
     }
@@ -343,16 +415,13 @@ async function downloadTrack(track, btn) {
       return;
     }
     const blob = new Blob(chunks, { type: dl.ext === 'mp3' ? 'audio/mpeg' : 'audio/webm' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = sanitizeFilename(track.title + ' - ' + track.artist) + '.' + dl.ext;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    // Save INSIDE the app (IndexedDB) — the song then plays offline from the app.
+    await saveDownloadedTrack(track, blob, dl.ext, received);
     addDownloadedBytes(received);
-    setDownloadStatus('Saved to Downloads: ' + a.download);
+    downloadedIds.add(track.id);
+    setDownloadStatus('Saved in the app — plays offline: ' + track.title);
     if (btn) btn.textContent = '✓';
+    renderDownloaded();
   } catch (e) {
     console.log('Download failed:', e);
     setDownloadStatus('Download failed. Check your connection and try again — or just play the song instead.');
@@ -387,6 +456,27 @@ const trackModal = document.getElementById('trackModal');
 const createPlaylistModal = document.getElementById('createPlaylistModal');
 
 // ============ INIT ============
+
+// ============ SERVER PLAYLISTS — playlists.json is the server data ============
+// The app reads its playlists from mp3/playlists.json on every load, so a playlist
+// update only changes that file — the app code never needs an update.
+// If the file cannot be loaded (offline / bad connection), the built-in songs stay.
+async function loadServerPlaylists() {
+  try {
+    const res = await fetch('playlists.json?v=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data || !Array.isArray(data.tracks) || !Array.isArray(data.playlists)) return;
+    const serverTrackIds = new Set(data.tracks.map(t => t.id));
+    trackList = trackList.filter(t => !serverTrackIds.has(t.id)).concat(data.tracks);
+    const serverPlIds = new Set(data.playlists.map(p => p.id));
+    playlists = playlists.filter(p => !serverPlIds.has(p.id)).concat(data.playlists);
+    renderAll();
+  } catch (e) {
+    console.log('Server playlists unavailable, using built-in songs:', e);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   loadLikedTracks();
   initEventListeners();
@@ -394,10 +484,16 @@ document.addEventListener('DOMContentLoaded', () => {
   setupAudioEvents();
   updateNowPlayingBar();
   updateDownloadsBar();
-  document.getElementById('resetDownloadsBtn')?.addEventListener('click', () => {
+  loadServerPlaylists();
+  renderDownloaded();
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  document.getElementById('resetDownloadsBtn')?.addEventListener('click', async () => {
+    const items = await listDownloadedTracks();
+    for (const it of items) await deleteDownloadedTrack(it.id);
     localStorage.removeItem(DOWNLOAD_KEY);
     updateDownloadsBar();
-    setDownloadStatus('Download counter cleared. Delete the files from your phone too if you already removed them.');
+    renderDownloaded();
+    setDownloadStatus('All in-app downloads cleared.');
   });
 });
 
@@ -504,6 +600,24 @@ async function playTrack(index) {
   if (index < 0 || index >= queue.length) return;
   currentTrackIndex = index;
   const track = queue[index];
+  // Revoke the previous downloaded blob URL when switching tracks
+  if (audio._dlUrl) { URL.revokeObjectURL(audio._dlUrl); audio._dlUrl = null; }
+  // In-app download? Play the stored file — works offline, no network needed.
+  const dl = await getDownloadedTrack(track.id);
+  if (dl && dl.blob) {
+    if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+    stopYtProgress();
+    activeEngine = 'audio';
+    audio._dlUrl = URL.createObjectURL(dl.blob);
+    audio.src = audio._dlUrl;
+    audio.play().catch(err => console.log('Playback failed:', err));
+    updateNowPlayingBar();
+    updateFullscreenNowPlaying();
+    updateTrackModal(track);
+    renderQueue();
+    highlightPlayingTrack();
+    return;
+  }
   if (track.source === 'youtube') {
     audio.pause();
     activeEngine = 'youtube';
@@ -914,7 +1028,7 @@ function renderQueue() {
 function createCard(item, type) {
   const isLiked = type === 'track' && likedTracks.has(item.id);
   const heart = type === 'track' ? `<button class="track-like${isLiked ? ' liked' : ''}" data-id="${item.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>` : '';
-  const dlBtn = type === 'track' ? `<button class="track-download" data-id="${item.id}" title="Download">⬇</button>` : '';
+  const dlBtn = type === 'track' ? `<button class="track-download" data-id="${item.id}" title="Download">${downloadedIds.has(item.id) ? '✓' : '⬇'}</button>` : '';
   
   switch (type) {
     case 'playlist':
@@ -987,7 +1101,7 @@ function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
       ${showAlbum ? `<div class="track-album">${track.album}</div>` : ''}
       <div class="track-duration">${track.duration}</div>
       <button class="track-like${isLiked ? ' liked' : ''}" data-id="${track.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>
-      <button class="track-download" data-id="${track.id}" title="Download">⬇</button>
+      <button class="track-download" data-id="${track.id}" title="Download">${downloadedIds.has(track.id) ? '✓' : '⬇'}</button>
     </div>
   `;
 }
@@ -1008,11 +1122,13 @@ function attachCardListeners(container) {
       const id = toTrackId(e.target.dataset.id);
       toggleLike(id);
     });
-    // Download button on track cards
+    // Download button on track cards — plays the stored copy when already downloaded
     card.querySelector('.track-download')?.addEventListener('click', (e) => {
       e.stopPropagation();
       const t = findTrackById(e.target.dataset.id);
-      downloadTrack(t, e.target);
+      if (!t) return;
+      if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+      else downloadTrack(t, e.target);
     });
   });
 }
@@ -1052,7 +1168,9 @@ function attachTrackRowListeners(container, trackIds, isLikedView = false) {
     row.querySelector('.track-download')?.addEventListener('click', (e) => {
       e.stopPropagation();
       const t = findTrackById(e.target.dataset.id);
-      downloadTrack(t, e.target);
+      if (!t) return;
+      if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+      else downloadTrack(t, e.target);
     });
   });
 }

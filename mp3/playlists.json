@@ -1,0 +1,632 @@
+{
+  "version": 1,
+  "note": "Server playlist data. The app reads this file on every load, so updating a playlist only means editing this file — the app code never needs an update.",
+  "playlists": [
+    {
+      "id": "taaza-tunes",
+      "title": "Taaza Tunes",
+      "description": "Latest Songs • Just Updated",
+      "cover": "logo.png",
+      "trackIds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "owner": "shoot2head"
+    }
+  ],
+  "tracks": [
+    {
+      "id": 101,
+      "title": "Tu Mil Jaaye (From \"KING\")",
+      "artist": "Sachin-Jigar, Ed Sheeran, Arijit Singh, Kumaar, Madhubanti Bagchi",
+      "artistId": "",
+      "duration": "5:15",
+      "durationSec": 315,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717121/shoot2head-mp3/Tu_Mil_Jaaye_From_KING.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 102,
+      "title": "Mangal Rang (From \"Ramayana\")",
+      "artist": "A.R. Rahman, Arijit Singh, Shreya Ghoshal, Kumar Vishwas",
+      "artistId": "",
+      "duration": "4:37",
+      "durationSec": 277,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717041/shoot2head-mp3/Mangal_Rang_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 103,
+      "title": "Mahiya",
+      "artist": "Badshah, Shreya Ghoshal, Hiten",
+      "artistId": "",
+      "duration": "2:29",
+      "durationSec": 149,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717026/shoot2head-mp3/Mahiya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 104,
+      "title": "Dard-e-Dil Dard-e-Jigar (From \"Gunmaaster G9\")",
+      "artist": "Himesh Reshammiya, AKASA, Sonia Kapoor Reshammiya",
+      "artistId": "",
+      "duration": "5:24",
+      "durationSec": 324,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716946/shoot2head-mp3/Dard-e-Dil_Dard-e-Jigar_From_Gunmaaster_G9.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 105,
+      "title": "Main Ram (From \"Ramayana\")",
+      "artist": "Prateek Walia, Sachet Tandon, Kumar Vishwas",
+      "artistId": "",
+      "duration": "3:41",
+      "durationSec": 221,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717032/shoot2head-mp3/Main_Ram_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 106,
+      "title": "Teri Sexy Beauty (From \"Maatrubhumi: May War Rest in Peace\")",
+      "artist": "Salman Khan, Muskaan, Sajid Khan",
+      "artistId": "",
+      "duration": "3:34",
+      "durationSec": 214,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717115/shoot2head-mp3/Teri_Sexy_Beauty_From_Maatrubhumi_May_War_Rest_in_Peace.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 107,
+      "title": "Do Din Ki Zindagi (From \"Gunmaaster G9\")",
+      "artist": "Himesh Reshammiya, Shreya Ghoshal, Vishal Mishra, Junaid Wasi",
+      "artistId": "",
+      "duration": "5:38",
+      "durationSec": 338,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716968/shoot2head-mp3/Do_Din_Ki_Zindagi_From_Gunmaaster_G9.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 108,
+      "title": "Chann (From \"Udta Teer\")",
+      "artist": "Sachin-Jigar, Arijit Singh, Amitabh Bhattacharya",
+      "artistId": "",
+      "duration": "3:38",
+      "durationSec": 218,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716939/shoot2head-mp3/Chann_From_Udta_Teer.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 109,
+      "title": "OO EY",
+      "artist": "Nikhita Gandhi",
+      "artistId": "",
+      "duration": "1:56",
+      "durationSec": 116,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717050/shoot2head-mp3/OO_EY.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 110,
+      "title": "Mudd Na Sajna",
+      "artist": "Madhubanti Bagchi, Siddharth Amit Bhavsar",
+      "artistId": "",
+      "duration": "3:52",
+      "durationSec": 232,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717043/shoot2head-mp3/Mudd_Na_Sajna.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 111,
+      "title": "Judi Jodi (From \"Ramayana\")",
+      "artist": "A.R. Rahman, Shreya Ghoshal, Kumar Vishwas",
+      "artistId": "",
+      "duration": "3:59",
+      "durationSec": 239,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717004/shoot2head-mp3/Judi_Jodi_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 112,
+      "title": "Saawan Aaya Hai (From \"Yeh Prem Mol Liya\")",
+      "artist": "Himesh Reshammiya, Shreya Ghoshal, Keshav Anand, Mayur Puri",
+      "artistId": "",
+      "duration": "4:21",
+      "durationSec": 261,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717083/shoot2head-mp3/Saawan_Aaya_Hai_From_Yeh_Prem_Mol_Liya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 113,
+      "title": "Daur E Aashiqui",
+      "artist": "Salman Ali, Anushkaa Banerjee, Shabbir Ahmed",
+      "artistId": "",
+      "duration": "4:46",
+      "durationSec": 286,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716952/shoot2head-mp3/Daur_E_Aashiqui.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 114,
+      "title": "Shree Hanuman Chalisa (From \"Ramayana\")",
+      "artist": "A.R. Rahman, Shankar Mahadevan, Diljit Dosanjh, Sukhwinder Singh, Mohit Chauhan, Kailash Kher",
+      "artistId": "",
+      "duration": "6:58",
+      "durationSec": 418,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717091/shoot2head-mp3/Shree_Hanuman_Chalisa_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 115,
+      "title": "Mahiya Ve",
+      "artist": "Varun Jain",
+      "artistId": "",
+      "duration": "2:58",
+      "durationSec": 178,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717019/shoot2head-mp3/Mahiya_Ve.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 116,
+      "title": "Ravana Tandav (From \"Ramayana\") [Hindi]",
+      "artist": "A.R. Rahman, Vishal Dadlani, Kumar Vishwas",
+      "artistId": "",
+      "duration": "3:14",
+      "durationSec": 194,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717068/shoot2head-mp3/Ravana_Tandav_From_Ramayana_Hindi.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 117,
+      "title": "Jhumka Patola (From \"Yeh Prem Mol Liya\")",
+      "artist": "Himesh Reshammiya, Shreya Ghoshal, Sonia Kapoor Reshammiya",
+      "artistId": "",
+      "duration": "4:47",
+      "durationSec": 287,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716992/shoot2head-mp3/Jhumka_Patola_From_Yeh_Prem_Mol_Liya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 118,
+      "title": "SUMWALI DAAV (From \"Trap Aiba\")",
+      "artist": "Emiway Bantai",
+      "artistId": "",
+      "duration": "2:43",
+      "durationSec": 163,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717072/shoot2head-mp3/SUMWALI_DAAV_From_Trap_Aiba.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 119,
+      "title": "Jaan-E-Jaan (From \"Between Distances\")",
+      "artist": "Aditya Rikhari, Farhan Khan, Ravator",
+      "artistId": "",
+      "duration": "2:27",
+      "durationSec": 147,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716981/shoot2head-mp3/Jaan-E-Jaan_From_Between_Distances.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 120,
+      "title": "Saanwre",
+      "artist": "Raj Barman, Sameer Husain",
+      "artistId": "",
+      "duration": "3:20",
+      "durationSec": 200,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717077/shoot2head-mp3/Saanwre.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 121,
+      "title": "Teri Ore",
+      "artist": "Palak Muchhal, Shahid Mallya, Javed-Mohsin, Vishal Pandey, Sheetal Sharma",
+      "artistId": "",
+      "duration": "4:08",
+      "durationSec": 248,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717111/shoot2head-mp3/Teri_Ore.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 122,
+      "title": "Tab Se",
+      "artist": "Raghav Chaitanya, Mehtab Ali Niazi",
+      "artistId": "",
+      "duration": "4:44",
+      "durationSec": 284,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717105/shoot2head-mp3/Tab_Se.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 123,
+      "title": "Rani Tu Hi Diwali",
+      "artist": "Manan Bhardwaj",
+      "artistId": "",
+      "duration": "2:32",
+      "durationSec": 152,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717063/shoot2head-mp3/Rani_Tu_Hi_Diwali.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 124,
+      "title": "O Mysaa Re (From \"Mysaa\") [Hindi]",
+      "artist": "Jakes Bejoy, Sindhuja Srinivasan, Neha Sandeep Shitole",
+      "artistId": "",
+      "duration": "4:39",
+      "durationSec": 279,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717045/shoot2head-mp3/O_Mysaa_Re_From_Mysaa_Hindi.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 125,
+      "title": "Aaj Sajeya Ve",
+      "artist": "Abhay Jodhpurkar, Jay Mehta, Rini Chandra",
+      "artistId": "",
+      "duration": "3:33",
+      "durationSec": 213,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716920/shoot2head-mp3/Aaj_Sajeya_Ve.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 126,
+      "title": "Fidaa",
+      "artist": "Arslan Nizami",
+      "artistId": "",
+      "duration": "3:11",
+      "durationSec": 191,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716973/shoot2head-mp3/Fidaa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 127,
+      "title": "Dil Mera Rota Chala Jaye",
+      "artist": "Krish Mondal, Kishore Mondal, Jyotica Tangri, Amol- Abhishek, Amol Shrivastava, Abhishek Talented",
+      "artistId": "",
+      "duration": "3:15",
+      "durationSec": 195,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716963/shoot2head-mp3/Dil_Mera_Rota_Chala_Jaye.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 128,
+      "title": "Karam Farma De (From \"Meethe Mein Kya Hai\")",
+      "artist": "Kumaar, Amit Trivedi, Shahid Mallya",
+      "artistId": "",
+      "duration": "3:24",
+      "durationSec": 204,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717010/shoot2head-mp3/Karam_Farma_De_From_Meethe_Mein_Kya_Hai.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 129,
+      "title": "Dhola Ji (From \"Suryaa\")",
+      "artist": "Shreya Ghoshal, Javed Ali, Swaroop Khan",
+      "artistId": "",
+      "duration": "5:19",
+      "durationSec": 319,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716959/shoot2head-mp3/Dhola_Ji_From_Suryaa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 130,
+      "title": "Ichak Dana (From \"Meethe Mein Kya Hai\")",
+      "artist": "Kumaar, Amit Trivedi, Nakash Aziz",
+      "artistId": "",
+      "duration": "2:43",
+      "durationSec": 163,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716977/shoot2head-mp3/Ichak_Dana_From_Meethe_Mein_Kya_Hai.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 131,
+      "title": "So Swaezy",
+      "artist": "Yo Yo Honey Singh, Hommie Dilliwala",
+      "artistId": "",
+      "duration": "3:25",
+      "durationSec": 205,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717096/shoot2head-mp3/So_Swaezy.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 132,
+      "title": "MERI KISMAT MEIN",
+      "artist": "Raj Barman, Shabab Azmi",
+      "artistId": "",
+      "duration": "2:42",
+      "durationSec": 162,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717014/shoot2head-mp3/MERI_KISMAT_MEIN.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 133,
+      "title": "RUDE",
+      "artist": "Nikhita Gandhi, Dino James",
+      "artistId": "",
+      "duration": "2:45",
+      "durationSec": 165,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717059/shoot2head-mp3/RUDE.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 134,
+      "title": "Baarish",
+      "artist": "Raj Barman, Rubai",
+      "artistId": "",
+      "duration": "3:42",
+      "durationSec": 222,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716925/shoot2head-mp3/Baarish.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 135,
+      "title": "Begum Bewafa",
+      "artist": "Sonu Nigam, Bosco Martis, Vishie, Vikas Bedi, Aditya Seal",
+      "artistId": "",
+      "duration": "3:25",
+      "durationSec": 205,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716929/shoot2head-mp3/Begum_Bewafa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 136,
+      "title": "Promise",
+      "artist": "Sachet Tandon, Parampara Tandon, Kausar Munir, Sachet-Parampara",
+      "artistId": "",
+      "duration": "3:11",
+      "durationSec": 191,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717054/shoot2head-mp3/Promise.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 137,
+      "title": "Jai Hind (From \"Maatrubhumi: May War Rest in Peace\")",
+      "artist": "Himesh Reshammiya, Stebin Ben, Sameer Anjaan",
+      "artistId": "",
+      "duration": "6:28",
+      "durationSec": 388,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716988/shoot2head-mp3/Jai_Hind_From_Maatrubhumi_May_War_Rest_in_Peace.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 138,
+      "title": "Bin Kasoor",
+      "artist": "AKASA, Aniket Shukla",
+      "artistId": "",
+      "duration": "2:44",
+      "durationSec": 164,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716933/shoot2head-mp3/Bin_Kasoor.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 139,
+      "title": "Suniyo Zara (From \"Suryaa\")",
+      "artist": "Kumar Sanu, Udit Narayan, Anupam Amod, RAAHEE",
+      "artistId": "",
+      "duration": "4:10",
+      "durationSec": 250,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717099/shoot2head-mp3/Suniyo_Zara_From_Suryaa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 140,
+      "title": "Makhmali",
+      "artist": "Rito Riba, Saaheal",
+      "artistId": "",
+      "duration": "3:00",
+      "durationSec": 180,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717034/shoot2head-mp3/Makhmali.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    },
+    {
+      "id": 141,
+      "title": "Joganiya",
+      "artist": "Rito Riba, Siddhant Kaushal",
+      "artistId": "",
+      "duration": "3:05",
+      "durationSec": 185,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716996/shoot2head-mp3/Joganiya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ]
+    }
+  ]
+}
