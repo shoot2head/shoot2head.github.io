@@ -25,6 +25,54 @@ function setCoverTile(el, seed, label) {
   el.innerHTML = `<span>${txt}</span>`;
 }
 
+function escAttr(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;'); }
+function realCover(track) {
+  // A song's real photo — never the user's portrait (logo.png).
+  const c = track && track.cover;
+  return (typeof c === 'string' && c.indexOf('http') === 0 && c.indexOf('logo.png') === -1) ? c : '';
+}
+function coverImgHTML(track) {
+  const url = realCover(track);
+  if (!url) return '';
+  return `<img class="cover-img" src="${escAttr(url)}" alt="" loading="lazy" data-seed="${escAttr(track.id || track.title)}" data-label="${escAttr((track.title || 'T')[0].toUpperCase())}">`;
+}
+function coverHTML(track) {
+  // Real song photo when the track has one, gradient tile otherwise.
+  return coverImgHTML(track) || coverTileHTML(track.id || track.title, (track.title || 'T')[0].toUpperCase());
+}
+function setCover(el, track) {
+  if (!el) return;
+  const img = coverImgHTML(track);
+  if (img) { el.className = ''; el.innerHTML = img; }
+  else setCoverTile(el, track.id || track.title, (track.title || 'T')[0].toUpperCase());
+}
+function setFullscreenCover(track) {
+  const el = document.getElementById('fullscreenCover');
+  if (!el) return;
+  const box = el.parentElement; // .fullscreen-cover
+  if (realCover(track)) {
+    if (box) box.classList.remove('cover-small');
+    el.className = '';
+    el.innerHTML = coverImgHTML(track);
+  } else {
+    // Uploaded song with no photo: no big colour block — only the title
+    // and a tiny round disc up top.
+    if (box) box.classList.add('cover-small');
+    const n = gradFor(track.id || track.title);
+    el.className = `cover-tile cover-grad-${n}`;
+    el.innerHTML = `<span>♪</span>`;
+  }
+}
+// A photo that fails to load falls back to its gradient tile.
+document.addEventListener('error', (e) => {
+  const t = e.target;
+  if (!t || !t.classList || !t.classList.contains('cover-img')) return;
+  const tile = document.createElement('div');
+  tile.className = `cover-tile cover-grad-${gradFor(t.dataset.seed || '')}`;
+  tile.innerHTML = `<span>${t.dataset.label || '♫'}</span>`;
+  t.replaceWith(tile);
+}, true);
+
 function setPlayerStatus(message) {
   const el = document.getElementById('nowPlayingStatus');
   if (el) el.textContent = message || '';
@@ -266,7 +314,8 @@ async function saveDownloadedTrack(track, blob, ext, size) {
       id: track.id, title: track.title, artist: track.artist,
       duration: track.duration, durationSec: track.durationSec || 0,
       ext, size, blob, downloadedAt: Date.now(),
-      source: track.source || '', videoId: track.videoId || '', audioUrl: track.audioUrl || ''
+      source: track.source || '', videoId: track.videoId || '', audioUrl: track.audioUrl || '',
+      cover: track.cover || ''
     });
     tx.oncomplete = resolve;
     tx.onerror = () => reject(tx.error);
@@ -340,7 +389,7 @@ async function renderDownloaded() {
     <div class="track-row downloaded-row" data-id="${e.id}">
       <div class="track-num">↓</div>
       <div class="track-main">
-        ${coverTileHTML(e.id || e.title, (e.title || 'T')[0].toUpperCase())}
+        ${coverHTML(e)}
         <div class="track-text">
           <div class="title">${e.title}</div>
           <div class="artist">${e.artist}</div>
@@ -1131,7 +1180,7 @@ function renderFullscreenNowPlaying() {
 function updateFullscreenNowPlaying() {
   if (queue.length === 0) return;
   const track = queue[currentTrackIndex];
-  setCoverTile(document.getElementById('fullscreenCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
+  setFullscreenCover(track);
   document.getElementById('fullscreenTitle').textContent = track.title;
   document.getElementById('fullscreenArtist').textContent = track.artist;
   const fsDl = document.getElementById('fsDownloadBtn');
@@ -1147,7 +1196,7 @@ function renderQueue() {
   }
   list.innerHTML = queue.map((t, i) => `
     <div class="queue-item" data-index="${i}">
-      ${coverTileHTML(t.id || t.title, (t.title || 'T')[0].toUpperCase())}
+      ${coverHTML(t)}
       <div class="queue-info">
         <div class="queue-title">${t.title}</div>
         <div class="queue-artist">${t.artist}</div>
@@ -1235,7 +1284,7 @@ function createCard(item, type) {
       const label = (item.title || 'T')[0].toUpperCase();
       return `
         <div class="card" data-type="track" data-id="${item.id}">
-          ${coverTileHTML(seed, label)}
+          ${coverHTML(item)}
           <div class="info">
             <div class="title">${item.title}</div>
             <div class="artist">${item.artist}</div>
@@ -1267,7 +1316,7 @@ function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
     <div class="track-row${isPlayingNow ? ' playing' : ''}" data-id="${track.id}" data-index="${actualIndex}">
       <div class="track-num${isPlayingNow ? ' playing' : ''}">${displayIndex + 1}</div>
       <div class="track-main">
-        ${coverTileHTML(track.id || track.title, (track.title || 'T')[0].toUpperCase())}
+        ${coverHTML(track)}
         <div class="track-text">
           <div class="title">${track.title}</div>
           <div class="artist">${track.artist}</div>
@@ -1447,13 +1496,13 @@ function updateNowPlayingBar() {
   const track = queue[currentTrackIndex];
   document.getElementById('nowPlayingTitle').textContent = track.title;
   document.getElementById('nowPlayingArtist').textContent = track.artist;
-  setCoverTile(document.getElementById('nowPlayingCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
+  setCover(document.getElementById('nowPlayingCover'), track);
 }
 
 // ============ TRACK MODAL ============
 function openTrackModal(track) {
   if (!track) return;
-  setCoverTile(document.getElementById('modalCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
+  setCover(document.getElementById('modalCover'), track);
   document.getElementById('modalTitle').textContent = track.title;
   document.getElementById('modalArtist').textContent = track.artist;
   document.getElementById('modalDuration').textContent = track.duration;
