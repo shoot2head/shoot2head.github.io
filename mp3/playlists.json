@@ -1,1658 +1,1771 @@
 {
- "version": 2,
- "note": "Server playlists for shoot2head.mp3. Edit this file to change playlists; the app loads it fresh on every start, so no app update is needed.",
- "playlists": [
-  {
-   "id": "taaza-tunes",
-   "title": "Taaza Tunes",
-   "description": "Latest Songs • Just Updated",
-   "cover": "logo.png",
-   "trackIds": [
-    101,
-    102,
-    103,
-    104,
-    105,
-    106,
-    107,
-    108,
-    109,
-    110,
-    111,
-    112,
-    113,
-    114,
-    115,
-    116,
-    117,
-    118,
-    119,
-    120,
-    121,
-    122,
-    123,
-    124,
-    125,
-    126,
-    127,
-    128,
-    129,
-    130,
-    131,
-    132,
-    133,
-    134,
-    135,
-    136,
-    137,
-    138,
-    139,
-    140,
-    141
-   ],
-   "owner": "shoot2head"
-  },
-  {
-   "id": "notun-tunes",
-   "title": "Notun Tunes",
-   "description": "Latest Bengali Songs",
-   "cover": "logo.png",
-   "owner": "shoot2head",
-   "trackIds": [
-    142,
-    143,
-    144,
-    145,
-    146,
-    147,
-    148,
-    149,
-    150,
-    151,
-    152,
-    153,
-    154,
-    155,
-    156,
-    157,
-    158,
-    159,
-    160,
-    161,
-    162,
-    163,
-    164,
-    165,
-    166,
-    167,
-    168,
-    169,
-    170,
-    171,
-    172,
-    173,
-    174,
-    175,
-    176,
-    177,
-    178,
-    179,
-    180,
-    181,
-    182,
-    183,
-    184,
-    185,
-    186,
-    187,
-    188,
-    189,
-    190,
-    191
-   ]
-  },
-  {
-   "id": "paglu-naach",
-   "title": "Paglu Naach",
-   "description": "Latest Bengali Songs",
-   "cover": "logo.png",
-   "owner": "shoot2head",
-   "trackIds": [
-    192,
-    193,
-    194,
-    195,
-    196,
-    197,
-    198,
-    199,
-    200,
-    201,
-    202,
-    203,
-    204,
-    205,
-    206,
-    207,
-    208,
-    209,
-    210,
-    211,
-    212,
-    213
-   ]
-  }
- ],
- "tracks": [
-  {
-   "id": 101,
-   "title": "Tu Mil Jaaye (From \"KING\")",
-   "artist": "Sachin-Jigar, Ed Sheeran, Arijit Singh, Kumaar, Madhubanti Bagchi",
-   "artistId": "",
-   "duration": "5:15",
-   "durationSec": 315,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717121/shoot2head-mp3/Tu_Mil_Jaaye_From_KING.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 102,
-   "title": "Mangal Rang (From \"Ramayana\")",
-   "artist": "A.R. Rahman, Arijit Singh, Shreya Ghoshal, Kumar Vishwas",
-   "artistId": "",
-   "duration": "4:37",
-   "durationSec": 277,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717041/shoot2head-mp3/Mangal_Rang_From_Ramayana.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 103,
-   "title": "Mahiya",
-   "artist": "Badshah, Shreya Ghoshal, Hiten",
-   "artistId": "",
-   "duration": "2:29",
-   "durationSec": 149,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717026/shoot2head-mp3/Mahiya.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 104,
-   "title": "Dard-e-Dil Dard-e-Jigar (From \"Gunmaaster G9\")",
-   "artist": "Himesh Reshammiya, AKASA, Sonia Kapoor Reshammiya",
-   "artistId": "",
-   "duration": "5:24",
-   "durationSec": 324,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716946/shoot2head-mp3/Dard-e-Dil_Dard-e-Jigar_From_Gunmaaster_G9.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 105,
-   "title": "Main Ram (From \"Ramayana\")",
-   "artist": "Prateek Walia, Sachet Tandon, Kumar Vishwas",
-   "artistId": "",
-   "duration": "3:41",
-   "durationSec": 221,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717032/shoot2head-mp3/Main_Ram_From_Ramayana.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 106,
-   "title": "Teri Sexy Beauty (From \"Maatrubhumi: May War Rest in Peace\")",
-   "artist": "Salman Khan, Muskaan, Sajid Khan",
-   "artistId": "",
-   "duration": "3:34",
-   "durationSec": 214,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717115/shoot2head-mp3/Teri_Sexy_Beauty_From_Maatrubhumi_May_War_Rest_in_Peace.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 107,
-   "title": "Do Din Ki Zindagi (From \"Gunmaaster G9\")",
-   "artist": "Himesh Reshammiya, Shreya Ghoshal, Vishal Mishra, Junaid Wasi",
-   "artistId": "",
-   "duration": "5:38",
-   "durationSec": 338,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716968/shoot2head-mp3/Do_Din_Ki_Zindagi_From_Gunmaaster_G9.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 108,
-   "title": "Chann (From \"Udta Teer\")",
-   "artist": "Sachin-Jigar, Arijit Singh, Amitabh Bhattacharya",
-   "artistId": "",
-   "duration": "3:38",
-   "durationSec": 218,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716939/shoot2head-mp3/Chann_From_Udta_Teer.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 109,
-   "title": "OO EY",
-   "artist": "Nikhita Gandhi",
-   "artistId": "",
-   "duration": "1:56",
-   "durationSec": 116,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717050/shoot2head-mp3/OO_EY.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 110,
-   "title": "Mudd Na Sajna",
-   "artist": "Madhubanti Bagchi, Siddharth Amit Bhavsar",
-   "artistId": "",
-   "duration": "3:52",
-   "durationSec": 232,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717043/shoot2head-mp3/Mudd_Na_Sajna.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 111,
-   "title": "Judi Jodi (From \"Ramayana\")",
-   "artist": "A.R. Rahman, Shreya Ghoshal, Kumar Vishwas",
-   "artistId": "",
-   "duration": "3:59",
-   "durationSec": 239,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717004/shoot2head-mp3/Judi_Jodi_From_Ramayana.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 112,
-   "title": "Saawan Aaya Hai (From \"Yeh Prem Mol Liya\")",
-   "artist": "Himesh Reshammiya, Shreya Ghoshal, Keshav Anand, Mayur Puri",
-   "artistId": "",
-   "duration": "4:21",
-   "durationSec": 261,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717083/shoot2head-mp3/Saawan_Aaya_Hai_From_Yeh_Prem_Mol_Liya.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 113,
-   "title": "Daur E Aashiqui",
-   "artist": "Salman Ali, Anushkaa Banerjee, Shabbir Ahmed",
-   "artistId": "",
-   "duration": "4:46",
-   "durationSec": 286,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716952/shoot2head-mp3/Daur_E_Aashiqui.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 114,
-   "title": "Shree Hanuman Chalisa (From \"Ramayana\")",
-   "artist": "A.R. Rahman, Shankar Mahadevan, Diljit Dosanjh, Sukhwinder Singh, Mohit Chauhan, Kailash Kher",
-   "artistId": "",
-   "duration": "6:58",
-   "durationSec": 418,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717091/shoot2head-mp3/Shree_Hanuman_Chalisa_From_Ramayana.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 115,
-   "title": "Mahiya Ve",
-   "artist": "Varun Jain",
-   "artistId": "",
-   "duration": "2:58",
-   "durationSec": 178,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717019/shoot2head-mp3/Mahiya_Ve.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 116,
-   "title": "Ravana Tandav (From \"Ramayana\") [Hindi]",
-   "artist": "A.R. Rahman, Vishal Dadlani, Kumar Vishwas",
-   "artistId": "",
-   "duration": "3:14",
-   "durationSec": 194,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717068/shoot2head-mp3/Ravana_Tandav_From_Ramayana_Hindi.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 117,
-   "title": "Jhumka Patola (From \"Yeh Prem Mol Liya\")",
-   "artist": "Himesh Reshammiya, Shreya Ghoshal, Sonia Kapoor Reshammiya",
-   "artistId": "",
-   "duration": "4:47",
-   "durationSec": 287,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716992/shoot2head-mp3/Jhumka_Patola_From_Yeh_Prem_Mol_Liya.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 118,
-   "title": "SUMWALI DAAV (From \"Trap Aiba\")",
-   "artist": "Emiway Bantai",
-   "artistId": "",
-   "duration": "2:43",
-   "durationSec": 163,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717072/shoot2head-mp3/SUMWALI_DAAV_From_Trap_Aiba.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 119,
-   "title": "Jaan-E-Jaan (From \"Between Distances\")",
-   "artist": "Aditya Rikhari, Farhan Khan, Ravator",
-   "artistId": "",
-   "duration": "2:27",
-   "durationSec": 147,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716981/shoot2head-mp3/Jaan-E-Jaan_From_Between_Distances.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 120,
-   "title": "Saanwre",
-   "artist": "Raj Barman, Sameer Husain",
-   "artistId": "",
-   "duration": "3:20",
-   "durationSec": 200,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717077/shoot2head-mp3/Saanwre.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 121,
-   "title": "Teri Ore",
-   "artist": "Palak Muchhal, Shahid Mallya, Javed-Mohsin, Vishal Pandey, Sheetal Sharma",
-   "artistId": "",
-   "duration": "4:08",
-   "durationSec": 248,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717111/shoot2head-mp3/Teri_Ore.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 122,
-   "title": "Tab Se",
-   "artist": "Raghav Chaitanya, Mehtab Ali Niazi",
-   "artistId": "",
-   "duration": "4:44",
-   "durationSec": 284,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717105/shoot2head-mp3/Tab_Se.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 123,
-   "title": "Rani Tu Hi Diwali",
-   "artist": "Manan Bhardwaj",
-   "artistId": "",
-   "duration": "2:32",
-   "durationSec": 152,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717063/shoot2head-mp3/Rani_Tu_Hi_Diwali.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 124,
-   "title": "O Mysaa Re (From \"Mysaa\") [Hindi]",
-   "artist": "Jakes Bejoy, Sindhuja Srinivasan, Neha Sandeep Shitole",
-   "artistId": "",
-   "duration": "4:39",
-   "durationSec": 279,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717045/shoot2head-mp3/O_Mysaa_Re_From_Mysaa_Hindi.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 125,
-   "title": "Aaj Sajeya Ve",
-   "artist": "Abhay Jodhpurkar, Jay Mehta, Rini Chandra",
-   "artistId": "",
-   "duration": "3:33",
-   "durationSec": 213,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716920/shoot2head-mp3/Aaj_Sajeya_Ve.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 126,
-   "title": "Fidaa",
-   "artist": "Arslan Nizami",
-   "artistId": "",
-   "duration": "3:11",
-   "durationSec": 191,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716973/shoot2head-mp3/Fidaa.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 127,
-   "title": "Dil Mera Rota Chala Jaye",
-   "artist": "Krish Mondal, Kishore Mondal, Jyotica Tangri, Amol- Abhishek, Amol Shrivastava, Abhishek Talented",
-   "artistId": "",
-   "duration": "3:15",
-   "durationSec": 195,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716963/shoot2head-mp3/Dil_Mera_Rota_Chala_Jaye.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 128,
-   "title": "Karam Farma De (From \"Meethe Mein Kya Hai\")",
-   "artist": "Kumaar, Amit Trivedi, Shahid Mallya",
-   "artistId": "",
-   "duration": "3:24",
-   "durationSec": 204,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717010/shoot2head-mp3/Karam_Farma_De_From_Meethe_Mein_Kya_Hai.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 129,
-   "title": "Dhola Ji (From \"Suryaa\")",
-   "artist": "Shreya Ghoshal, Javed Ali, Swaroop Khan",
-   "artistId": "",
-   "duration": "5:19",
-   "durationSec": 319,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716959/shoot2head-mp3/Dhola_Ji_From_Suryaa.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 130,
-   "title": "Ichak Dana (From \"Meethe Mein Kya Hai\")",
-   "artist": "Kumaar, Amit Trivedi, Nakash Aziz",
-   "artistId": "",
-   "duration": "2:43",
-   "durationSec": 163,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716977/shoot2head-mp3/Ichak_Dana_From_Meethe_Mein_Kya_Hai.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 131,
-   "title": "So Swaezy",
-   "artist": "Yo Yo Honey Singh, Hommie Dilliwala",
-   "artistId": "",
-   "duration": "3:25",
-   "durationSec": 205,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717096/shoot2head-mp3/So_Swaezy.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 132,
-   "title": "MERI KISMAT MEIN",
-   "artist": "Raj Barman, Shabab Azmi",
-   "artistId": "",
-   "duration": "2:42",
-   "durationSec": 162,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717014/shoot2head-mp3/MERI_KISMAT_MEIN.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 133,
-   "title": "RUDE",
-   "artist": "Nikhita Gandhi, Dino James",
-   "artistId": "",
-   "duration": "2:45",
-   "durationSec": 165,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717059/shoot2head-mp3/RUDE.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 134,
-   "title": "Baarish",
-   "artist": "Raj Barman, Rubai",
-   "artistId": "",
-   "duration": "3:42",
-   "durationSec": 222,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716925/shoot2head-mp3/Baarish.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 135,
-   "title": "Begum Bewafa",
-   "artist": "Sonu Nigam, Bosco Martis, Vishie, Vikas Bedi, Aditya Seal",
-   "artistId": "",
-   "duration": "3:25",
-   "durationSec": 205,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716929/shoot2head-mp3/Begum_Bewafa.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 136,
-   "title": "Promise",
-   "artist": "Sachet Tandon, Parampara Tandon, Kausar Munir, Sachet-Parampara",
-   "artistId": "",
-   "duration": "3:11",
-   "durationSec": 191,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717054/shoot2head-mp3/Promise.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 137,
-   "title": "Jai Hind (From \"Maatrubhumi: May War Rest in Peace\")",
-   "artist": "Himesh Reshammiya, Stebin Ben, Sameer Anjaan",
-   "artistId": "",
-   "duration": "6:28",
-   "durationSec": 388,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716988/shoot2head-mp3/Jai_Hind_From_Maatrubhumi_May_War_Rest_in_Peace.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 138,
-   "title": "Bin Kasoor",
-   "artist": "AKASA, Aniket Shukla",
-   "artistId": "",
-   "duration": "2:44",
-   "durationSec": 164,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716933/shoot2head-mp3/Bin_Kasoor.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 139,
-   "title": "Suniyo Zara (From \"Suryaa\")",
-   "artist": "Kumar Sanu, Udit Narayan, Anupam Amod, RAAHEE",
-   "artistId": "",
-   "duration": "4:10",
-   "durationSec": 250,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717099/shoot2head-mp3/Suniyo_Zara_From_Suryaa.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 140,
-   "title": "Makhmali",
-   "artist": "Rito Riba, Saaheal",
-   "artistId": "",
-   "duration": "3:00",
-   "durationSec": 180,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717034/shoot2head-mp3/Makhmali.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 141,
-   "title": "Joganiya",
-   "artist": "Rito Riba, Siddhant Kaushal",
-   "artistId": "",
-   "duration": "3:05",
-   "durationSec": 185,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716996/shoot2head-mp3/Joganiya.mp3",
-   "album": "Taaza Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "taaza-tunes"
-   ]
-  },
-  {
-   "id": 142,
-   "title": "Behaya Sohage (From \"Baba\") - Original Motion Picture Soundtrack",
-   "artist": "Debraj Bhattacharya, Ikkshita Mukherjee",
-   "duration": "3:19",
-   "durationSec": 199,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718573/shoot2head-mp3/Behaya_Sohage_From_Baba_-_Original_Motion_Picture_Soundtrack.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 143,
-   "title": "Bom Shankar (From \"Bohurupi The Golden Daku\")",
-   "artist": "Silajit Majumdar, Sukanya Chatterjee",
-   "duration": "4:46",
-   "durationSec": 286,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718596/shoot2head-mp3/Bom_Shankar_From_Bohurupi_The_Golden_Daku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 144,
-   "title": "Keu Karor Jonne Na",
-   "artist": "Aarvan",
-   "duration": "4:56",
-   "durationSec": 296,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718688/shoot2head-mp3/Keu_Karor_Jonne_Na.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 145,
-   "title": "Shawrbo Khawrbotaare (From \"Emperor Vs Sarat Chandra\")",
-   "artist": "Srijit Mukherji, Saptarshi Mukherjee, Sutirtha Chakraborty, Tilak Dasgupta",
-   "duration": "3:28",
-   "durationSec": 208,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718737/shoot2head-mp3/Shawrbo_Khawrbotaare_From_Emperor_Vs_Sarat_Chandra.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 146,
-   "title": "Awara Mon",
-   "artist": "Mohammed Irfan, Rupak Tiary, Barish",
-   "duration": "3:33",
-   "durationSec": 213,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718568/shoot2head-mp3/Awara_Mon.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 147,
-   "title": "Keteche Ekela (From \"Begni Ronger Alo\")",
-   "artist": "Jayati Chakraborty, Pranjal Das",
-   "duration": "3:56",
-   "durationSec": 236,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718682/shoot2head-mp3/Keteche_Ekela_From_Begni_Ronger_Alo.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 148,
-   "title": "Chup Kore Thaka Kotha Gulo",
-   "artist": "Debraj Bhattacharya",
-   "duration": "5:02",
-   "durationSec": 302,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718619/shoot2head-mp3/Chup_Kore_Thaka_Kotha_Gulo.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 149,
-   "title": "Teen Shotti (From \"Bohurupi The Golden Daku\")",
-   "artist": "Arnab Dutta",
-   "duration": "3:54",
-   "durationSec": 234,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718750/shoot2head-mp3/Teen_Shotti_From_Bohurupi_The_Golden_Daku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 150,
-   "title": "Bristi",
-   "artist": "Subhamita",
-   "duration": "4:53",
-   "durationSec": 293,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718600/shoot2head-mp3/Bristi.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 151,
-   "title": "Chol Chol Chande Jabo",
-   "artist": "Nakash Aziz, Senjuti Das, Dabbu, Raja Chanda",
-   "duration": "3:08",
-   "durationSec": 188,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718167/shoot2head-mp3/Chol_Chol_Chande_Jabo.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 152,
-   "title": "The Eken: Kerala-e Kurukshetra Title Track",
-   "artist": "Sidhu",
-   "duration": "2:27",
-   "durationSec": 147,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718758/shoot2head-mp3/The_Eken_Kerala-e_Kurukshetra_Title_Track.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 153,
-   "title": "Tumi Amar Ami Tomar",
-   "artist": "Sougata Dey, Suchandrika Golder, Debdeep Banik",
-   "duration": "3:09",
-   "durationSec": 189,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718778/shoot2head-mp3/Tumi_Amar_Ami_Tomar.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 154,
-   "title": "Ghorchhara (From \"Antoral\")",
-   "artist": "Nachiketa Chakraborty, Dev Sen, Prithwish Banerjee",
-   "duration": "4:59",
-   "durationSec": 299,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718664/shoot2head-mp3/Ghorchhara_From_Antoral.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 155,
-   "title": "Ei Shono Meye",
-   "artist": "Nilanjan Ghosal, Rupankar Bagchi",
-   "duration": "4:05",
-   "durationSec": 245,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718641/shoot2head-mp3/Ei_Shono_Meye.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 156,
-   "title": "Paharer Gaye Gaye (From \"Nazarbandi\")",
-   "artist": "Mekhla Dasgupta, Shruti Maity",
-   "duration": "3:31",
-   "durationSec": 211,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718724/shoot2head-mp3/Paharer_Gaye_Gaye_From_Nazarbandi.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 157,
-   "title": "Mothura | Coke Studio Bangla",
-   "artist": "Ankan Kumar, Sanzida Mahmood Nandita, Shuvendu Das Shuvo",
-   "duration": "5:46",
-   "durationSec": 346,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718697/shoot2head-mp3/Mothura_Coke_Studio_Bangla.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 158,
-   "title": "Ami Chole Jete Chai",
-   "artist": "Anupam Roy",
-   "duration": "4:38",
-   "durationSec": 278,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718558/shoot2head-mp3/Ami_Chole_Jete_Chai.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 159,
-   "title": "Proti Raate",
-   "artist": "Jui Natta, Arghyadeep Chowdhury",
-   "duration": "3:11",
-   "durationSec": 191,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718728/shoot2head-mp3/Proti_Raate.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 160,
-   "title": "Bilai Meo Meo (From \"Bohurupi The Golden Daku\")",
-   "artist": "Bonnie Chakraborty, Mohammad Anhar Miah",
-   "duration": "1:54",
-   "durationSec": 114,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718582/shoot2head-mp3/Bilai_Meo_Meo_From_Bohurupi_The_Golden_Daku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 161,
-   "title": "Tui Chara",
-   "artist": "Swastik Bose",
-   "duration": "4:22",
-   "durationSec": 262,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718775/shoot2head-mp3/Tui_Chara.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 162,
-   "title": "Chokher Isharrate",
-   "artist": "Vreegu Kashyap, Neelanjana Ray",
-   "duration": "4:16",
-   "durationSec": 256,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718609/shoot2head-mp3/Chokher_Isharrate.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 163,
-   "title": "Pahaar (From \"Begni Ronger Alo\")",
-   "artist": "Ishan Mitra, Pranjal Das",
-   "duration": "4:08",
-   "durationSec": 248,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718720/shoot2head-mp3/Pahaar_From_Begni_Ronger_Alo.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 164,
-   "title": "Chharkhar (From \"DeSu7\")",
-   "artist": "Ishan Mitra, Mad Cash",
-   "duration": "2:28",
-   "durationSec": 148,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718603/shoot2head-mp3/Chharkhar_From_DeSu7.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 165,
-   "title": "Bhoot Chaturdashi",
-   "artist": "Shamik Guha Roy, Rimpa Das",
-   "duration": "3:53",
-   "durationSec": 233,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718579/shoot2head-mp3/Bhoot_Chaturdashi.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 166,
-   "title": "Tomar Golpera (From \"Begni Ronger Alo\")",
-   "artist": "Lagnajita Chakraborty, Pranjal Das",
-   "duration": "4:39",
-   "durationSec": 279,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718769/shoot2head-mp3/Tomar_Golpera_From_Begni_Ronger_Alo.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 167,
-   "title": "Bodhua (Title Track) (From \"Gun Gun Kore Mohua\")",
-   "artist": "Amit Kumar, Antara Mitra, Saptak Sanai Das",
-   "duration": "3:25",
-   "durationSec": 205,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718586/shoot2head-mp3/Bodhua_Title_Track_From_Gun_Gun_Kore_Mohua.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 168,
-   "title": "Theme 2 (Dine Dupure) (From \"Bohurupi The Golden Daku\")",
-   "artist": "Bonnie Chakraborty, Nanichora Das Baul",
-   "duration": "1:27",
-   "durationSec": 87,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718761/shoot2head-mp3/Theme_2_Dine_Dupure_From_Bohurupi_The_Golden_Daku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 169,
-   "title": "Amar Sob Kichu Tei (From \"DeSu7\")",
-   "artist": "Jeet Gannguli, Savvy",
-   "duration": "4:47",
-   "durationSec": 287,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718552/shoot2head-mp3/Amar_Sob_Kichu_Tei_From_DeSu7.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 170,
-   "title": "Dil Ke Daag (From \"Emperor Vs Sarat Chandra\")",
-   "artist": "Shreya Ghoshal",
-   "duration": "4:23",
-   "durationSec": 263,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718636/shoot2head-mp3/Dil_Ke_Daag_From_Emperor_Vs_Sarat_Chandra.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 171,
-   "title": "Swapno Ghuri (From \"Antoral\")",
-   "artist": "Silajit Majumder, Sohini Mukherjee, Dev Sen, Prithwish Banerjee",
-   "duration": "4:00",
-   "durationSec": 240,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718742/shoot2head-mp3/Swapno_Ghuri_From_Antoral.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 172,
-   "title": "Alo Poth E Shohor (From \"C/O A Journey\") (Female Version)",
-   "artist": "Rapurna Bhattacharya, Debojyoti Mishra, Rajib Chakraborty",
-   "duration": "5:43",
-   "durationSec": 343,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718546/shoot2head-mp3/Alo_Poth_E_Shohor_From_C_O_A_Journey_Female_Version.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 173,
-   "title": "Ilish Chandana (From \"DeSu7\")",
-   "artist": "Nilayan Chatterjee, Ishan Mitra, Portia Sen",
-   "duration": "3:49",
-   "durationSec": 229,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718197/shoot2head-mp3/Ilish_Chandana_From_DeSu7.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 174,
-   "title": "Eka Premer Gaan",
-   "artist": "Debraj Bhattacharya",
-   "duration": "4:23",
-   "durationSec": 263,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718647/shoot2head-mp3/Eka_Premer_Gaan.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 175,
-   "title": "O Bondhu Kothay Geli Re (From \"C/O A Journey\")",
-   "artist": "Pota, Debojyoti Mishra, Anirban Mukhopadhyay",
-   "duration": "7:05",
-   "durationSec": 425,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718715/shoot2head-mp3/O_Bondhu_Kothay_Geli_Re_From_C_O_A_Journey.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 176,
-   "title": "Dhukkur Pukkur",
-   "artist": "Dilshad Nahar Kona, Arafat Mohsin, Emon Chowdhury, Abanti Sithi, Tanjib Sarowar",
-   "duration": "4:08",
-   "durationSec": 248,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718631/shoot2head-mp3/Dhukkur_Pukkur.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 177,
-   "title": "The Eken Rap (From \"The Eken: Kerala-e Kurukshetra\")",
-   "artist": "Joydeep Mukherjee",
-   "duration": "2:15",
-   "durationSec": 135,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718754/shoot2head-mp3/The_Eken_Rap_From_The_Eken_Kerala-e_Kurukshetra.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 178,
-   "title": "Ekhane Tomar Kotha",
-   "artist": "Anupam Roy",
-   "duration": "4:30",
-   "durationSec": 270,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718652/shoot2head-mp3/Ekhane_Tomar_Kotha.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 179,
-   "title": "Toke Bhalobashi",
-   "artist": "Souvviek Kabi, Gaurav H. Singh, Somraj Das",
-   "duration": "2:39",
-   "durationSec": 159,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718765/shoot2head-mp3/Toke_Bhalobashi.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 180,
-   "title": "Tarader Majhe (From \"Daktar Kaku\")",
-   "artist": "Ranajoy Bhattacharjee",
-   "duration": "3:37",
-   "durationSec": 217,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718747/shoot2head-mp3/Tarader_Majhe_From_Daktar_Kaku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 181,
-   "title": "Keorah Local",
-   "artist": "Silajit, Writorshi Bhattacharya",
-   "duration": "3:00",
-   "durationSec": 180,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718677/shoot2head-mp3/Keorah_Local.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 182,
-   "title": "Nache Re Bangla (From \"DeSu7\")",
-   "artist": "Ishan Mitra, Sohini Saha, Cizzy, Savvy",
-   "duration": "3:28",
-   "durationSec": 208,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718224/shoot2head-mp3/Nache_Re_Bangla_From_DeSu7.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 183,
-   "title": "Rekhechi Tomake",
-   "artist": "Machaker, SocialiZers, Angshuman Guha",
-   "duration": "4:10",
-   "durationSec": 250,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718732/shoot2head-mp3/Rekhechi_Tomake.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 184,
-   "title": "Eto Hoawari Chilo",
-   "artist": "Raj Barman, Deepshikha Raina, Savvy, Barish",
-   "duration": "3:45",
-   "durationSec": 225,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718657/shoot2head-mp3/Eto_Hoawari_Chilo.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 185,
-   "title": "Khoti Ki",
-   "artist": "Prabir Kumar Bhaduri, Ayan Sarkar, Saikat Ghosh",
-   "duration": "3:20",
-   "durationSec": 200,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718692/shoot2head-mp3/Khoti_Ki.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 186,
-   "title": "Namchhe Rupkotha (From \"C/O A Journey\")",
-   "artist": "Rupankar Bagchi, Sonakshi Kar, Debojyoti Mishra, Tamoghna Chatterjee",
-   "duration": "5:16",
-   "durationSec": 316,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718706/shoot2head-mp3/Namchhe_Rupkotha_From_C_O_A_Journey.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 187,
-   "title": "Bole Dao Ekbar",
-   "artist": "Anushka Patra",
-   "duration": "3:26",
-   "durationSec": 206,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718591/shoot2head-mp3/Bole_Dao_Ekbar.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 188,
-   "title": "Jodi Tor Daak Shune Keu Na Ashe (From \"Daktar Kaku\")",
-   "artist": "Anirban Bhattacharya, Rabindranath Tagore, Souptik - Achin",
-   "duration": "4:44",
-   "durationSec": 284,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718673/shoot2head-mp3/Jodi_Tor_Daak_Shune_Keu_Na_Ashe_From_Daktar_Kaku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 189,
-   "title": "Dhiki Dhiki (From \"Beporoya\")",
-   "artist": "Suchona Shely, Argha, Sudip",
-   "duration": "2:40",
-   "durationSec": 160,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718177/shoot2head-mp3/Dhiki_Dhiki_From_Beporoya.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 190,
-   "title": "Chupi Chupi",
-   "artist": "Anwesshaa Dattagupta",
-   "duration": "4:13",
-   "durationSec": 253,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718624/shoot2head-mp3/Chupi_Chupi.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 191,
-   "title": "Arale (From \"Daktar Kaku\")",
-   "artist": "Arnab Dutta, Souptik Mazumder, Sayantan Sinha",
-   "duration": "3:36",
-   "durationSec": 216,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718564/shoot2head-mp3/Arale_From_Daktar_Kaku.mp3",
-   "album": "Notun Tunes",
-   "albumId": "",
-   "playlistIds": [
-    "notun-tunes"
-   ]
-  },
-  {
-   "id": 192,
-   "title": "Zindabad (From \"Khancha\")",
-   "artist": "Ankita Bhattacharyya, Keshab Dey, Amit Chatterjee(Ben)",
-   "duration": "3:10",
-   "durationSec": 190,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718244/shoot2head-mp3/Zindabad_From_Khancha.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 193,
-   "title": "Jiya Lagena - Shararat Bengali Version",
-   "artist": "Shashwat Sachdev, Somraj Das, Ishan Mitra, Priyanka Das Raha",
-   "duration": "3:45",
-   "durationSec": 225,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718204/shoot2head-mp3/Jiya_Lagena_-_Shararat_Bengali_Version.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 194,
-   "title": "Order Chara Border (From \"Raktabeej 2\")",
-   "artist": "Silajit, Zinia Sen, Shrestha D.",
-   "duration": "4:49",
-   "durationSec": 289,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718234/shoot2head-mp3/Order_Chara_Border_From_Raktabeej_2.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 195,
-   "title": "Chol Chol Chande Jabo",
-   "artist": "Nakash Aziz, Senjuti Das, Dabbu, Raja Chanda",
-   "duration": "3:08",
-   "durationSec": 188,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718167/shoot2head-mp3/Chol_Chol_Chande_Jabo.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 196,
-   "title": "Danda 2.0 (From \"Nari Choritra Bejay Jotil\")",
-   "artist": "SUBASHIS DAS, Silajit Majumder, Avishek Saha",
-   "duration": "4:18",
-   "durationSec": 258,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718173/shoot2head-mp3/Danda_2_0_From_Nari_Choritra_Bejay_Jotil.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 197,
-   "title": "Chandni Raate (From \"Bhanupriya Bhooter Hotel\")",
-   "artist": "Arnab Dutta, Zinia Sen, Saptak Bhattacharjee, Shrestha D.",
-   "duration": "3:41",
-   "durationSec": 221,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718163/shoot2head-mp3/Chandni_Raate_From_Bhanupriya_Bhooter_Hotel.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 198,
-   "title": "Dj Bajbe",
-   "artist": "Manchu Dada, Prosenjit Baral",
-   "duration": "3:20",
-   "durationSec": 200,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718182/shoot2head-mp3/Dj_Bajbe.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 199,
-   "title": "Ke Tumi Nandini 2.0 (From \"Mon Maaney Na\")",
-   "artist": "Nilayan Chatterjee, Nikhita Gandhi, Subhadeep Pan",
-   "duration": "3:40",
-   "durationSec": 220,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718212/shoot2head-mp3/Ke_Tumi_Nandini_2_0_From_Mon_Maaney_Na.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 200,
-   "title": "Moydamukho Hit (From \"Bohurupi The Golden Daku\")",
-   "artist": "Shrestha D., Nani Chora Das Baul, Bonnie Chakraborty, Ritam Sen",
-   "duration": "3:34",
-   "durationSec": 214,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718220/shoot2head-mp3/Moydamukho_Hit_From_Bohurupi_The_Golden_Daku.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 201,
-   "title": "English E Bangla",
-   "artist": "Silajit, Avishek Saha, Ishan Mitra, Syamantak Sengupta",
-   "duration": "3:02",
-   "durationSec": 182,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718188/shoot2head-mp3/English_E_Bangla.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 202,
-   "title": "Ele Tumi Kacha Kachi",
-   "artist": "Dipesh Chakraborty",
-   "duration": "2:54",
-   "durationSec": 174,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718185/shoot2head-mp3/Ele_Tumi_Kacha_Kachi.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 203,
-   "title": "Haathe Harricane (From \"Police\")",
-   "artist": "Raja Chanda, Antara Mitra, Dabbu",
-   "duration": "2:58",
-   "durationSec": 178,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718192/shoot2head-mp3/Haathe_Harricane_From_Police.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 204,
-   "title": "Nache Re Bangla (From \"DeSu7\")",
-   "artist": "Ishan Mitra, Sohini Saha, Cizzy, Savvy",
-   "duration": "3:28",
-   "durationSec": 208,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718224/shoot2head-mp3/Nache_Re_Bangla_From_DeSu7.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 205,
-   "title": "Ramani",
-   "artist": "Manasi Ghosh, Sayan Samrat",
-   "duration": "2:53",
-   "durationSec": 173,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718242/shoot2head-mp3/Ramani.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 206,
-   "title": "Bibi Payra Title Track",
-   "artist": "Shilpa Rao",
-   "duration": "3:43",
-   "durationSec": 223,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718160/shoot2head-mp3/Bibi_Payra_Title_Track.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 207,
-   "title": "Ilish Chandana (From \"DeSu7\")",
-   "artist": "Nilayan Chatterjee, Ishan Mitra, Portia Sen",
-   "duration": "3:49",
-   "durationSec": 229,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718197/shoot2head-mp3/Ilish_Chandana_From_DeSu7.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 208,
-   "title": "Rama Rama",
-   "artist": "Keshab Dey, Priyanka Das",
-   "duration": "2:59",
-   "durationSec": 179,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718239/shoot2head-mp3/Rama_Rama.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 209,
-   "title": "Loke Boley",
-   "artist": "Nusraat Faria, Fuad Almuqtadir, Tahzeeb M Badhon",
-   "duration": "3:01",
-   "durationSec": 181,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718216/shoot2head-mp3/Loke_Boley.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 210,
-   "title": "Kata Phutese (From \"Nari Choritra Bejay Jotil\")",
-   "artist": "B Show, Rubai",
-   "duration": "2:35",
-   "durationSec": 155,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718208/shoot2head-mp3/Kata_Phutese_From_Nari_Choritra_Bejay_Jotil.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 211,
-   "title": "Je Jon Premer Bhab Jane Na",
-   "artist": "Ankita Bhattacharyya",
-   "duration": "3:31",
-   "durationSec": 211,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718201/shoot2head-mp3/Je_Jon_Premer_Bhab_Jane_Na.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 212,
-   "title": "O Shonali",
-   "artist": "Nakash Aziz, Rupak Tiary, Barish",
-   "duration": "3:13",
-   "durationSec": 193,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718228/shoot2head-mp3/O_Shonali.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  },
-  {
-   "id": 213,
-   "title": "Dhiki Dhiki (From \"Beporoya\")",
-   "artist": "Suchona Shely, Argha, Sudip",
-   "duration": "2:40",
-   "durationSec": 160,
-   "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718177/shoot2head-mp3/Dhiki_Dhiki_From_Beporoya.mp3",
-   "album": "Paglu Naach",
-   "albumId": "",
-   "playlistIds": [
-    "paglu-naach"
-   ]
-  }
- ]
+  "version": 2,
+  "note": "Server playlists for shoot2head.mp3. Edit this file to change playlists; the app loads it fresh on every start, so no app update is needed.",
+  "playlists": [
+    {
+      "id": "taaza-tunes",
+      "title": "Taaza Tunes",
+      "description": "Latest Songs • Just Updated",
+      "cover": "https://c.saavncdn.com/320/Tu-Mil-Jaaye-From-KING-Hindi-2026-20261031131042-500x500.jpg",
+      "trackIds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "owner": "shoot2head"
+    },
+    {
+      "id": "notun-tunes",
+      "title": "Notun Tunes",
+      "description": "Latest Bengali Songs",
+      "cover": "https://c.saavncdn.com/477/Behaya-Sohage-From-Baba-Original-Motion-Picture-Soundtrack-Bengali-2026-20261110155001-500x500.jpg",
+      "owner": "shoot2head",
+      "trackIds": [
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191
+      ]
+    },
+    {
+      "id": "paglu-naach",
+      "title": "Paglu Naach",
+      "description": "Latest Bengali Songs",
+      "cover": "https://c.saavncdn.com/098/Zindabad-From-Khancha-Bengali-2026-20260206093206-500x500.jpg",
+      "owner": "shoot2head",
+      "trackIds": [
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": 101,
+      "title": "Tu Mil Jaaye (From \"KING\")",
+      "artist": "Sachin-Jigar, Ed Sheeran, Arijit Singh, Kumaar, Madhubanti Bagchi",
+      "artistId": "",
+      "duration": "5:15",
+      "durationSec": 315,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717121/shoot2head-mp3/Tu_Mil_Jaaye_From_KING.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/320/Tu-Mil-Jaaye-From-KING-Hindi-2026-20261031131042-500x500.jpg"
+    },
+    {
+      "id": 102,
+      "title": "Mangal Rang (From \"Ramayana\")",
+      "artist": "A.R. Rahman, Arijit Singh, Shreya Ghoshal, Kumar Vishwas",
+      "artistId": "",
+      "duration": "4:37",
+      "durationSec": 277,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717041/shoot2head-mp3/Mangal_Rang_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/316/Mangal-Rang-From-Ramayana-Hindi-2026-20261024141033-500x500.jpg"
+    },
+    {
+      "id": 103,
+      "title": "Mahiya",
+      "artist": "Badshah, Shreya Ghoshal, Hiten",
+      "artistId": "",
+      "duration": "2:29",
+      "durationSec": 149,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717026/shoot2head-mp3/Mahiya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/958/Mahiya-Hindi-2026-20261102232738-500x500.jpg"
+    },
+    {
+      "id": 104,
+      "title": "Dard-e-Dil Dard-e-Jigar (From \"Gunmaaster G9\")",
+      "artist": "Himesh Reshammiya, AKASA, Sonia Kapoor Reshammiya",
+      "artistId": "",
+      "duration": "5:24",
+      "durationSec": 324,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716946/shoot2head-mp3/Dard-e-Dil_Dard-e-Jigar_From_Gunmaaster_G9.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/394/Dard-e-Dil-Dard-e-Jigar-From-Gunmaaster-G9-Hindi-2026-20261029133247-500x500.jpg"
+    },
+    {
+      "id": 105,
+      "title": "Main Ram (From \"Ramayana\")",
+      "artist": "Prateek Walia, Sachet Tandon, Kumar Vishwas",
+      "artistId": "",
+      "duration": "3:41",
+      "durationSec": 221,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717032/shoot2head-mp3/Main_Ram_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/767/Main-Ram-From-Ramayana-Hindi-2026-20261026191010-500x500.jpg"
+    },
+    {
+      "id": 106,
+      "title": "Teri Sexy Beauty (From \"Maatrubhumi: May War Rest in Peace\")",
+      "artist": "Salman Khan, Muskaan, Sajid Khan",
+      "artistId": "",
+      "duration": "3:34",
+      "durationSec": 214,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717115/shoot2head-mp3/Teri_Sexy_Beauty_From_Maatrubhumi_May_War_Rest_in_Peace.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/643/Teri-Sexy-Beauty-From-Maatrubhumi-May-War-Rest-in-Peace-Hindi-2026-20261104112212-500x500.jpg"
+    },
+    {
+      "id": 107,
+      "title": "Do Din Ki Zindagi (From \"Gunmaaster G9\")",
+      "artist": "Himesh Reshammiya, Shreya Ghoshal, Vishal Mishra, Junaid Wasi",
+      "artistId": "",
+      "duration": "5:38",
+      "durationSec": 338,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716968/shoot2head-mp3/Do_Din_Ki_Zindagi_From_Gunmaaster_G9.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/654/Do-Din-Ki-Zindagi-From-Gunmaaster-G9-Hindi-2026-20261012173535-500x500.jpg"
+    },
+    {
+      "id": 108,
+      "title": "Chann (From \"Udta Teer\")",
+      "artist": "Sachin-Jigar, Arijit Singh, Amitabh Bhattacharya",
+      "artistId": "",
+      "duration": "3:38",
+      "durationSec": 218,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716939/shoot2head-mp3/Chann_From_Udta_Teer.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/845/Udta-Teer-Hindi-2026-20261015175017-500x500.jpg"
+    },
+    {
+      "id": 109,
+      "title": "OO EY",
+      "artist": "Nikhita Gandhi",
+      "artistId": "",
+      "duration": "1:56",
+      "durationSec": 116,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717050/shoot2head-mp3/OO_EY.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/664/Niki-G-Hindi-2026-20261013124702-500x500.jpg"
+    },
+    {
+      "id": 110,
+      "title": "Mudd Na Sajna",
+      "artist": "Madhubanti Bagchi, Siddharth Amit Bhavsar",
+      "artistId": "",
+      "duration": "3:52",
+      "durationSec": 232,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717043/shoot2head-mp3/Mudd_Na_Sajna.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/005/Mudd-Na-Sajna-Hindi-2026-20261030190549-500x500.jpg"
+    },
+    {
+      "id": 111,
+      "title": "Judi Jodi (From \"Ramayana\")",
+      "artist": "A.R. Rahman, Shreya Ghoshal, Kumar Vishwas",
+      "artistId": "",
+      "duration": "3:59",
+      "durationSec": 239,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717004/shoot2head-mp3/Judi_Jodi_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/160/Judi-Jodi-From-Ramayana-Hindi-2026-20261029111029-500x500.jpg"
+    },
+    {
+      "id": 112,
+      "title": "Saawan Aaya Hai (From \"Yeh Prem Mol Liya\")",
+      "artist": "Himesh Reshammiya, Shreya Ghoshal, Keshav Anand, Mayur Puri",
+      "artistId": "",
+      "duration": "4:21",
+      "durationSec": 261,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717083/shoot2head-mp3/Saawan_Aaya_Hai_From_Yeh_Prem_Mol_Liya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/141/Saawan-Aaya-Hai-From-Yeh-Prem-Mol-Liya-Hindi-2026-20261030013555-500x500.jpg"
+    },
+    {
+      "id": 113,
+      "title": "Daur E Aashiqui",
+      "artist": "Salman Ali, Anushkaa Banerjee, Shabbir Ahmed",
+      "artistId": "",
+      "duration": "4:46",
+      "durationSec": 286,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716952/shoot2head-mp3/Daur_E_Aashiqui.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/893/Daur-E-Aashiqui-Hindi-2026-20261102173433-500x500.jpg"
+    },
+    {
+      "id": 114,
+      "title": "Shree Hanuman Chalisa (From \"Ramayana\")",
+      "artist": "A.R. Rahman, Shankar Mahadevan, Diljit Dosanjh, Sukhwinder Singh, Mohit Chauhan, Kailash Kher",
+      "artistId": "",
+      "duration": "6:58",
+      "durationSec": 418,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717091/shoot2head-mp3/Shree_Hanuman_Chalisa_From_Ramayana.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/856/Shree-Hanuman-Chalisa-From-Ramayana-Hindi-2026-20261105181326-500x500.jpg"
+    },
+    {
+      "id": 115,
+      "title": "Mahiya Ve",
+      "artist": "Varun Jain",
+      "artistId": "",
+      "duration": "2:58",
+      "durationSec": 178,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717019/shoot2head-mp3/Mahiya_Ve.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/492/Mahiya-Ve-Hindi-2026-20261027171924-500x500.jpg"
+    },
+    {
+      "id": 116,
+      "title": "Ravana Tandav (From \"Ramayana\") [Hindi]",
+      "artist": "A.R. Rahman, Vishal Dadlani, Kumar Vishwas",
+      "artistId": "",
+      "duration": "3:14",
+      "durationSec": 194,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717068/shoot2head-mp3/Ravana_Tandav_From_Ramayana_Hindi.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/668/Ravana-Tandav-From-Ramayana-Hindi-2026-20261021001005-500x500.jpg"
+    },
+    {
+      "id": 117,
+      "title": "Jhumka Patola (From \"Yeh Prem Mol Liya\")",
+      "artist": "Himesh Reshammiya, Shreya Ghoshal, Sonia Kapoor Reshammiya",
+      "artistId": "",
+      "duration": "4:47",
+      "durationSec": 287,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716992/shoot2head-mp3/Jhumka_Patola_From_Yeh_Prem_Mol_Liya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/739/Jhumka-Patola-From-Yeh-Prem-Mol-Liya-Hindi-2026-20261012173538-500x500.jpg"
+    },
+    {
+      "id": 118,
+      "title": "SUMWALI DAAV (From \"Trap Aiba\")",
+      "artist": "Emiway Bantai",
+      "artistId": "",
+      "duration": "2:43",
+      "durationSec": 163,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717072/shoot2head-mp3/SUMWALI_DAAV_From_Trap_Aiba.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/675/SUMWALI-DAAV-From-Trap-Aiba-Hindi-2026-20261112170809-500x500.jpg"
+    },
+    {
+      "id": 119,
+      "title": "Jaan-E-Jaan (From \"Between Distances\")",
+      "artist": "Aditya Rikhari, Farhan Khan, Ravator",
+      "artistId": "",
+      "duration": "2:27",
+      "durationSec": 147,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716981/shoot2head-mp3/Jaan-E-Jaan_From_Between_Distances.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/286/Jaan-E-Jaan-From-Between-Distances-Hindi-2026-20261017181003-500x500.jpg"
+    },
+    {
+      "id": 120,
+      "title": "Saanwre",
+      "artist": "Raj Barman, Sameer Husain",
+      "artistId": "",
+      "duration": "3:20",
+      "durationSec": 200,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717077/shoot2head-mp3/Saanwre.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/364/Saanwre-Hindi-2026-20261102053333-500x500.jpg"
+    },
+    {
+      "id": 121,
+      "title": "Teri Ore",
+      "artist": "Palak Muchhal, Shahid Mallya, Javed-Mohsin, Vishal Pandey, Sheetal Sharma",
+      "artistId": "",
+      "duration": "4:08",
+      "durationSec": 248,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717111/shoot2head-mp3/Teri_Ore.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/031/Teri-Ore-Hindi-2026-20261022110833-500x500.jpg"
+    },
+    {
+      "id": 122,
+      "title": "Tab Se",
+      "artist": "Raghav Chaitanya, Mehtab Ali Niazi",
+      "artistId": "",
+      "duration": "4:44",
+      "durationSec": 284,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717105/shoot2head-mp3/Tab_Se.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/027/Tab-Se-Hindi-2026-20261031053302-500x500.jpg"
+    },
+    {
+      "id": 123,
+      "title": "Rani Tu Hi Diwali",
+      "artist": "Manan Bhardwaj",
+      "artistId": "",
+      "duration": "2:32",
+      "durationSec": 152,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717063/shoot2head-mp3/Rani_Tu_Hi_Diwali.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/521/Rani-Tu-Hi-Diwali-Hindi-2026-20261030141035-500x500.jpg"
+    },
+    {
+      "id": 124,
+      "title": "O Mysaa Re (From \"Mysaa\") [Hindi]",
+      "artist": "Jakes Bejoy, Sindhuja Srinivasan, Neha Sandeep Shitole",
+      "artistId": "",
+      "duration": "4:39",
+      "durationSec": 279,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717045/shoot2head-mp3/O_Mysaa_Re_From_Mysaa_Hindi.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/573/O-Mysaa-Re-From-Mysaa-Hindi-Hindi-2026-20261102171131-500x500.jpg"
+    },
+    {
+      "id": 125,
+      "title": "Aaj Sajeya Ve",
+      "artist": "Abhay Jodhpurkar, Jay Mehta, Rini Chandra",
+      "artistId": "",
+      "duration": "3:33",
+      "durationSec": 213,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716920/shoot2head-mp3/Aaj_Sajeya_Ve.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/670/Aaj-Sajeya-Ve-Hindi-2026-20261106161607-500x500.jpg"
+    },
+    {
+      "id": 126,
+      "title": "Fidaa",
+      "artist": "Arslan Nizami",
+      "artistId": "",
+      "duration": "3:11",
+      "durationSec": 191,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716973/shoot2head-mp3/Fidaa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/950/Fidaa-Hindi-2026-20261028053840-500x500.jpg"
+    },
+    {
+      "id": 127,
+      "title": "Dil Mera Rota Chala Jaye",
+      "artist": "Krish Mondal, Kishore Mondal, Jyotica Tangri, Amol- Abhishek, Amol Shrivastava, Abhishek Talented",
+      "artistId": "",
+      "duration": "3:15",
+      "durationSec": 195,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716963/shoot2head-mp3/Dil_Mera_Rota_Chala_Jaye.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/920/Dil-Mera-Rota-Chala-Jaye-Hindi-2026-20261030132729-500x500.jpg"
+    },
+    {
+      "id": 128,
+      "title": "Karam Farma De (From \"Meethe Mein Kya Hai\")",
+      "artist": "Kumaar, Amit Trivedi, Shahid Mallya",
+      "artistId": "",
+      "duration": "3:24",
+      "durationSec": 204,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717010/shoot2head-mp3/Karam_Farma_De_From_Meethe_Mein_Kya_Hai.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/505/Karam-Farma-De-From-Meethe-Mein-Kya-Hai-Hindi-2026-20261028164004-500x500.jpg"
+    },
+    {
+      "id": 129,
+      "title": "Dhola Ji (From \"Suryaa\")",
+      "artist": "Shreya Ghoshal, Javed Ali, Swaroop Khan",
+      "artistId": "",
+      "duration": "5:19",
+      "durationSec": 319,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716959/shoot2head-mp3/Dhola_Ji_From_Suryaa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/827/Dhola-Ji-From-Suryaa-Hindi-2026-20261023133247-500x500.jpg"
+    },
+    {
+      "id": 130,
+      "title": "Ichak Dana (From \"Meethe Mein Kya Hai\")",
+      "artist": "Kumaar, Amit Trivedi, Nakash Aziz",
+      "artistId": "",
+      "duration": "2:43",
+      "durationSec": 163,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716977/shoot2head-mp3/Ichak_Dana_From_Meethe_Mein_Kya_Hai.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/506/Ichak-Dana-From-Meethe-Mein-Kya-Hai-Hindi-2026-20261014084025-500x500.jpg"
+    },
+    {
+      "id": 131,
+      "title": "So Swaezy",
+      "artist": "Yo Yo Honey Singh, Hommie Dilliwala",
+      "artistId": "",
+      "duration": "3:25",
+      "durationSec": 205,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717096/shoot2head-mp3/So_Swaezy.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/805/So-Swaezy-Hindi-2026-20261022133439-500x500.jpg"
+    },
+    {
+      "id": 132,
+      "title": "MERI KISMAT MEIN",
+      "artist": "Raj Barman, Shabab Azmi",
+      "artistId": "",
+      "duration": "2:42",
+      "durationSec": 162,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717014/shoot2head-mp3/MERI_KISMAT_MEIN.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/655/MERI-KISMAT-MEIN-Hindi-2026-20261027152509-500x500.jpg"
+    },
+    {
+      "id": 133,
+      "title": "RUDE",
+      "artist": "Nikhita Gandhi, Dino James",
+      "artistId": "",
+      "duration": "2:45",
+      "durationSec": 165,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717059/shoot2head-mp3/RUDE.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/306/RUDE-Hindi-2026-20261010134633-500x500.jpg"
+    },
+    {
+      "id": 134,
+      "title": "Baarish",
+      "artist": "Raj Barman, Rubai",
+      "artistId": "",
+      "duration": "3:42",
+      "durationSec": 222,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716925/shoot2head-mp3/Baarish.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/546/Baarish-Hindi-2026-20261016143912-500x500.jpg"
+    },
+    {
+      "id": 135,
+      "title": "Begum Bewafa",
+      "artist": "Sonu Nigam, Bosco Martis, Vishie, Vikas Bedi, Aditya Seal",
+      "artistId": "",
+      "duration": "3:25",
+      "durationSec": 205,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716929/shoot2head-mp3/Begum_Bewafa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/202/Begum-Bewafa-Hindi-2026-20261020115741-500x500.jpg"
+    },
+    {
+      "id": 136,
+      "title": "Promise",
+      "artist": "Sachet Tandon, Parampara Tandon, Kausar Munir, Sachet-Parampara",
+      "artistId": "",
+      "duration": "3:11",
+      "durationSec": 191,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717054/shoot2head-mp3/Promise.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/615/Promise-Hindi-2026-20261014171004-500x500.jpg"
+    },
+    {
+      "id": 137,
+      "title": "Jai Hind (From \"Maatrubhumi: May War Rest in Peace\")",
+      "artist": "Himesh Reshammiya, Stebin Ben, Sameer Anjaan",
+      "artistId": "",
+      "duration": "6:28",
+      "durationSec": 388,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716988/shoot2head-mp3/Jai_Hind_From_Maatrubhumi_May_War_Rest_in_Peace.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/152/Jai-Hind-From-Maatrubhumi-May-War-Rest-in-Peace-Hindi-2026-20261019123601-500x500.jpg"
+    },
+    {
+      "id": 138,
+      "title": "Bin Kasoor",
+      "artist": "AKASA, Aniket Shukla",
+      "artistId": "",
+      "duration": "2:44",
+      "durationSec": 164,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716933/shoot2head-mp3/Bin_Kasoor.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/494/Bin-Kasoor-Hindi-2026-20261007144625-500x500.jpg"
+    },
+    {
+      "id": 139,
+      "title": "Suniyo Zara (From \"Suryaa\")",
+      "artist": "Kumar Sanu, Udit Narayan, Anupam Amod, RAAHEE",
+      "artistId": "",
+      "duration": "4:10",
+      "durationSec": 250,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717099/shoot2head-mp3/Suniyo_Zara_From_Suryaa.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/506/Suniyo-Zara-From-Suryaa-Hindi-2026-20261023133304-500x500.jpg"
+    },
+    {
+      "id": 140,
+      "title": "Makhmali",
+      "artist": "Rito Riba, Saaheal",
+      "artistId": "",
+      "duration": "3:00",
+      "durationSec": 180,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794717034/shoot2head-mp3/Makhmali.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/346/Dilfek-Hindi-2026-20261005193449-500x500.jpg"
+    },
+    {
+      "id": 141,
+      "title": "Joganiya",
+      "artist": "Rito Riba, Siddhant Kaushal",
+      "artistId": "",
+      "duration": "3:05",
+      "durationSec": 185,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794716996/shoot2head-mp3/Joganiya.mp3",
+      "album": "Taaza Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "taaza-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/346/Dilfek-Hindi-2026-20261005193449-500x500.jpg"
+    },
+    {
+      "id": 142,
+      "title": "Behaya Sohage (From \"Baba\") - Original Motion Picture Soundtrack",
+      "artist": "Debraj Bhattacharya, Ikkshita Mukherjee",
+      "duration": "3:19",
+      "durationSec": 199,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718573/shoot2head-mp3/Behaya_Sohage_From_Baba_-_Original_Motion_Picture_Soundtrack.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/477/Behaya-Sohage-From-Baba-Original-Motion-Picture-Soundtrack-Bengali-2026-20261110155001-500x500.jpg"
+    },
+    {
+      "id": 143,
+      "title": "Bom Shankar (From \"Bohurupi The Golden Daku\")",
+      "artist": "Silajit Majumdar, Sukanya Chatterjee",
+      "duration": "4:46",
+      "durationSec": 286,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718596/shoot2head-mp3/Bom_Shankar_From_Bohurupi_The_Golden_Daku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/334/Bom-Shankar-From-Bohurupi-The-Golden-Daku-Bengali-2026-20261028152012-500x500.jpg"
+    },
+    {
+      "id": 144,
+      "title": "Keu Karor Jonne Na",
+      "artist": "Aarvan",
+      "duration": "4:56",
+      "durationSec": 296,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718688/shoot2head-mp3/Keu_Karor_Jonne_Na.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/442/DeSu7-Bengali-2026-20261019173915-500x500.jpg"
+    },
+    {
+      "id": 145,
+      "title": "Shawrbo Khawrbotaare (From \"Emperor Vs Sarat Chandra\")",
+      "artist": "Srijit Mukherji, Saptarshi Mukherjee, Sutirtha Chakraborty, Tilak Dasgupta",
+      "duration": "3:28",
+      "durationSec": 208,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718737/shoot2head-mp3/Shawrbo_Khawrbotaare_From_Emperor_Vs_Sarat_Chandra.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/630/Shawrbo-Khawrbotaare-From-Emperor-Vs-Sarat-Chan-Bengali-2026-20261023223802-500x500.jpg"
+    },
+    {
+      "id": 146,
+      "title": "Awara Mon",
+      "artist": "Mohammed Irfan, Rupak Tiary, Barish",
+      "duration": "3:33",
+      "durationSec": 213,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718568/shoot2head-mp3/Awara_Mon.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/276/Awara-Mon-Bengali-2026-20261106161057-500x500.jpg"
+    },
+    {
+      "id": 147,
+      "title": "Keteche Ekela (From \"Begni Ronger Alo\")",
+      "artist": "Jayati Chakraborty, Pranjal Das",
+      "duration": "3:56",
+      "durationSec": 236,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718682/shoot2head-mp3/Keteche_Ekela_From_Begni_Ronger_Alo.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/565/Keteche-Ekela-From-Begni-Ronger-Alo-Bengali-2026-20261022114043-500x500.jpg"
+    },
+    {
+      "id": 148,
+      "title": "Chup Kore Thaka Kotha Gulo",
+      "artist": "Debraj Bhattacharya",
+      "duration": "5:02",
+      "durationSec": 302,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718619/shoot2head-mp3/Chup_Kore_Thaka_Kotha_Gulo.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/177/Chup-Kore-Thaka-Kotha-Gulo-Bengali-2026-20261026121007-500x500.jpg"
+    },
+    {
+      "id": 149,
+      "title": "Teen Shotti (From \"Bohurupi The Golden Daku\")",
+      "artist": "Arnab Dutta",
+      "duration": "3:54",
+      "durationSec": 234,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718750/shoot2head-mp3/Teen_Shotti_From_Bohurupi_The_Golden_Daku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/295/Teen-Shotti-From-Bohurupi-The-Golden-Daku-Bengali-2026-20261016162549-500x500.jpg"
+    },
+    {
+      "id": 150,
+      "title": "Bristi",
+      "artist": "Subhamita",
+      "duration": "4:53",
+      "durationSec": 293,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718600/shoot2head-mp3/Bristi.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/775/Bristi-Bengali-2026-20261029133201-500x500.jpg"
+    },
+    {
+      "id": 151,
+      "title": "Chol Chol Chande Jabo",
+      "artist": "Nakash Aziz, Senjuti Das, Dabbu, Raja Chanda",
+      "duration": "3:08",
+      "durationSec": 188,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718167/shoot2head-mp3/Chol_Chol_Chande_Jabo.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/061/Chol-Chol-Chande-Jabo-Bengali-2026-20261031161142-500x500.jpg"
+    },
+    {
+      "id": 152,
+      "title": "The Eken: Kerala-e Kurukshetra Title Track",
+      "artist": "Sidhu",
+      "duration": "2:27",
+      "durationSec": 147,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718758/shoot2head-mp3/The_Eken_Kerala-e_Kurukshetra_Title_Track.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/923/The-Eken-Kerala-e-Kurukshetra-Title-Track-Bengali-2026-20260911171603-500x500.jpg"
+    },
+    {
+      "id": 153,
+      "title": "Tumi Amar Ami Tomar",
+      "artist": "Sougata Dey, Suchandrika Golder, Debdeep Banik",
+      "duration": "3:09",
+      "durationSec": 189,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718778/shoot2head-mp3/Tumi_Amar_Ami_Tomar.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/987/Tumi-Amar-Ami-Tomar-Bengali-2026-20261030192519-500x500.jpg"
+    },
+    {
+      "id": 154,
+      "title": "Ghorchhara (From \"Antoral\")",
+      "artist": "Nachiketa Chakraborty, Dev Sen, Prithwish Banerjee",
+      "duration": "4:59",
+      "durationSec": 299,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718664/shoot2head-mp3/Ghorchhara_From_Antoral.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/539/Ghorchhara-From-Antoral-Bengali-2026-20261027171930-500x500.jpg"
+    },
+    {
+      "id": 155,
+      "title": "Ei Shono Meye",
+      "artist": "Nilanjan Ghosal, Rupankar Bagchi",
+      "duration": "4:05",
+      "durationSec": 245,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718641/shoot2head-mp3/Ei_Shono_Meye.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/612/Ei-Shono-Meye-Bengali-2026-20261023123003-500x500.jpg"
+    },
+    {
+      "id": 156,
+      "title": "Paharer Gaye Gaye (From \"Nazarbandi\")",
+      "artist": "Mekhla Dasgupta, Shruti Maity",
+      "duration": "3:31",
+      "durationSec": 211,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718724/shoot2head-mp3/Paharer_Gaye_Gaye_From_Nazarbandi.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/587/Paharer-Gaye-Gaye-From-Nazarbandi-Bengali-2026-20261023190926-500x500.jpg"
+    },
+    {
+      "id": 157,
+      "title": "Mothura | Coke Studio Bangla",
+      "artist": "Ankan Kumar, Sanzida Mahmood Nandita, Shuvendu Das Shuvo",
+      "duration": "5:46",
+      "durationSec": 346,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718697/shoot2head-mp3/Mothura_Coke_Studio_Bangla.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/943/Mothura-Coke-Studio-Bangla-Bengali-2026-20260923232612-500x500.jpg"
+    },
+    {
+      "id": 158,
+      "title": "Ami Chole Jete Chai",
+      "artist": "Anupam Roy",
+      "duration": "4:38",
+      "durationSec": 278,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718558/shoot2head-mp3/Ami_Chole_Jete_Chai.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/142/Byatha-Nei-Bengali-2026-20260922135410-500x500.jpg"
+    },
+    {
+      "id": 159,
+      "title": "Proti Raate",
+      "artist": "Jui Natta, Arghyadeep Chowdhury",
+      "duration": "3:11",
+      "durationSec": 191,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718728/shoot2head-mp3/Proti_Raate.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/814/Proti-Raate-Bengali-2026-20261113100905-500x500.jpg"
+    },
+    {
+      "id": 160,
+      "title": "Bilai Meo Meo (From \"Bohurupi The Golden Daku\")",
+      "artist": "Bonnie Chakraborty, Mohammad Anhar Miah",
+      "duration": "1:54",
+      "durationSec": 114,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718582/shoot2head-mp3/Bilai_Meo_Meo_From_Bohurupi_The_Golden_Daku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/770/Bilai-Meo-Meo-From-Bohurupi-The-Golden-Daku-Bengali-2026-20261009163004-500x500.jpg"
+    },
+    {
+      "id": 161,
+      "title": "Tui Chara",
+      "artist": "Swastik Bose",
+      "duration": "4:22",
+      "durationSec": 262,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718775/shoot2head-mp3/Tui_Chara.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/213/Tui-Chara-Bengali-2026-20261027235406-500x500.jpg"
+    },
+    {
+      "id": 162,
+      "title": "Chokher Isharrate",
+      "artist": "Vreegu Kashyap, Neelanjana Ray",
+      "duration": "4:16",
+      "durationSec": 256,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718609/shoot2head-mp3/Chokher_Isharrate.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/135/Chokher-Isharrate-Bengali-2026-20261030172207-500x500.jpg"
+    },
+    {
+      "id": 163,
+      "title": "Pahaar (From \"Begni Ronger Alo\")",
+      "artist": "Ishan Mitra, Pranjal Das",
+      "duration": "4:08",
+      "durationSec": 248,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718720/shoot2head-mp3/Pahaar_From_Begni_Ronger_Alo.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/517/Pahaar-From-Begni-Ronger-Alo-Bengali-2026-20261015074005-500x500.jpg"
+    },
+    {
+      "id": 164,
+      "title": "Chharkhar (From \"DeSu7\")",
+      "artist": "Ishan Mitra, Mad Cash",
+      "duration": "2:28",
+      "durationSec": 148,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718603/shoot2head-mp3/Chharkhar_From_DeSu7.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/302/Chharkhar-From-DeSu7-Bengali-2026-20261014215000-500x500.jpg"
+    },
+    {
+      "id": 165,
+      "title": "Bhoot Chaturdashi",
+      "artist": "Shamik Guha Roy, Rimpa Das",
+      "duration": "3:53",
+      "durationSec": 233,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718579/shoot2head-mp3/Bhoot_Chaturdashi.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/290/Bhoot-Chaturdashi-Bengali-2026-20261030012549-500x500.jpg"
+    },
+    {
+      "id": 166,
+      "title": "Tomar Golpera (From \"Begni Ronger Alo\")",
+      "artist": "Lagnajita Chakraborty, Pranjal Das",
+      "duration": "4:39",
+      "durationSec": 279,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718769/shoot2head-mp3/Tomar_Golpera_From_Begni_Ronger_Alo.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/463/Tomar-Golpera-From-Begni-Ronger-Alo-Bengali-2026-20261010104006-500x500.jpg"
+    },
+    {
+      "id": 167,
+      "title": "Bodhua (Title Track) (From \"Gun Gun Kore Mohua\")",
+      "artist": "Amit Kumar, Antara Mitra, Saptak Sanai Das",
+      "duration": "3:25",
+      "durationSec": 205,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718586/shoot2head-mp3/Bodhua_Title_Track_From_Gun_Gun_Kore_Mohua.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/497/Bodhua-Title-Track-From-Gun-Gun-Kore-Mohua-Bengali-2026-20261013074044-500x500.jpg"
+    },
+    {
+      "id": 168,
+      "title": "Theme 2 (Dine Dupure) (From \"Bohurupi The Golden Daku\")",
+      "artist": "Bonnie Chakraborty, Nanichora Das Baul",
+      "duration": "1:27",
+      "durationSec": 87,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718761/shoot2head-mp3/Theme_2_Dine_Dupure_From_Bohurupi_The_Golden_Daku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/414/Theme-2-Dine-Dupure-From-Bohurupi-The-Golden-Daku-Bengali-2026-20261015112404-500x500.jpg"
+    },
+    {
+      "id": 169,
+      "title": "Amar Sob Kichu Tei (From \"DeSu7\")",
+      "artist": "Jeet Gannguli, Savvy",
+      "duration": "4:47",
+      "durationSec": 287,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718552/shoot2head-mp3/Amar_Sob_Kichu_Tei_From_DeSu7.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/577/Amar-Sob-Kichu-Tei-From-DeSu7-Bengali-2026-20261003172401-500x500.jpg"
+    },
+    {
+      "id": 170,
+      "title": "Dil Ke Daag (From \"Emperor Vs Sarat Chandra\")",
+      "artist": "Shreya Ghoshal",
+      "duration": "4:23",
+      "durationSec": 263,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718636/shoot2head-mp3/Dil_Ke_Daag_From_Emperor_Vs_Sarat_Chandra.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/289/Dil-Ke-Daag-From-Emperor-Vs-Sarat-Chandra-Hindi-2026-20260923221203-500x500.jpg"
+    },
+    {
+      "id": 171,
+      "title": "Swapno Ghuri (From \"Antoral\")",
+      "artist": "Silajit Majumder, Sohini Mukherjee, Dev Sen, Prithwish Banerjee",
+      "duration": "4:00",
+      "durationSec": 240,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718742/shoot2head-mp3/Swapno_Ghuri_From_Antoral.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/292/Swapno-Ghuri-From-Antoral-Bengali-2026-20261001163109-500x500.jpg"
+    },
+    {
+      "id": 172,
+      "title": "Alo Poth E Shohor (From \"C/O A Journey\") (Female Version)",
+      "artist": "Rapurna Bhattacharya, Debojyoti Mishra, Rajib Chakraborty",
+      "duration": "5:43",
+      "durationSec": 343,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718546/shoot2head-mp3/Alo_Poth_E_Shohor_From_C_O_A_Journey_Female_Version.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/216/Alo-Poth-E-Shohor-From-C-O-A-Journey-Female-Version-Bengali-2026-20261001165120-500x500.jpg"
+    },
+    {
+      "id": 173,
+      "title": "Ilish Chandana (From \"DeSu7\")",
+      "artist": "Nilayan Chatterjee, Ishan Mitra, Portia Sen",
+      "duration": "3:49",
+      "durationSec": 229,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718197/shoot2head-mp3/Ilish_Chandana_From_DeSu7.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/253/Ilish-Chandana-From-DeSu7-Bengali-2026-20260925192601-500x500.jpg"
+    },
+    {
+      "id": 174,
+      "title": "Eka Premer Gaan",
+      "artist": "Debraj Bhattacharya",
+      "duration": "4:23",
+      "durationSec": 263,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718647/shoot2head-mp3/Eka_Premer_Gaan.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/747/Eka-Premer-Gaan-Bengali-2026-20260930183239-500x500.jpg"
+    },
+    {
+      "id": 175,
+      "title": "O Bondhu Kothay Geli Re (From \"C/O A Journey\")",
+      "artist": "Pota, Debojyoti Mishra, Anirban Mukhopadhyay",
+      "duration": "7:05",
+      "durationSec": 425,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718715/shoot2head-mp3/O_Bondhu_Kothay_Geli_Re_From_C_O_A_Journey.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/015/O-Bondhu-Kothay-Geli-Re-From-C-O-A-Journey-Bengali-2026-20260928173251-500x500.jpg"
+    },
+    {
+      "id": 176,
+      "title": "Dhukkur Pukkur",
+      "artist": "Dilshad Nahar Kona, Arafat Mohsin, Emon Chowdhury, Abanti Sithi, Tanjib Sarowar",
+      "duration": "4:08",
+      "durationSec": 248,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718631/shoot2head-mp3/Dhukkur_Pukkur.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/197/Surongo-Bengali-2026-20261027185402-500x500.jpg"
+    },
+    {
+      "id": 177,
+      "title": "The Eken Rap (From \"The Eken: Kerala-e Kurukshetra\")",
+      "artist": "Joydeep Mukherjee",
+      "duration": "2:15",
+      "durationSec": 135,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718754/shoot2head-mp3/The_Eken_Rap_From_The_Eken_Kerala-e_Kurukshetra.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/326/The-Eken-Rap-From-The-Eken-Kerala-e-Kurukshetra-Bengali-2026-20260929182202-500x500.jpg"
+    },
+    {
+      "id": 178,
+      "title": "Ekhane Tomar Kotha",
+      "artist": "Anupam Roy",
+      "duration": "4:30",
+      "durationSec": 270,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718652/shoot2head-mp3/Ekhane_Tomar_Kotha.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/142/Byatha-Nei-Bengali-2026-20260922135410-500x500.jpg"
+    },
+    {
+      "id": 179,
+      "title": "Toke Bhalobashi",
+      "artist": "Souvviek Kabi, Gaurav H. Singh, Somraj Das",
+      "duration": "2:39",
+      "durationSec": 159,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718765/shoot2head-mp3/Toke_Bhalobashi.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/220/Toke-Bhalobashi-Bengali-2026-20261014120001-500x500.jpg"
+    },
+    {
+      "id": 180,
+      "title": "Tarader Majhe (From \"Daktar Kaku\")",
+      "artist": "Ranajoy Bhattacharjee",
+      "duration": "3:37",
+      "durationSec": 217,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718747/shoot2head-mp3/Tarader_Majhe_From_Daktar_Kaku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/368/Tarader-Majhe-From-Daktar-Kaku-Bengali-2026-20260922103906-500x500.jpg"
+    },
+    {
+      "id": 181,
+      "title": "Keorah Local",
+      "artist": "Silajit, Writorshi Bhattacharya",
+      "duration": "3:00",
+      "durationSec": 180,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718677/shoot2head-mp3/Keorah_Local.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/861/Keorah-Local-Bengali-2026-20260918124803-500x500.jpg"
+    },
+    {
+      "id": 182,
+      "title": "Nache Re Bangla (From \"DeSu7\")",
+      "artist": "Ishan Mitra, Sohini Saha, Cizzy, Savvy",
+      "duration": "3:28",
+      "durationSec": 208,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718224/shoot2head-mp3/Nache_Re_Bangla_From_DeSu7.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/919/Nache-Re-Bangla-From-DeSu7-Bengali-2026-20260918091308-500x500.jpg"
+    },
+    {
+      "id": 183,
+      "title": "Rekhechi Tomake",
+      "artist": "Machaker, SocialiZers, Angshuman Guha",
+      "duration": "4:10",
+      "durationSec": 250,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718732/shoot2head-mp3/Rekhechi_Tomake.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/628/Rekhechi-Tomake-Bengali-2026-20260921112207-500x500.jpg"
+    },
+    {
+      "id": 184,
+      "title": "Eto Hoawari Chilo",
+      "artist": "Raj Barman, Deepshikha Raina, Savvy, Barish",
+      "duration": "3:45",
+      "durationSec": 225,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718657/shoot2head-mp3/Eto_Hoawari_Chilo.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/535/Eto-Hoawari-Chilo-Bengali-2026-20260925181004-500x500.jpg"
+    },
+    {
+      "id": 185,
+      "title": "Khoti Ki",
+      "artist": "Prabir Kumar Bhaduri, Ayan Sarkar, Saikat Ghosh",
+      "duration": "3:20",
+      "durationSec": 200,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718692/shoot2head-mp3/Khoti_Ki.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/612/Khoti-Ki-Bengali-2026-20260926121801-500x500.jpg"
+    },
+    {
+      "id": 186,
+      "title": "Namchhe Rupkotha (From \"C/O A Journey\")",
+      "artist": "Rupankar Bagchi, Sonakshi Kar, Debojyoti Mishra, Tamoghna Chatterjee",
+      "duration": "5:16",
+      "durationSec": 316,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718706/shoot2head-mp3/Namchhe_Rupkotha_From_C_O_A_Journey.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/770/Namchhe-Rupkotha-From-C-O-A-Journey-Bengali-2026-20260923173045-500x500.jpg"
+    },
+    {
+      "id": 187,
+      "title": "Bole Dao Ekbar",
+      "artist": "Anushka Patra",
+      "duration": "3:26",
+      "durationSec": 206,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718591/shoot2head-mp3/Bole_Dao_Ekbar.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/965/Bole-Dao-Ekbar-Bengali-2026-20260929173522-500x500.jpg"
+    },
+    {
+      "id": 188,
+      "title": "Jodi Tor Daak Shune Keu Na Ashe (From \"Daktar Kaku\")",
+      "artist": "Anirban Bhattacharya, Rabindranath Tagore, Souptik - Achin",
+      "duration": "4:44",
+      "durationSec": 284,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718673/shoot2head-mp3/Jodi_Tor_Daak_Shune_Keu_Na_Ashe_From_Daktar_Kaku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/343/Jodi-Tor-Daak-Shune-Keu-Na-Ashe-From-Daktar-Kaku-Bengali-2026-20260918163904-500x500.jpg"
+    },
+    {
+      "id": 189,
+      "title": "Dhiki Dhiki (From \"Beporoya\")",
+      "artist": "Suchona Shely, Argha, Sudip",
+      "duration": "2:40",
+      "durationSec": 160,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718177/shoot2head-mp3/Dhiki_Dhiki_From_Beporoya.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/954/Dhiki-Dhiki-From-Beporoya-Bengali-2026-20260915182602-500x500.jpg"
+    },
+    {
+      "id": 190,
+      "title": "Chupi Chupi",
+      "artist": "Anwesshaa Dattagupta",
+      "duration": "4:13",
+      "durationSec": 253,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718624/shoot2head-mp3/Chupi_Chupi.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/680/Chupi-Chupi-Bengali-2026-20260918220800-500x500.jpg"
+    },
+    {
+      "id": 191,
+      "title": "Arale (From \"Daktar Kaku\")",
+      "artist": "Arnab Dutta, Souptik Mazumder, Sayantan Sinha",
+      "duration": "3:36",
+      "durationSec": 216,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718564/shoot2head-mp3/Arale_From_Daktar_Kaku.mp3",
+      "album": "Notun Tunes",
+      "albumId": "",
+      "playlistIds": [
+        "notun-tunes"
+      ],
+      "cover": "https://c.saavncdn.com/361/Arale-From-Daktar-Kaku-Bengali-2026-20260922143905-500x500.jpg"
+    },
+    {
+      "id": 192,
+      "title": "Zindabad (From \"Khancha\")",
+      "artist": "Ankita Bhattacharyya, Keshab Dey, Amit Chatterjee(Ben)",
+      "duration": "3:10",
+      "durationSec": 190,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718244/shoot2head-mp3/Zindabad_From_Khancha.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/098/Zindabad-From-Khancha-Bengali-2026-20260206093206-500x500.jpg"
+    },
+    {
+      "id": 193,
+      "title": "Jiya Lagena - Shararat Bengali Version",
+      "artist": "Shashwat Sachdev, Somraj Das, Ishan Mitra, Priyanka Das Raha",
+      "duration": "3:45",
+      "durationSec": 225,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718204/shoot2head-mp3/Jiya_Lagena_-_Shararat_Bengali_Version.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/552/Jiya-Lagena-Shararat-Bengali-Version-Bengali-2026-20260415063405-500x500.jpg"
+    },
+    {
+      "id": 194,
+      "title": "Order Chara Border (From \"Raktabeej 2\")",
+      "artist": "Silajit, Zinia Sen, Shrestha D.",
+      "duration": "4:49",
+      "durationSec": 289,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718234/shoot2head-mp3/Order_Chara_Border_From_Raktabeej_2.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/814/Order-Chara-Border-From-Raktabeej-2-Bengali-2025-20250821165605-500x500.jpg"
+    },
+    {
+      "id": 195,
+      "title": "Chol Chol Chande Jabo",
+      "artist": "Nakash Aziz, Senjuti Das, Dabbu, Raja Chanda",
+      "duration": "3:08",
+      "durationSec": 188,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718167/shoot2head-mp3/Chol_Chol_Chande_Jabo.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/061/Chol-Chol-Chande-Jabo-Bengali-2026-20261031161142-500x500.jpg"
+    },
+    {
+      "id": 196,
+      "title": "Danda 2.0 (From \"Nari Choritra Bejay Jotil\")",
+      "artist": "SUBASHIS DAS, Silajit Majumder, Avishek Saha",
+      "duration": "4:18",
+      "durationSec": 258,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718173/shoot2head-mp3/Danda_2_0_From_Nari_Choritra_Bejay_Jotil.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/660/Danda-2-0-From-Nari-Choritra-Bejay-Jotil-Bengali-2025-20251223164245-500x500.jpg"
+    },
+    {
+      "id": 197,
+      "title": "Chandni Raate (From \"Bhanupriya Bhooter Hotel\")",
+      "artist": "Arnab Dutta, Zinia Sen, Saptak Bhattacharjee, Shrestha D.",
+      "duration": "3:41",
+      "durationSec": 221,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718163/shoot2head-mp3/Chandni_Raate_From_Bhanupriya_Bhooter_Hotel.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/818/Chandni-Raate-From-Bhanupriya-Bhooter-Hotel-Bengali-2025-20260210190046-500x500.jpg"
+    },
+    {
+      "id": 198,
+      "title": "Dj Bajbe",
+      "artist": "Manchu Dada, Prosenjit Baral",
+      "duration": "3:20",
+      "durationSec": 200,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718182/shoot2head-mp3/Dj_Bajbe.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/151/Dj-Bajbe-Bengali-2026-20260509083806-500x500.jpg"
+    },
+    {
+      "id": 199,
+      "title": "Ke Tumi Nandini 2.0 (From \"Mon Maaney Na\")",
+      "artist": "Nilayan Chatterjee, Nikhita Gandhi, Subhadeep Pan",
+      "duration": "3:40",
+      "durationSec": 220,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718212/shoot2head-mp3/Ke_Tumi_Nandini_2_0_From_Mon_Maaney_Na.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/747/Ke-Tumi-Nandini-2-0-From-Mon-Maaney-Na-Bengali-2026-20260110073155-500x500.jpg"
+    },
+    {
+      "id": 200,
+      "title": "Moydamukho Hit (From \"Bohurupi The Golden Daku\")",
+      "artist": "Shrestha D., Nani Chora Das Baul, Bonnie Chakraborty, Ritam Sen",
+      "duration": "3:34",
+      "durationSec": 214,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718220/shoot2head-mp3/Moydamukho_Hit_From_Bohurupi_The_Golden_Daku.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/692/Moydamukho-Hit-From-Bohurupi-The-Golden-Daku-Bengali-2026-20260915231150-500x500.jpg"
+    },
+    {
+      "id": 201,
+      "title": "English E Bangla",
+      "artist": "Silajit, Avishek Saha, Ishan Mitra, Syamantak Sengupta",
+      "duration": "3:02",
+      "durationSec": 182,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718188/shoot2head-mp3/English_E_Bangla.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/294/English-E-Bangla-Bengali-2025-20260420210310-500x500.jpg"
+    },
+    {
+      "id": 202,
+      "title": "Ele Tumi Kacha Kachi",
+      "artist": "Dipesh Chakraborty",
+      "duration": "2:54",
+      "durationSec": 174,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718185/shoot2head-mp3/Ele_Tumi_Kacha_Kachi.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/338/Ele-Tumi-Kacha-Kachi-Bengali-2026-20260212205616-500x500.jpg"
+    },
+    {
+      "id": 203,
+      "title": "Haathe Harricane (From \"Police\")",
+      "artist": "Raja Chanda, Antara Mitra, Dabbu",
+      "duration": "2:58",
+      "durationSec": 178,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718192/shoot2head-mp3/Haathe_Harricane_From_Police.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/993/Haathe-Harricane-From-Police-Bengali-2025-20251110182618-500x500.jpg"
+    },
+    {
+      "id": 204,
+      "title": "Nache Re Bangla (From \"DeSu7\")",
+      "artist": "Ishan Mitra, Sohini Saha, Cizzy, Savvy",
+      "duration": "3:28",
+      "durationSec": 208,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718224/shoot2head-mp3/Nache_Re_Bangla_From_DeSu7.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/919/Nache-Re-Bangla-From-DeSu7-Bengali-2026-20260918091308-500x500.jpg"
+    },
+    {
+      "id": 205,
+      "title": "Ramani",
+      "artist": "Manasi Ghosh, Sayan Samrat",
+      "duration": "2:53",
+      "durationSec": 173,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718242/shoot2head-mp3/Ramani.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/316/Ramani-Bengali-2026-20260911113919-500x500.jpg"
+    },
+    {
+      "id": 206,
+      "title": "Bibi Payra Title Track",
+      "artist": "Shilpa Rao",
+      "duration": "3:43",
+      "durationSec": 223,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718160/shoot2head-mp3/Bibi_Payra_Title_Track.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/554/Bibi-Payra-2026-Original-Motion-Picture-Soundtrack-Bengali-2026-20260417175403-500x500.jpg"
+    },
+    {
+      "id": 207,
+      "title": "Ilish Chandana (From \"DeSu7\")",
+      "artist": "Nilayan Chatterjee, Ishan Mitra, Portia Sen",
+      "duration": "3:49",
+      "durationSec": 229,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718197/shoot2head-mp3/Ilish_Chandana_From_DeSu7.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/253/Ilish-Chandana-From-DeSu7-Bengali-2026-20260925192601-500x500.jpg"
+    },
+    {
+      "id": 208,
+      "title": "Rama Rama",
+      "artist": "Keshab Dey, Priyanka Das",
+      "duration": "2:59",
+      "durationSec": 179,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718239/shoot2head-mp3/Rama_Rama.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/256/Rama-Rama-Bengali-2026-20260221125842-500x500.jpg"
+    },
+    {
+      "id": 209,
+      "title": "Loke Boley",
+      "artist": "Nusraat Faria, Fuad Almuqtadir, Tahzeeb M Badhon",
+      "duration": "3:01",
+      "durationSec": 181,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718216/shoot2head-mp3/Loke_Boley.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/537/Loke-Boley-Bengali-2026-20260527172004-500x500.jpg"
+    },
+    {
+      "id": 210,
+      "title": "Kata Phutese (From \"Nari Choritra Bejay Jotil\")",
+      "artist": "B Show, Rubai",
+      "duration": "2:35",
+      "durationSec": 155,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718208/shoot2head-mp3/Kata_Phutese_From_Nari_Choritra_Bejay_Jotil.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/583/Kata-Phutese-From-Nari-Choritra-Bejay-Jotil-Bengali-2025-20251214064253-500x500.jpg"
+    },
+    {
+      "id": 211,
+      "title": "Je Jon Premer Bhab Jane Na",
+      "artist": "Ankita Bhattacharyya",
+      "duration": "3:31",
+      "durationSec": 211,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718201/shoot2head-mp3/Je_Jon_Premer_Bhab_Jane_Na.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/012/Je-Jon-Premer-Bhab-Jane-Na-Bengali-2025-20250923143717-500x500.jpg"
+    },
+    {
+      "id": 212,
+      "title": "O Shonali",
+      "artist": "Nakash Aziz, Rupak Tiary, Barish",
+      "duration": "3:13",
+      "durationSec": 193,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718228/shoot2head-mp3/O_Shonali.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/917/O-Shonali-Bengali-2026-20260107131009-500x500.jpg"
+    },
+    {
+      "id": 213,
+      "title": "Dhiki Dhiki (From \"Beporoya\")",
+      "artist": "Suchona Shely, Argha, Sudip",
+      "duration": "2:40",
+      "durationSec": 160,
+      "audioUrl": "https://res.cloudinary.com/zpu6kgau/video/upload/v1794718177/shoot2head-mp3/Dhiki_Dhiki_From_Beporoya.mp3",
+      "album": "Paglu Naach",
+      "albumId": "",
+      "playlistIds": [
+        "paglu-naach"
+      ],
+      "cover": "https://c.saavncdn.com/954/Dhiki-Dhiki-From-Beporoya-Bengali-2026-20260915182602-500x500.jpg"
+    }
+  ]
 }

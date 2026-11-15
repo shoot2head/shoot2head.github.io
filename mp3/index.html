@@ -28,8 +28,8 @@
           <div id="nowPlayingCover" class="cover-tile"></div>
         </div>
         <div class="track-info">
-          <span class="track-title" id="nowPlayingTitle">Dreamy Tone</span>
-          <span class="track-artist" id="nowPlayingArtist">Prabir</span>
+          <span class="track-title" id="nowPlayingTitle">কোনো গান চলছে না</span>
+          <span class="track-artist" id="nowPlayingArtist">—</span>
           <span class="track-status" id="nowPlayingStatus"></span>
         </div>
         <div class="controls">
@@ -55,49 +55,29 @@
           <section class="browse">
             <h3>Playlists</h3>
             <div id="serverSongCount" style="color: #888; font-size: 13px; margin-bottom: 12px;"></div>
-            <div class="card-grid" id="playlistGrid"></div>
-          </section>
-
-          <!-- Albums section -->
-          <section class="browse">
-            <h3>Albums</h3>
-            <div class="card-grid" id="albumGrid"></div>
-          </section>
-
-          <!-- Recently played section -->
-          <section class="recently-played">
-            <h3>Recently Played</h3>
-            <div class="card-grid" id="recentGrid"></div>
+            <div class="playlist-list" id="playlistGrid"></div>
           </section>
         </div>
 
         <!-- Search View -->
         <div class="view" id="searchView">
           <div class="search-header">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search tracks, artists, playlists...">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search tracks and playlists...">
           </div>
           <div class="search-results" id="searchResults">
             <div class="search-section" id="tracksSection">
               <h3>Tracks</h3>
               <div class="card-grid" id="searchTracksGrid"></div>
             </div>
-            <div class="search-section" id="artistsSection">
-              <h3>Artists</h3>
-              <div class="card-grid" id="searchArtistsGrid"></div>
-            </div>
             <div class="search-section" id="playlistsSection">
               <h3>Playlists</h3>
-              <div class="card-grid" id="searchPlaylistsGrid"></div>
+              <div class="playlist-list" id="searchPlaylistsGrid"></div>
             </div>
             <div class="search-section" id="onlineSection" style="display:none">
               <h3>More Songs</h3>
               <div id="onlineStatus" style="color:#888;font-size:13px;padding:6px 0;"></div>
               <div class="card-grid" id="searchOnlineGrid"></div>
             </div>
-          </div>
-          <div class="browse-categories" id="browseCategories">
-            <h3>Browse Categories</h3>
-            <div class="card-grid" id="categoryGrid"></div>
           </div>
         </div>
 
@@ -115,12 +95,10 @@
           <div class="download-usage-track"><div class="download-usage-fill" id="downloadUsageBar"></div></div>
           <div class="filter-chips" id="libraryFilters">
             <button class="filter-chip active" data-filter="playlists">Playlists</button>
-            <button class="filter-chip" data-filter="artists">Artists</button>
-            <button class="filter-chip" data-filter="albums">Albums</button>
             <button class="filter-chip" data-filter="liked">Liked Songs</button>
           </div>
           <div class="library-content" id="libraryContent">
-            <div class="card-grid" id="libraryGrid"></div>
+            <div class="playlist-list" id="libraryGrid"></div>
           </div>
           <div class="downloaded-section" id="downloadedSection">
             <h3>Downloaded — plays offline</h3>
@@ -150,59 +128,6 @@
           <div class="track-list" id="playlistTracks"></div>
         </div>
 
-        <!-- Album Detail View -->
-        <div class="view" id="albumDetailView">
-          <button class="back-btn" id="albumBackBtn">← Back</button>
-          <div class="detail-header" id="albumHeader">
-            <div class="detail-cover">
-              <div id="albumCover" class="cover-tile"></div>
-            </div>
-            <div class="detail-info">
-              <span class="detail-type">Album</span>
-              <h2 class="detail-title" id="albumTitle"></h2>
-              <p class="detail-artist" id="albumArtist"></p>
-              <div class="detail-meta" id="albumMeta">2024 • 5 songs, 15 min</div>
-              <div class="detail-actions">
-                <button class="btn play-all-btn" id="albumPlayAll" title="Play all"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
-                <button class="btn save-btn" id="albumSave">Save</button>
-              </div>
-            </div>
-          </div>
-          <div class="track-list" id="albumTracks"></div>
-        </div>
-
-        <!-- Artist Detail View -->
-        <div class="view" id="artistDetailView">
-          <button class="back-btn" id="artistBackBtn">← Back</button>
-          <div class="detail-header artist-header" id="artistHeader">
-            <div class="detail-cover artist-cover">
-              <div id="artistCover" class="cover-tile"></div>
-            </div>
-            <div class="detail-info">
-              <h2 class="detail-title" id="artistName"></h2>
-              <div class="detail-meta" id="artistMeta">1,234 monthly listeners</div>
-              <div class="detail-actions">
-                <button class="btn play-all-btn" id="artistPlayAll" title="Play all"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
-                <button class="btn follow-btn" id="artistFollow">Follow</button>
-              </div>
-            </div>
-          </div>
-          <div class="artist-sections">
-            <section class="artist-section">
-              <h3>Top Tracks</h3>
-              <div class="track-list" id="artistTopTracks"></div>
-            </section>
-            <section class="artist-section">
-              <h3>Discography</h3>
-              <div class="card-grid" id="artistDiscography"></div>
-            </section>
-            <section class="artist-section">
-              <h3>About</h3>
-              <p class="artist-about" id="artistAbout">Artist biography goes here.</p>
-            </section>
-          </div>
-        </div>
-
         <!-- Liked Songs View -->
         <div class="view" id="likedSongsView">
           <button class="back-btn" id="likedBackBtn">← Back</button>
@@ -226,8 +151,8 @@
               <div id="fullscreenCover" class="cover-tile"></div>
             </div>
             <div class="fullscreen-info">
-              <span class="fullscreen-title" id="fullscreenTitle">Dreamy Tone</span>
-              <span class="fullscreen-artist" id="fullscreenArtist">Prabir</span>
+              <span class="fullscreen-title" id="fullscreenTitle">কোনো গান চলছে না</span>
+              <span class="fullscreen-artist" id="fullscreenArtist">—</span>
             </div>
             <div class="fullscreen-progress">
               <span class="time-current" id="timeCurrent">0:00</span>
@@ -268,9 +193,9 @@
         <div id="modalCover" class="cover-tile"></div>
       </div>
       <div class="track-details">
-        <span class="track-title" id="modalTitle">Dreamy Tone</span>
-        <span class="track-artist" id="modalArtist">Prabir</span>
-        <span class="track-duration" id="modalDuration">2:45</span>
+        <span class="track-title" id="modalTitle">কোনো গান চলছে না</span>
+        <span class="track-artist" id="modalArtist">—</span>
+        <span class="track-duration" id="modalDuration">0:00</span>
       </div>
       <button class="play-modal-btn" id="modalPlayBtn" title="Play"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
       <button class="modal-download-btn" id="modalDownloadBtn" title="Download">⬇</button>

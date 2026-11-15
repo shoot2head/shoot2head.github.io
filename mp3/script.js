@@ -27,9 +27,8 @@ function setCoverTile(el, seed, label) {
 
 function escAttr(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;'); }
 function realCover(track) {
-  // A song's real photo — never the user's portrait (logo.png).
   const c = track && track.cover;
-  return (typeof c === 'string' && c.indexOf('http') === 0 && c.indexOf('logo.png') === -1) ? c : '';
+  return (typeof c === 'string' && c.indexOf('http') === 0) ? c : '';
 }
 function coverImgHTML(track) {
   const url = realCover(track);
@@ -98,41 +97,51 @@ function updateMediaSession(track) {
 }
 
 // ============ DATA ============
-const artists = {
-  prabir: { id: 'prabir', name: 'Prabir', bio: 'Prabir creates atmospheric electronic soundscapes blending ambient textures with rhythmic pulses. Based in the studio, crafting demo tracks for the next generation of listeners.' },
-  abhijit: { id: 'abhijit', name: 'Abhijit', bio: 'Abhijit explores the intersection of melody and machine. From late-night synth sessions to sunrise mixes, each track is a journey through sound.' }
-};
+let trackList = [];
+let playlists = [];
 
-// Demo tracks - single editable array for future audio server
-let trackList = [
-  { id: 1, title: 'Dreamy Tone', artist: 'Prabir', artistId: 'prabir', duration: '2:45', durationSec: 165, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist1'] },
-  { id: 2, title: 'Upbeat Demo', artist: 'Prabir', artistId: 'prabir', duration: '3:12', durationSec: 192, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist1', 'playlist3'] },
-  { id: 3, title: 'Midnight Chill', artist: 'Prabir', artistId: 'prabir', duration: '4:20', durationSec: 260, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist2'] },
-  { id: 4, title: 'Neon Dreams', artist: 'Prabir', artistId: 'prabir', duration: '3:45', durationSec: 225, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist2'] },
-  { id: 5, title: 'Echo Chamber', artist: 'Prabir', artistId: 'prabir', duration: '2:58', durationSec: 178, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3', album: 'Midnight Sessions', albumId: 'album1', playlistIds: ['playlist3'] },
-  { id: 6, title: 'Solar Flare', artist: 'Abhijit', artistId: 'abhijit', duration: '3:30', durationSec: 210, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist1', 'playlist3'] },
-  { id: 7, title: 'Binary Sunset', artist: 'Abhijit', artistId: 'abhijit', duration: '4:15', durationSec: 255, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist2'] },
-  { id: 8, title: 'Circuit Breaker', artist: 'Abhijit', artistId: 'abhijit', duration: '3:05', durationSec: 185, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist1'] },
-  { id: 9, title: 'Digital Horizon', artist: 'Abhijit', artistId: 'abhijit', duration: '3:50', durationSec: 230, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3', album: 'Electric Sunrise', albumId: 'album2', playlistIds: ['playlist3'] },
-];
+function getAllSongsPlaylist() {
+  const firstCover = trackList.length && trackList[0].cover ? trackList[0].cover : '';
+  return {
+    id: 'all-songs',
+    title: 'সব গান',
+    description: 'All songs',
+    cover: firstCover,
+    trackIds: trackList.map(t => t.id),
+    owner: 'shoot2head'
+  };
+}
 
-let playlists = [
-  { id: 'playlist1', title: 'Late Night Coding', description: 'Perfect beats for deep focus sessions', trackIds: [1, 2, 6, 8], owner: 'You' },
-  { id: 'playlist2', title: 'Chill Vibes Only', description: 'Wind down with atmospheric sounds', trackIds: [3, 4, 7], owner: 'You' },
-  { id: 'playlist3', title: 'Weekend Energy', description: 'High energy tracks for the weekend', trackIds: [2, 5, 6, 9], owner: 'You' },
-];
+function findPlaylist(id) {
+  if (id === 'all-songs') return getAllSongsPlaylist();
+  return [...playlists, ...userPlaylists].find(p => p.id === id) || null;
+}
 
-const albums = [
-  { id: 'album1', title: 'Midnight Sessions', artist: 'Prabir', artistId: 'prabir', year: '2024', trackIds: [1, 2, 3, 4, 5] },
-  { id: 'album2', title: 'Electric Sunrise', artist: 'Abhijit', artistId: 'abhijit', year: '2024', trackIds: [6, 7, 8, 9] },
-];
+function createPlaylistRow(p) {
+  const count = (p.trackIds || []).length;
+  const coverHtml = p.cover
+    ? `<img class="playlist-row-cover" src="${escAttr(p.cover)}" alt="" loading="lazy">`
+    : `<div class="playlist-row-cover cover-tile cover-grad-${gradFor(p.id || p.title)}"><span>${escAttr((p.title || 'P')[0].toUpperCase())}</span></div>`;
+  return `
+    <div class="playlist-row" data-id="${p.id}">
+      ${coverHtml}
+      <div class="playlist-row-info">
+        <div class="playlist-row-title">${escAttr(p.title)}</div>
+        <div class="playlist-row-meta">${count} song${count !== 1 ? 's' : ''}</div>
+      </div>
+      <div class="playlist-row-chevron">›</div>
+    </div>
+  `;
+}
 
-const categories = [
-  { id: 'chill', name: 'Chill' },
-  { id: 'focus', name: 'Focus' },
-  { id: 'energy', name: 'Energy' },
-  { id: 'electronic', name: 'Electronic' },
-];
+function attachPlaylistRowListeners(container) {
+  if (!container) return;
+  container.querySelectorAll('.playlist-row').forEach(row => {
+    row.addEventListener('click', () => {
+      navigateTo('playlistDetail', { playlistId: row.dataset.id });
+    });
+  });
+}
 
 // ============ ONLINE SEARCH — free sources, tried in order ============
 // No service name is ever shown in the UI. Online results look like the app's own songs.
@@ -550,13 +559,11 @@ let isPlaying = false;
 let currentView = 'home';
 let navigationHistory = ['home'];
 let currentPlaylistId = null;
-let currentAlbumId = null;
-let currentArtistId = null;
 let queue = [];
 let shuffle = false;
 let repeat = 0; // 0=off, 1=all, 2=one
 let likedTracks = new Set();
-let userPlaylists = [...playlists];
+let userPlaylists = [];
 
 // Audio element
 const audio = new Audio();
@@ -573,20 +580,23 @@ const createPlaylistModal = document.getElementById('createPlaylistModal');
 // ============ SERVER PLAYLISTS — playlists.json is the server data ============
 // The app reads its playlists from mp3/playlists.json on every load, so a playlist
 // update only changes that file — the app code never needs an update.
-// If the file cannot be loaded (offline / bad connection), the built-in songs stay.
 async function loadServerPlaylists() {
   try {
     const res = await fetch('playlists.json?v=' + Date.now());
-    if (!res.ok) return;
+    if (!res.ok) throw new Error('Fetch failed');
     const data = await res.json();
-    if (!data || !Array.isArray(data.tracks) || !Array.isArray(data.playlists)) return;
+    if (!data || !Array.isArray(data.tracks) || !Array.isArray(data.playlists)) throw new Error('Invalid data');
     const serverTrackIds = new Set(data.tracks.map(t => t.id));
     trackList = trackList.filter(t => !serverTrackIds.has(t.id)).concat(data.tracks);
     const serverPlIds = new Set(data.playlists.map(p => p.id));
     playlists = playlists.filter(p => !serverPlIds.has(p.id)).concat(data.playlists);
     renderAll();
   } catch (e) {
-    console.log('Server playlists unavailable, using built-in songs:', e);
+    console.log('Server playlists unavailable:', e);
+    const grid = document.getElementById('playlistGrid');
+    if (grid) {
+      grid.innerHTML = '<div class="empty-state" style="padding: 20px; text-align: center; color: #888;">গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো</div>';
+    }
   }
 }
 
@@ -688,20 +698,14 @@ function initEventListeners() {
   document.getElementById('createPlaylistBtn').addEventListener('click', () => openCreatePlaylistModal());
 
   // Back buttons
-  document.getElementById('playlistBackBtn').addEventListener('click', () => goBack());
-  document.getElementById('albumBackBtn').addEventListener('click', () => goBack());
-  document.getElementById('artistBackBtn').addEventListener('click', () => goBack());
-  document.getElementById('likedBackBtn').addEventListener('click', () => goBack());
+  document.getElementById('playlistBackBtn')?.addEventListener('click', () => goBack());
+  document.getElementById('likedBackBtn')?.addEventListener('click', () => goBack());
 
   // Play all buttons
-  document.getElementById('playlistPlayAll').addEventListener('click', () => playPlaylist(currentPlaylistId));
-  document.getElementById('albumPlayAll').addEventListener('click', () => playAlbum(currentAlbumId));
-  document.getElementById('artistPlayAll').addEventListener('click', () => playArtistTopTracks(currentArtistId));
+  document.getElementById('playlistPlayAll')?.addEventListener('click', () => playPlaylist(currentPlaylistId));
 
   // Save/Follow buttons
-  document.getElementById('playlistSave').addEventListener('click', () => toggleSavePlaylist(currentPlaylistId));
-  document.getElementById('albumSave').addEventListener('click', () => toggleSaveAlbum(currentAlbumId));
-  document.getElementById('artistFollow').addEventListener('click', () => toggleFollowArtist(currentArtistId));
+  document.getElementById('playlistSave')?.addEventListener('click', () => toggleSavePlaylist(currentPlaylistId));
 
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
@@ -952,8 +956,6 @@ function navigateTo(view, data = {}) {
   
   // Store data for detail views
   if (data.playlistId) currentPlaylistId = data.playlistId;
-  if (data.albumId) currentAlbumId = data.albumId;
-  if (data.artistId) currentArtistId = data.artistId;
 
   // Hide all views
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -988,8 +990,6 @@ function renderView(view) {
     case 'search': renderSearch(); break;
     case 'library': renderLibrary('playlists'); break;
     case 'playlistDetail': renderPlaylistDetail(); break;
-    case 'albumDetail': renderAlbumDetail(); break;
-    case 'artistDetail': renderArtistDetail(); break;
     case 'likedSongs': renderLikedSongs(); break;
     case 'fullscreenNowPlaying': renderFullscreenNowPlaying(); break;
   }
@@ -1000,39 +1000,22 @@ function renderAll() {
   renderHome();
   renderSearch();
   renderLibrary('playlists');
-  renderCategories();
   updateNowPlayingBar();
   updateFullscreenNowPlaying();
   renderQueue();
 }
 
 function renderHome() {
-  // Playlists grid
   const playlistGrid = document.getElementById('playlistGrid');
   if (playlistGrid) {
-    playlistGrid.innerHTML = playlists.map(p => createCard(p, 'playlist')).join('');
-    attachCardListeners(playlistGrid);
+    const allSongsPl = getAllSongsPlaylist();
+    const items = [allSongsPl, ...playlists];
+    playlistGrid.innerHTML = items.map(p => createPlaylistRow(p)).join('');
+    attachPlaylistRowListeners(playlistGrid);
   }
 
-  // Albums grid
-  const albumGrid = document.getElementById('albumGrid');
-  if (albumGrid) {
-    albumGrid.innerHTML = albums.map(a => createCard(a, 'album')).join('');
-    attachCardListeners(albumGrid);
-  }
-
-  // Server song count
-  const serverCount = trackList.filter(t => (typeof t.id === 'number' ? t.id : parseInt(t.id, 10)) > 9).length;
   const countEl = document.getElementById('serverSongCount');
-  if (countEl) countEl.textContent = `${serverCount} songs`;
-
-  // Recently played - last 4 unique tracks
-  const recentTracks = getRecentlyPlayed();
-  const recentGrid = document.getElementById('recentGrid');
-  if (recentGrid) {
-    recentGrid.innerHTML = recentTracks.map(t => createCard(t, 'track')).join('');
-    attachCardListeners(recentGrid);
-  }
+  if (countEl) countEl.textContent = `${trackList.length} songs`;
 }
 
 function renderSearch() {
@@ -1044,12 +1027,10 @@ function performSearch(query) {
   const q = (query || '').trim();
   const ql = q.toLowerCase();
   const tracksGrid = document.getElementById('searchTracksGrid');
-  const artistsGrid = document.getElementById('searchArtistsGrid');
   const playlistsGrid = document.getElementById('searchPlaylistsGrid');
   const onlineSection = document.getElementById('onlineSection');
   const sections = {
     tracks: document.getElementById('tracksSection'),
-    artists: document.getElementById('artistsSection'),
     playlists: document.getElementById('playlistsSection'),
   };
 
@@ -1057,12 +1038,10 @@ function performSearch(query) {
   if (!q) {
     Object.values(sections).forEach(s => s.style.display = 'none');
     if (onlineSection) onlineSection.style.display = 'none';
-    document.getElementById('browseCategories').style.display = 'block';
     onlineResults = [];
     return;
   }
 
-  document.getElementById('browseCategories').style.display = 'none';
   Object.values(sections).forEach(s => s.style.display = 'block');
 
   const filteredTracks = trackList.filter(t =>
@@ -1071,15 +1050,11 @@ function performSearch(query) {
   tracksGrid.innerHTML = filteredTracks.map(t => createCard(t, 'track')).join('');
   attachCardListeners(tracksGrid);
 
-  const artistIds = [...new Set(trackList.filter(t => t.artist.toLowerCase().includes(ql)).map(t => t.artistId))];
-  artistsGrid.innerHTML = artistIds.map(id => createCard(artists[id], 'artist')).join('');
-  attachCardListeners(artistsGrid);
-
   const filteredPlaylists = [...playlists, ...userPlaylists].filter(p =>
     p.title.toLowerCase().includes(ql)
   );
-  playlistsGrid.innerHTML = filteredPlaylists.map(p => createCard(p, 'playlist')).join('');
-  attachCardListeners(playlistsGrid);
+  playlistsGrid.innerHTML = filteredPlaylists.map(p => createPlaylistRow(p)).join('');
+  attachPlaylistRowListeners(playlistsGrid);
 
   // Online search — all free sources, debounced
   if (onlineSection) {
@@ -1092,101 +1067,52 @@ function performSearch(query) {
   }
 }
 
-function renderCategories() {
-  const grid = document.getElementById('categoryGrid');
-  grid.innerHTML = categories.map(c => createCard(c, 'category')).join('');
-  attachCardListeners(grid);
-}
-
 function renderLibrary(filter) {
   const grid = document.getElementById('libraryGrid');
-  let items = [];
-  let emptyMessage = '';
-  let cardType = 'playlist';
-
   switch (filter) {
-    case 'playlists':
-      items = [...playlists, ...userPlaylists.filter(p => !playlists.find(op => op.id === p.id))];
-      emptyMessage = 'Create your first playlist';
-      cardType = 'playlist';
+    case 'playlists': {
+      const items = [...playlists, ...userPlaylists.filter(p => !playlists.find(op => op.id === p.id))];
+      if (items.length === 0) {
+        grid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">Create your first playlist</div>';
+      } else {
+        grid.innerHTML = items.map(p => createPlaylistRow(p)).join('');
+        attachPlaylistRowListeners(grid);
+      }
       break;
-    case 'artists':
-      items = Object.values(artists);
-      emptyMessage = 'Follow artists to see them here';
-      cardType = 'artist';
-      break;
-    case 'albums':
-      items = albums;
-      emptyMessage = 'Save albums to see them here';
-      cardType = 'album';
-      break;
+    }
     case 'liked':
       navigateTo('likedSongs');
       return;
   }
-
-  if (items.length === 0) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">${emptyMessage}</div>`;
-  } else {
-    grid.innerHTML = items.map(item => createCard(item, cardType)).join('');
-    attachCardListeners(grid);
-  }
 }
 
 function renderPlaylistDetail() {
-  const playlist = [...playlists, ...userPlaylists].find(p => p.id === currentPlaylistId);
+  const playlist = findPlaylist(currentPlaylistId);
   if (!playlist) { navigateTo('home'); return; }
   
-  setCoverTile(document.getElementById('playlistCover'), playlist.id || playlist.title, (playlist.title || 'P')[0].toUpperCase());
+  setCover(document.getElementById('playlistCover'), playlist);
   document.getElementById('playlistTitle').textContent = playlist.title;
-  document.getElementById('playlistDescription').textContent = playlist.description;
+  document.getElementById('playlistDescription').textContent = playlist.description || '';
   
+  const saveBtn = document.getElementById('playlistSave');
+  if (saveBtn) {
+    if (playlist.id === 'all-songs') {
+      saveBtn.style.display = 'none';
+    } else {
+      saveBtn.style.display = 'inline-block';
+      const isSaved = userPlaylists.some(p => p.id === playlist.id);
+      saveBtn.textContent = isSaved ? 'Saved' : 'Save';
+      saveBtn.classList.toggle('active', isSaved);
+    }
+  }
+
   const tracks = playlist.trackIds.map(id => trackList.find(t => t.id === id)).filter(Boolean);
-  const totalSec = tracks.reduce((sum, t) => sum + t.durationSec, 0);
+  const totalSec = tracks.reduce((sum, t) => sum + (t.durationSec || 0), 0);
   document.getElementById('playlistMeta').textContent = `${tracks.length} songs, ${formatTime(totalSec)}`;
   
   const tracksContainer = document.getElementById('playlistTracks');
   tracksContainer.innerHTML = tracks.map((t, i) => createTrackRow(t, i, playlist.trackIds.indexOf(t.id))).join('');
   attachTrackRowListeners(tracksContainer, playlist.trackIds);
-}
-
-function renderAlbumDetail() {
-  const album = albums.find(a => a.id === currentAlbumId);
-  if (!album) { navigateTo('home'); return; }
-  
-  setCoverTile(document.getElementById('albumCover'), album.id || album.title, (album.title || 'A')[0].toUpperCase());
-  document.getElementById('albumTitle').textContent = album.title;
-  document.getElementById('albumArtist').textContent = album.artist;
-  
-  const tracks = album.trackIds.map(id => trackList.find(t => t.id === id)).filter(Boolean);
-  const totalSec = tracks.reduce((sum, t) => sum + t.durationSec, 0);
-  document.getElementById('albumMeta').textContent = `${album.year} • ${tracks.length} songs, ${formatTime(totalSec)}`;
-  
-  const tracksContainer = document.getElementById('albumTracks');
-  tracksContainer.innerHTML = tracks.map((t, i) => createTrackRow(t, i, i)).join('');
-  attachTrackRowListeners(tracksContainer, album.trackIds);
-}
-
-function renderArtistDetail() {
-  const artist = artists[currentArtistId];
-  if (!artist) { navigateTo('home'); return; }
-  
-  setCoverTile(document.getElementById('artistCover'), artist.id || artist.name, (artist.name || 'A')[0].toUpperCase());
-  document.getElementById('artistName').textContent = artist.name;
-  document.getElementById('artistAbout').textContent = artist.bio;
-  
-  const artistTracks = trackList.filter(t => t.artistId === currentArtistId);
-  document.getElementById('artistMeta').textContent = `${artistTracks.length} tracks • ${formatTime(artistTracks.reduce((s, t) => s + t.durationSec, 0))}`;
-  
-  // Top tracks (first 5)
-  const topTracks = artistTracks.slice(0, 5);
-  document.getElementById('artistTopTracks').innerHTML = topTracks.map((t, i) => createTrackRow(t, i, i)).join('');
-  attachTrackRowListeners(document.getElementById('artistTopTracks'), topTracks.map(t => t.id));
-  
-  // Discography
-  const artistAlbums = albums.filter(a => a.artistId === currentArtistId);
-  document.getElementById('artistDiscography').innerHTML = artistAlbums.map(a => createCard(a, 'album')).join('');
-  attachCardListeners(document.getElementById('artistDiscography'));
 }
 
 function renderLikedSongs() {
@@ -1263,80 +1189,20 @@ function renderQueue() {
 
 // ============ CARD CREATION ============
 function createCard(item, type) {
-  const isLiked = type === 'track' && likedTracks.has(item.id);
-  const heart = type === 'track' ? `<button class="track-like${isLiked ? ' liked' : ''}" data-id="${item.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>` : '';
-  const dlBtn = type === 'track' ? `<button class="track-download" data-id="${item.id}" title="Download">${downloadedIds.has(item.id) ? '✓' : '⬇'}</button>` : '';
-  
-  switch (type) {
-    case 'playlist': {
-      const count = (item.trackIds || []).length;
-      const seed = item.id || item.title;
-      const label = (item.title || 'P')[0].toUpperCase();
-      return `
-        <div class="card" data-type="playlist" data-id="${item.id}">
-          ${coverTileHTML(seed, label)}
-          <div class="info">
-            <div class="title">${item.title}</div>
-            <div class="artist">${count} song${count !== 1 ? 's' : ''}</div>
-          </div>
-        </div>
-      `;
-    }
-    case 'album': {
-      const count = (item.trackIds || []).length;
-      const seed = item.id || item.title;
-      const label = (item.title || 'A')[0].toUpperCase();
-      return `
-        <div class="card" data-type="album" data-id="${item.id}">
-          ${coverTileHTML(seed, label)}
-          <div class="info">
-            <div class="title">${item.title}</div>
-            <div class="artist">${item.artist || item.owner || ''} • ${count} song${count !== 1 ? 's' : ''}</div>
-          </div>
-        </div>
-      `;
-    }
-    case 'artist': {
-      const seed = item.id || item.name;
-      const label = (item.name || 'A')[0].toUpperCase();
-      return `
-        <div class="card" data-type="artist" data-id="${item.id}">
-          ${coverTileHTML(seed, label)}
-          <div class="info">
-            <div class="title">${item.name}</div>
-            <div class="artist">Artist</div>
-          </div>
-        </div>
-      `;
-    }
-    case 'track': {
-      const seed = item.id || item.title;
-      const label = (item.title || 'T')[0].toUpperCase();
-      return `
-        <div class="card" data-type="track" data-id="${item.id}">
-          ${coverHTML(item)}
-          <div class="info">
-            <div class="title">${item.title}</div>
-            <div class="artist">${item.artist}</div>
-            <div class="card-actions">${heart}${dlBtn}</div>
-          </div>
-        </div>
-      `;
-    }
-    case 'category': {
-      const seed = item.id || item.name;
-      const label = (item.name || 'C')[0].toUpperCase();
-      return `
-        <div class="card" data-type="category" data-id="${item.id}">
-          ${coverTileHTML(seed, label)}
-          <div class="info">
-            <div class="title">${item.name}</div>
-            <div class="artist">Category</div>
-          </div>
-        </div>
-      `;
-    }
-  }
+  if (type !== 'track') return '';
+  const isLiked = likedTracks.has(item.id);
+  const heart = `<button class="track-like${isLiked ? ' liked' : ''}" data-id="${item.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>`;
+  const dlBtn = `<button class="track-download" data-id="${item.id}" title="Download">${downloadedIds.has(item.id) ? '✓' : '⬇'}</button>`;
+  return `
+    <div class="card" data-type="track" data-id="${item.id}">
+      ${coverHTML(item)}
+      <div class="info">
+        <div class="title">${escAttr(item.title)}</div>
+        <div class="artist">${escAttr(item.artist)}</div>
+        <div class="card-actions">${heart}${dlBtn}</div>
+      </div>
+    </div>
+  `;
 }
 
 function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
@@ -1348,11 +1214,11 @@ function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
       <div class="track-main">
         ${coverHTML(track)}
         <div class="track-text">
-          <div class="title">${track.title}</div>
-          <div class="artist">${track.artist}</div>
+          <div class="title">${escAttr(track.title)}</div>
+          <div class="artist">${escAttr(track.artist)}</div>
         </div>
       </div>
-      ${showAlbum ? `<div class="track-album">${track.album}</div>` : ''}
+      ${showAlbum ? `<div class="track-album">${escAttr(track.album)}</div>` : ''}
       <div class="track-duration">${track.duration}</div>
       <button class="track-like${isLiked ? ' liked' : ''}" data-id="${track.id}" title="${isLiked ? 'Unlike' : 'Like'}">♥</button>
       <button class="track-download" data-id="${track.id}" title="Download">${downloadedIds.has(track.id) ? '✓' : '⬇'}</button>
@@ -1362,6 +1228,7 @@ function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
 
 // ============ CARD LISTENERS ============
 function attachCardListeners(container) {
+  if (!container) return;
   container.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.classList.contains('track-like')) return;
@@ -1390,8 +1257,6 @@ function attachCardListeners(container) {
 function handleCardClick(type, id) {
   switch (type) {
     case 'playlist': navigateTo('playlistDetail', { playlistId: id }); break;
-    case 'album': navigateTo('albumDetail', { albumId: id }); break;
-    case 'artist': navigateTo('artistDetail', { artistId: id }); break;
     case 'track': {
       const t = findTrackById(id);
       if (!t) break;
@@ -1399,11 +1264,11 @@ function handleCardClick(type, id) {
       else openTrackModal(t);
       break;
     }
-    case 'category': filterByCategory(id); break;
   }
 }
 
 function attachTrackRowListeners(container, trackIds, isLikedView = false) {
+  if (!container) return;
   container.querySelectorAll('.track-row').forEach(row => {
     row.addEventListener('click', (e) => {
       if (e.target.classList.contains('track-like')) return;
@@ -1429,15 +1294,6 @@ function attachTrackRowListeners(container, trackIds, isLikedView = false) {
   });
 }
 
-function filterByCategory(categoryId) {
-  const category = categories.find(c => c.id === categoryId);
-  if (!category) return;
-  // For demo, just search
-  document.getElementById('searchInput').value = category.name;
-  navigateTo('search');
-  performSearch(category.name.toLowerCase());
-}
-
 // ============ PLAYBACK QUEUE ============
 function playQueue(trackIds, startIndex = 0) {
   queue = trackIds.map(id => trackList.find(t => t.id === id)).filter(Boolean);
@@ -1448,20 +1304,9 @@ function playQueue(trackIds, startIndex = 0) {
 }
 
 function playPlaylist(playlistId) {
-  const playlist = [...playlists, ...userPlaylists].find(p => p.id === playlistId);
+  const playlist = findPlaylist(playlistId);
   if (!playlist) return;
   playQueue(playlist.trackIds, 0);
-}
-
-function playAlbum(albumId) {
-  const album = albums.find(a => a.id === albumId);
-  if (!album) return;
-  playQueue(album.trackIds, 0);
-}
-
-function playArtistTopTracks(artistId) {
-  const tracks = trackList.filter(t => t.artistId === artistId).map(t => t.id);
-  playQueue(tracks, 0);
 }
 
 function removeFromQueue(index) {
@@ -1517,9 +1362,10 @@ function paintProgress(input, percent) {
 // ============ NOW PLAYING BAR ============
 function updateNowPlayingBar() {
   if (queue.length === 0) {
-    document.getElementById('nowPlayingTitle').textContent = 'Dreamy Tone';
-    document.getElementById('nowPlayingArtist').textContent = 'Prabir';
-    setCoverTile(document.getElementById('nowPlayingCover'), 'Dreamy Tone', 'D');
+    document.getElementById('nowPlayingTitle').textContent = 'কোনো গান চলছে না';
+    document.getElementById('nowPlayingArtist').textContent = '—';
+    const coverEl = document.getElementById('nowPlayingCover');
+    if (coverEl) { coverEl.className = ''; coverEl.innerHTML = ''; }
     document.getElementById('progressBar').value = 0;
     return;
   }
@@ -1617,45 +1463,31 @@ function loadLikedTracks() {
   }
 }
 
-// ============ SAVE/FOLLOW ============
+// ============ SAVE PLAYLIST ============
 function toggleSavePlaylist(playlistId) {
+  if (playlistId === 'all-songs') return;
   const btn = document.getElementById('playlistSave');
-  const playlist = userPlaylists.find(p => p.id === playlistId);
-  if (playlist) {
-    // Remove from user playlists
-    userPlaylists = userPlaylists.filter(p => p.id !== playlistId);
-    btn.textContent = 'Save';
-    btn.classList.remove('active');
+  const index = userPlaylists.findIndex(p => p.id === playlistId);
+  if (index >= 0) {
+    userPlaylists.splice(index, 1);
+    if (btn) {
+      btn.textContent = 'Save';
+      btn.classList.remove('active');
+    }
   } else {
-    // Add to user playlists (find from main playlists)
-    const mainPlaylist = playlists.find(p => p.id === playlistId);
+    const mainPlaylist = findPlaylist(playlistId);
     if (mainPlaylist) {
       userPlaylists.push({ ...mainPlaylist });
-      btn.textContent = 'Saved';
-      btn.classList.add('active');
+      if (btn) {
+        btn.textContent = 'Saved';
+        btn.classList.add('active');
+      }
     }
   }
   if (currentView === 'library') renderLibrary('playlists');
 }
 
-function toggleSaveAlbum(albumId) {
-  const btn = document.getElementById('albumSave');
-  btn.classList.toggle('active');
-  btn.textContent = btn.classList.contains('active') ? 'Saved' : 'Save';
-}
-
-function toggleFollowArtist(artistId) {
-  const btn = document.getElementById('artistFollow');
-  btn.classList.toggle('active');
-  btn.textContent = btn.classList.contains('active') ? 'Following' : 'Follow';
-}
-
 // ============ HELPERS ============
-function getRecentlyPlayed() {
-  // For demo, return last 4 tracks from trackList
-  return trackList.slice(0, 4);
-}
-
 function highlightPlayingTrack() {
   document.querySelectorAll('.track-row').forEach(row => {
     const trackId = parseInt(row.dataset.id);
@@ -1664,6 +1496,3 @@ function highlightPlayingTrack() {
     row.querySelector('.track-num')?.classList.toggle('playing', isCurrent && isPlaying);
   });
 }
-
-// ============ PLAYLIST/ALBUM/ARTIST PLAY ALL ============
-// Handled in event listeners
