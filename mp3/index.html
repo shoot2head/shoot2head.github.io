@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shoot2head.mp3</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo.png" alt="shoot2head.mp3">
+      </div>
+      <nav>
+        <button class="nav-btn active" data-view="home">Home</button>
+        <button class="nav-btn" data-view="search">Search</button>
+        <button class="nav-btn" data-view="library">Your Library</button>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Now playing bar (fixed at bottom) -->
+      <div class="now-playing-bar" id="nowPlayingBar">
+        <div class="album-cover">
+          <img src="logo.png" alt="Now playing" id="nowPlayingCover">
+        </div>
+        <div class="track-info">
+          <span class="track-title" id="nowPlayingTitle">Dreamy Tone</span>
+          <span class="track-artist" id="nowPlayingArtist">Prabir</span>
+        </div>
+        <div class="controls">
+          <button class="btn prev-btn" title="Previous" id="prevBtn">❰</button>
+          <button class="btn play-btn" title="Play" id="playBtn">▁▂▃▅▆▇</button>
+          <button class="btn pause-btn" title="Pause" id="pauseBtn" style="display: none;">⏸</button>
+          <button class="btn next-btn" title="Next" id="nextBtn">❱</button>
+          <div class="progress">
+            <input type="range" class="progress-bar" min="0" max="100" value="0" id="progressBar">
+          </div>
+          <div class="volume">
+            <input type="range" min="0" max="100" value="80" id="volumeControl">
+          </div>
+        </div>
+        <div class="queue" id="queueBtn">Queue</div>
+      </div>
+
+      <!-- View container - all screens render here -->
+      <div class="view-container" id="viewContainer">
+        <!-- Home View -->
+        <div class="view active" id="homeView">
+          <!-- Featured track -->
+          <div class="featured">
+            <div class="album-cover featured-cover">
+              <img src="logo.png" alt="Dreamy Tone" id="featuredCover">
+            </div>
+            <div class="track-info">
+              <span class="track-title" id="featuredTitle">Dreamy Tone</span>
+              <span class="track-artist" id="featuredArtist">Prabir</span>
+            </div>
+          </div>
+
+          <!-- Playlists/Albums grid -->
+          <section class="browse">
+            <h3>Playlists & Albums</h3>
+            <div class="card-grid" id="cardGrid"></div>
+          </section>
+
+          <!-- Recently played section -->
+          <section class="recently-played">
+            <h3>Recently Played</h3>
+            <div class="card-grid" id="recentGrid"></div>
+          </section>
+        </div>
+
+        <!-- Search View -->
+        <div class="view" id="searchView">
+          <div class="search-header">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search tracks, artists, playlists...">
+          </div>
+          <div class="search-results" id="searchResults">
+            <div class="search-section" id="tracksSection">
+              <h3>Tracks</h3>
+              <div class="card-grid" id="searchTracksGrid"></div>
+            </div>
+            <div class="search-section" id="artistsSection">
+              <h3>Artists</h3>
+              <div class="card-grid" id="searchArtistsGrid"></div>
+            </div>
+            <div class="search-section" id="playlistsSection">
+              <h3>Playlists</h3>
+              <div class="card-grid" id="searchPlaylistsGrid"></div>
+            </div>
+          </div>
+          <div class="browse-categories" id="browseCategories">
+            <h3>Browse Categories</h3>
+            <div class="card-grid" id="categoryGrid"></div>
+          </div>
+        </div>
+
+        <!-- Your Library View -->
+        <div class="view" id="libraryView">
+          <div class="library-header">
+            <h2>Your Library</h2>
+            <button class="create-btn" id="createPlaylistBtn">+ Create Playlist</button>
+          </div>
+          <div class="filter-chips" id="libraryFilters">
+            <button class="filter-chip active" data-filter="playlists">Playlists</button>
+            <button class="filter-chip" data-filter="artists">Artists</button>
+            <button class="filter-chip" data-filter="albums">Albums</button>
+            <button class="filter-chip" data-filter="liked">Liked Songs</button>
+          </div>
+          <div class="library-content" id="libraryContent">
+            <div class="card-grid" id="libraryGrid"></div>
+          </div>
+        </div>
+
+        <!-- Playlist Detail View -->
+        <div class="view" id="playlistDetailView">
+          <button class="back-btn" id="playlistBackBtn">← Back</button>
+          <div class="detail-header" id="playlistHeader">
+            <div class="detail-cover">
+              <img src="logo.png" alt="Playlist cover" id="playlistCover">
+            </div>
+            <div class="detail-info">
+              <span class="detail-type">Playlist</span>
+              <h2 class="detail-title" id="playlistTitle"></h2>
+              <p class="detail-description" id="playlistDescription">Playlist description</p>
+              <div class="detail-meta" id="playlistMeta">3 songs, 8 min</div>
+              <div class="detail-actions">
+                <button class="btn play-all-btn" id="playlistPlayAll">Play All</button>
+                <button class="btn save-btn" id="playlistSave">Save</button>
+              </div>
+            </div>
+          </div>
+          <div class="track-list" id="playlistTracks"></div>
+        </div>
+
+        <!-- Album Detail View -->
+        <div class="view" id="albumDetailView">
+          <button class="back-btn" id="albumBackBtn">← Back</button>
+          <div class="detail-header" id="albumHeader">
+            <div class="detail-cover">
+              <img src="logo.png" alt="Album cover" id="albumCover">
+            </div>
+            <div class="detail-info">
+              <span class="detail-type">Album</span>
+              <h2 class="detail-title" id="albumTitle"></h2>
+              <p class="detail-artist" id="albumArtist"></p>
+              <div class="detail-meta" id="albumMeta">2024 • 5 songs, 15 min</div>
+              <div class="detail-actions">
+                <button class="btn play-all-btn" id="albumPlayAll">Play All</button>
+                <button class="btn save-btn" id="albumSave">Save</button>
+              </div>
+            </div>
+          </div>
+          <div class="track-list" id="albumTracks"></div>
+        </div>
+
+        <!-- Artist Detail View -->
+        <div class="view" id="artistDetailView">
+          <button class="back-btn" id="artistBackBtn">← Back</button>
+          <div class="detail-header artist-header" id="artistHeader">
+            <div class="detail-cover artist-cover">
+              <img src="logo.png" alt="Artist" id="artistCover">
+            </div>
+            <div class="detail-info">
+              <h2 class="detail-title" id="artistName"></h2>
+              <div class="detail-meta" id="artistMeta">1,234 monthly listeners</div>
+              <div class="detail-actions">
+                <button class="btn play-all-btn" id="artistPlayAll">Play All</button>
+                <button class="btn follow-btn" id="artistFollow">Follow</button>
+              </div>
+            </div>
+          </div>
+          <div class="artist-sections">
+            <section class="artist-section">
+              <h3>Top Tracks</h3>
+              <div class="track-list" id="artistTopTracks"></div>
+            </section>
+            <section class="artist-section">
+              <h3>Discography</h3>
+              <div class="card-grid" id="artistDiscography"></div>
+            </section>
+            <section class="artist-section">
+              <h3>About</h3>
+              <p class="artist-about" id="artistAbout">Artist biography goes here.</p>
+            </section>
+          </div>
+        </div>
+
+        <!-- Liked Songs View -->
+        <div class="view" id="likedSongsView">
+          <button class="back-btn" id="likedBackBtn">← Back</button>
+          <div class="liked-header">
+            <div class="detail-cover">
+              <img src="logo.png" alt="Liked Songs">
+            </div>
+            <div class="detail-info">
+              <h2 class="detail-title">Liked Songs</h2>
+              <div class="detail-meta" id="likedMeta">0 songs</div>
+            </div>
+          </div>
+          <div class="track-list" id="likedTracks"></div>
+        </div>
+
+        <!-- Full-screen Now Playing View -->
+        <div class="view fullscreen-now-playing" id="fullscreenNowPlayingView">
+          <button class="close-fullscreen" id="closeFullscreen">✕</button>
+          <div class="fullscreen-content">
+            <div class="fullscreen-cover">
+              <img src="logo.png" alt="Now playing" id="fullscreenCover">
+            </div>
+            <div class="fullscreen-info">
+              <span class="fullscreen-title" id="fullscreenTitle">Dreamy Tone</span>
+              <span class="fullscreen-artist" id="fullscreenArtist">Prabir</span>
+            </div>
+            <div class="fullscreen-progress">
+              <span class="time-current" id="timeCurrent">0:00</span>
+              <input type="range" class="progress-bar fullscreen-bar" min="0" max="100" value="0" id="fullscreenProgressBar">
+              <span class="time-total" id="timeTotal">0:00</span>
+            </div>
+            <div class="fullscreen-controls">
+              <button class="btn fs-btn shuffle-btn" id="shuffleBtn">🔀</button>
+              <button class="btn fs-btn prev-btn" id="fsPrevBtn">❰❰</button>
+              <button class="btn fs-btn play-btn large" id="fsPlayBtn">▁▂▃▅▆▇</button>
+              <button class="btn fs-btn pause-btn large" id="fsPauseBtn" style="display: none;">⏸</button>
+              <button class="btn fs-btn next-btn" id="fsNextBtn">❱❱</button>
+              <button class="btn fs-btn repeat-btn" id="repeatBtn">🔁</button>
+            </div>
+            <div class="fullscreen-volume">
+              <span>🔊</span>
+              <input type="range" min="0" max="100" value="80" id="fsVolumeControl">
+            </div>
+            <div class="fullscreen-queue">
+              <div class="queue-header">
+                <h3>Queue</h3>
+                <button class="btn clear-queue" id="clearQueueBtn">Clear</button>
+              </div>
+              <div class="queue-list" id="queueList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Track Modal -->
+  <div class="track-modal" id="trackModal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="album-cover">
+        <img src="logo.png" alt="Album cover" id="modalCover">
+      </div>
+      <div class="track-details">
+        <span class="track-title" id="modalTitle">Dreamy Tone</span>
+        <span class="track-artist" id="modalArtist">Prabir</span>
+        <span class="track-duration" id="modalDuration">2:45</span>
+      </div>
+      <button class="play-modal-btn" id="modalPlayBtn">Play</button>
+      <div class="progress-container">
+        <input type="range" class="progress-bar" min="0" max="100" value="0" id="modalProgressBar">
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Playlist Modal -->
+  <div class="track-modal" id="createPlaylistModal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Create Playlist</h3>
+      <input type="text" id="newPlaylistName" placeholder="Playlist name">
+      <textarea id="newPlaylistDesc" placeholder="Description (optional)"></textarea>
+      <div class="modal-actions">
+        <button class="btn cancel-btn" id="cancelCreatePlaylist">Cancel</button>
+        <button class="btn create-btn" id="confirmCreatePlaylist">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
