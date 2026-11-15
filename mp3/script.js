@@ -304,11 +304,16 @@ async function deleteDownloadedTrack(id) {
 async function playDownloadedById(id) {
   const entry = await getDownloadedTrack(id);
   if (!entry) return;
-  playTrackObjects([{
+  const track = {
     id: entry.id, title: entry.title, artist: entry.artist,
     duration: entry.duration, durationSec: entry.durationSec,
     audioUrl: entry.audioUrl, source: entry.source, videoId: entry.videoId
-  }], 0);
+  };
+  // Keep the current queue when the song is already in it — otherwise
+  // tapping ✓ would collapse the queue to this one song.
+  const idx = queue.findIndex(t => t.id === toTrackId(entry.id) || t.id === entry.id);
+  if (idx >= 0) playTrack(idx);
+  else playTrackObjects([track], 0);
 }
 async function renderDownloaded() {
   const listEl = document.getElementById('downloadedList');
@@ -321,6 +326,15 @@ async function renderDownloaded() {
     const id = toTrackId(b.dataset.id);
     b.textContent = downloadedIds.has(id) ? '✓' : '⬇';
   });
+  // Same for the playing views (fullscreen, queue, track modal)
+  const fsDl = document.getElementById('fsDownloadBtn');
+  if (fsDl && queue.length) fsDl.textContent = downloadedIds.has(queue[currentTrackIndex]?.id) ? '✓' : '⬇';
+  document.querySelectorAll('.queue-download').forEach(b => {
+    const t = queue[parseInt(b.dataset.index)];
+    if (t) b.textContent = downloadedIds.has(t.id) ? '✓' : '⬇';
+  });
+  const mDl = document.getElementById('modalDownloadBtn');
+  if (mDl && trackModal.dataset.trackId) mDl.textContent = downloadedIds.has(toTrackId(trackModal.dataset.trackId)) ? '✓' : '⬇';
   if (emptyEl) emptyEl.style.display = items.length ? 'none' : 'block';
   listEl.innerHTML = items.map(e => `
     <div class="track-row downloaded-row" data-id="${e.id}">
@@ -554,11 +568,23 @@ function initEventListeners() {
   document.getElementById('fsVolumeControl').addEventListener('input', (e) => setVolume01(e.target.value / 100));
   document.getElementById('shuffleBtn').addEventListener('click', toggleShuffle);
   document.getElementById('repeatBtn').addEventListener('click', toggleRepeat);
+  document.getElementById('fsDownloadBtn').addEventListener('click', (e) => {
+    const t = queue[currentTrackIndex];
+    if (!t) return;
+    if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+    else downloadTrack(t, e.target);
+  });
   document.getElementById('clearQueueBtn').addEventListener('click', clearQueue);
 
   // Track modal
   document.querySelector('#trackModal .close-btn').addEventListener('click', () => closeModal());
   document.getElementById('modalPlayBtn').addEventListener('click', () => playPause());
+  document.getElementById('modalDownloadBtn').addEventListener('click', (e) => {
+    const t = findTrackById(trackModal.dataset.trackId);
+    if (!t) return;
+    if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+    else downloadTrack(t, e.target);
+  });
   document.getElementById('modalProgressBar').addEventListener('input', (e) => seek(e.target.value));
   trackModal.addEventListener('click', (e) => { if (e.target === trackModal) closeModal(); });
 
@@ -1108,6 +1134,8 @@ function updateFullscreenNowPlaying() {
   setCoverTile(document.getElementById('fullscreenCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
   document.getElementById('fullscreenTitle').textContent = track.title;
   document.getElementById('fullscreenArtist').textContent = track.artist;
+  const fsDl = document.getElementById('fsDownloadBtn');
+  if (fsDl) fsDl.textContent = downloadedIds.has(track.id) ? '✓' : '⬇';
   updatePlayButtons();
 }
 
@@ -1124,6 +1152,7 @@ function renderQueue() {
         <div class="queue-title">${t.title}</div>
         <div class="queue-artist">${t.artist}</div>
       </div>
+      <button class="queue-download" data-index="${i}" title="Download">${downloadedIds.has(t.id) ? '✓' : '⬇'}</button>
       <button class="queue-remove" data-index="${i}">✕</button>
     </div>
   `).join('');
@@ -1135,9 +1164,16 @@ function renderQueue() {
   // Attach listeners
   list.querySelectorAll('.queue-item').forEach(item => {
     item.addEventListener('click', (e) => {
-      if (!e.target.classList.contains('queue-remove')) {
+      if (!e.target.classList.contains('queue-remove') && !e.target.classList.contains('queue-download')) {
         playTrack(parseInt(item.dataset.index));
       }
+    });
+    item.querySelector('.queue-download')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const t = queue[parseInt(item.dataset.index)];
+      if (!t) return;
+      if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+      else downloadTrack(t, e.target);
     });
     item.querySelector('.queue-remove')?.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1422,6 +1458,8 @@ function openTrackModal(track) {
   document.getElementById('modalArtist').textContent = track.artist;
   document.getElementById('modalDuration').textContent = track.duration;
   document.getElementById('modalProgressBar').value = 0;
+  const mDl = document.getElementById('modalDownloadBtn');
+  if (mDl) mDl.textContent = downloadedIds.has(track.id) ? '✓' : '⬇';
   trackModal.dataset.trackId = track.id;
   trackModal.classList.add('active');
 }
