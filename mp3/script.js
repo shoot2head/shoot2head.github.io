@@ -78,6 +78,25 @@ function setPlayerStatus(message) {
   if (el) el.textContent = message || '';
 }
 
+function setMediaPlaybackState(state) {
+  if (!('mediaSession' in navigator)) return;
+  try { navigator.mediaSession.playbackState = state; } catch (e) {}
+}
+function updateMediaSession(track) {
+  // Lock-screen / notification controls — this is what keeps the song
+  // playing (and controllable) when the screen is off or another app is open.
+  if (!('mediaSession' in navigator) || !track) return;
+  try {
+    const cover = realCover(track);
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: track.title || 'Unknown',
+      artist: track.artist || '',
+      album: track.album || '',
+      artwork: cover ? [{ src: cover, sizes: '500x500', type: 'image/jpeg' }] : [],
+    });
+  } catch (e) {}
+}
+
 // ============ DATA ============
 const artists = {
   prabir: { id: 'prabir', name: 'Prabir', bio: 'Prabir creates atmospheric electronic soundscapes blending ambient textures with rhythmic pulses. Based in the studio, crafting demo tracks for the next generation of listeners.' },
@@ -238,9 +257,9 @@ function initYouTubePlayer() {
         onReady: () => { ytReady = true; },
         onStateChange: (e) => {
           if (e.data === YT.PlayerState.ENDED) handleTrackEnded();
-          else if (e.data === YT.PlayerState.PLAYING) { isPlaying = true; setPlayerStatus(''); updatePlayButtons(); }
+          else if (e.data === YT.PlayerState.PLAYING) { isPlaying = true; setPlayerStatus(''); setMediaPlaybackState('playing'); updatePlayButtons(); }
           else if (e.data === YT.PlayerState.BUFFERING) { setPlayerStatus('লোড হচ্ছে…'); }
-          else if (e.data === YT.PlayerState.PAUSED) { isPlaying = false; updatePlayButtons(); }
+          else if (e.data === YT.PlayerState.PAUSED) { isPlaying = false; setMediaPlaybackState('paused'); updatePlayButtons(); }
         },
       },
     });
@@ -637,6 +656,16 @@ function initEventListeners() {
   document.getElementById('modalProgressBar').addEventListener('input', (e) => seek(e.target.value));
   trackModal.addEventListener('click', (e) => { if (e.target === trackModal) closeModal(); });
 
+  // Lock-screen / notification buttons (play, pause, previous, next)
+  if ('mediaSession' in navigator) {
+    try {
+      navigator.mediaSession.setActionHandler('play', () => { if (!isPlaying) playPause(); });
+      navigator.mediaSession.setActionHandler('pause', () => { if (isPlaying) playPause(); });
+      navigator.mediaSession.setActionHandler('previoustrack', () => playPrev());
+      navigator.mediaSession.setActionHandler('nexttrack', () => playNext());
+    } catch (e) {}
+  }
+
   // Create playlist modal
   document.querySelector('#createPlaylistModal .close-btn').addEventListener('click', () => closeCreatePlaylistModal());
   document.getElementById('cancelCreatePlaylist').addEventListener('click', () => closeCreatePlaylistModal());
@@ -695,14 +724,14 @@ function initEventListeners() {
 
 // ============ AUDIO ============
 function setupAudioEvents() {
-  audio.addEventListener('play', () => { isPlaying = true; updatePlayButtons(); });
-  audio.addEventListener('pause', () => { isPlaying = false; updatePlayButtons(); });
+  audio.addEventListener('play', () => { isPlaying = true; setMediaPlaybackState('playing'); updatePlayButtons(); });
+  audio.addEventListener('pause', () => { isPlaying = false; setMediaPlaybackState('paused'); updatePlayButtons(); });
   audio.addEventListener('ended', () => handleTrackEnded());
   audio.addEventListener('timeupdate', () => updateProgress());
   audio.addEventListener('loadedmetadata', () => updateDuration());
   audio.addEventListener('waiting', () => setPlayerStatus('লোড হচ্ছে…'));
   audio.addEventListener('stalled', () => setPlayerStatus('লোড হচ্ছে…'));
-  audio.addEventListener('playing', () => setPlayerStatus(''));
+  audio.addEventListener('playing', () => { setPlayerStatus(''); setMediaPlaybackState('playing'); });
   audio.addEventListener('canplay', () => setPlayerStatus(''));
   audio.addEventListener('error', () => setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো'));
 }
@@ -780,20 +809,25 @@ async function playTrack(index) {
   if (track.source === 'youtube') {
     audio.pause();
     setPlayerStatus('লোড হচ্ছে…');
-    activeEngine = 'youtube';
-    const ok = await loadYouTubeAPI();
-    if (ok && ytPlayer && ytPlayer.loadVideoById) {
-      let tries = 0;
-      while (!ytReady && tries < 20) { await new Promise(r => setTimeout(r, 250)); tries++; }
-      ytPlayer.setVolume(Math.round(audio.volume * 100));
-      ytPlayer.loadVideoById(track.videoId);
-      startYtProgress();
-      // Watchdog: if the hidden player never starts (autoplay blocked or a
-      // slow network), fall back to the direct audio stream.
-      const started = await watchYoutubeStart();
-      if (!started) {
-        const played = await playYoutubeViaAudio(track);
-        if (!played) {
+    // Direct audio first: the raw audio stream has no YouTube ads, and the
+    // built-in player keeps playing in the background (screen off / another
+    // app open) — the hidden YouTube player pauses when the tab is hidden.
+    const played = await playYoutubeViaAudio(track);
+    if (played) {
+      activeEngine = 'audio';
+    } else {
+      // Fall back to the hidden YouTube player (may include YouTube ads
+      // and may pause in the background).
+      activeEngine = 'youtube';
+      const ok = await loadYouTubeAPI();
+      if (ok && ytPlayer && ytPlayer.loadVideoById) {
+        let tries = 0;
+        while (!ytReady && tries < 20) { await new Promise(r => setTimeout(r, 250)); tries++; }
+        ytPlayer.setVolume(Math.round(audio.volume * 100));
+        ytPlayer.loadVideoById(track.videoId);
+        startYtProgress();
+        const started = await watchYoutubeStart();
+        if (!started) {
           activeEngine = 'audio';
           stopYtProgress();
           isPlaying = false;
@@ -801,11 +835,7 @@ async function playTrack(index) {
           setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
           return;
         }
-      }
-    } else {
-      // Hidden player could not start — try the direct audio stream instead.
-      const played = await playYoutubeViaAudio(track);
-      if (!played) {
+      } else {
         activeEngine = 'audio';
         stopYtProgress();
         isPlaying = false;
@@ -1497,6 +1527,7 @@ function updateNowPlayingBar() {
   document.getElementById('nowPlayingTitle').textContent = track.title;
   document.getElementById('nowPlayingArtist').textContent = track.artist;
   setCover(document.getElementById('nowPlayingCover'), track);
+  updateMediaSession(track);
 }
 
 // ============ TRACK MODAL ============
