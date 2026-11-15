@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shoot2head.mp3</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <div class="app">
@@ -26,11 +25,12 @@
       <!-- Now playing bar (fixed at bottom) -->
       <div class="now-playing-bar" id="nowPlayingBar">
         <div class="album-cover">
-          <img src="logo.png" alt="Now playing" id="nowPlayingCover">
+          <div id="nowPlayingCover" class="cover-tile"></div>
         </div>
         <div class="track-info">
           <span class="track-title" id="nowPlayingTitle">Dreamy Tone</span>
           <span class="track-artist" id="nowPlayingArtist">Prabir</span>
+          <span class="track-status" id="nowPlayingStatus"></span>
         </div>
         <div class="controls">
           <button class="btn prev-btn" title="Previous" id="prevBtn"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5.14v13.72c0 .8-.87 1.3-1.56.88L8.5 12.88a1.03 1.03 0 0 1 0-1.76L18.44 4.26A1.03 1.03 0 0 1 20 5.14z"/></svg></button>
@@ -51,21 +51,17 @@
       <div class="view-container" id="viewContainer">
         <!-- Home View -->
         <div class="view active" id="homeView">
-          <!-- Featured track -->
-          <div class="featured">
-            <div class="album-cover featured-cover">
-              <img src="logo.png" alt="Dreamy Tone" id="featuredCover">
-            </div>
-            <div class="track-info">
-              <span class="track-title" id="featuredTitle">Dreamy Tone</span>
-              <span class="track-artist" id="featuredArtist">Prabir</span>
-            </div>
-          </div>
-
-          <!-- Playlists/Albums grid -->
+          <!-- Playlists section -->
           <section class="browse">
-            <h3>Playlists & Albums</h3>
-            <div class="card-grid" id="cardGrid"></div>
+            <h3>Playlists</h3>
+            <div id="serverSongCount" style="color: #888; font-size: 13px; margin-bottom: 12px;"></div>
+            <div class="card-grid" id="playlistGrid"></div>
+          </section>
+
+          <!-- Albums section -->
+          <section class="browse">
+            <h3>Albums</h3>
+            <div class="card-grid" id="albumGrid"></div>
           </section>
 
           <!-- Recently played section -->
@@ -138,7 +134,7 @@
           <button class="back-btn" id="playlistBackBtn">← Back</button>
           <div class="detail-header" id="playlistHeader">
             <div class="detail-cover">
-              <img src="logo.png" alt="Playlist cover" id="playlistCover">
+              <div id="playlistCover" class="cover-tile"></div>
             </div>
             <div class="detail-info">
               <span class="detail-type">Playlist</span>
@@ -159,7 +155,7 @@
           <button class="back-btn" id="albumBackBtn">← Back</button>
           <div class="detail-header" id="albumHeader">
             <div class="detail-cover">
-              <img src="logo.png" alt="Album cover" id="albumCover">
+              <div id="albumCover" class="cover-tile"></div>
             </div>
             <div class="detail-info">
               <span class="detail-type">Album</span>
@@ -180,7 +176,7 @@
           <button class="back-btn" id="artistBackBtn">← Back</button>
           <div class="detail-header artist-header" id="artistHeader">
             <div class="detail-cover artist-cover">
-              <img src="logo.png" alt="Artist" id="artistCover">
+              <div id="artistCover" class="cover-tile"></div>
             </div>
             <div class="detail-info">
               <h2 class="detail-title" id="artistName"></h2>
@@ -212,7 +208,7 @@
           <button class="back-btn" id="likedBackBtn">← Back</button>
           <div class="liked-header">
             <div class="detail-cover">
-              <img src="logo.png" alt="Liked Songs">
+              <div class="cover-tile cover-grad-3"><span>♥</span></div>
             </div>
             <div class="detail-info">
               <h2 class="detail-title">Liked Songs</h2>
@@ -227,7 +223,7 @@
           <button class="close-fullscreen" id="closeFullscreen">✕</button>
           <div class="fullscreen-content">
             <div class="fullscreen-cover">
-              <img src="logo.png" alt="Now playing" id="fullscreenCover">
+              <div id="fullscreenCover" class="cover-tile"></div>
             </div>
             <div class="fullscreen-info">
               <span class="fullscreen-title" id="fullscreenTitle">Dreamy Tone</span>
@@ -268,7 +264,7 @@
     <div class="modal-content">
       <span class="close-btn">&times;</span>
       <div class="album-cover">
-        <img src="logo.png" alt="Album cover" id="modalCover">
+        <div id="modalCover" class="cover-tile"></div>
       </div>
       <div class="track-details">
         <span class="track-title" id="modalTitle">Dreamy Tone</span>
@@ -299,6 +295,6 @@
   <!-- Hidden audio engine for online songs: 1px, off-screen, no video shown -->
   <div id="ytPlayer" aria-hidden="true" style="position:fixed;width:1px;height:1px;left:-20px;top:-20px;opacity:0;pointer-events:none;overflow:hidden;"></div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

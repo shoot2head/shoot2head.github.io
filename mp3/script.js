@@ -1,9 +1,39 @@
 // shoot2head.mp3 - Complete Spotify-style player
 
+// ============ COVER TILE HELPERS ============
+function gradFor(seed) {
+  const str = String(seed || '');
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash) % 6;
+}
+
+function coverTileHTML(seed, label) {
+  const n = gradFor(seed);
+  const txt = label || '♫';
+  return `<div class="cover-tile cover-grad-${n}"><span>${txt}</span></div>`;
+}
+
+function setCoverTile(el, seed, label) {
+  if (!el) return;
+  const n = gradFor(seed);
+  const txt = label || '♫';
+  el.className = `cover-tile cover-grad-${n}`;
+  el.innerHTML = `<span>${txt}</span>`;
+}
+
+function setPlayerStatus(message) {
+  const el = document.getElementById('nowPlayingStatus');
+  if (el) el.textContent = message || '';
+}
+
 // ============ DATA ============
 const artists = {
-  prabir: { id: 'prabir', name: 'Prabir', image: 'logo.png', bio: 'Prabir creates atmospheric electronic soundscapes blending ambient textures with rhythmic pulses. Based in the studio, crafting demo tracks for the next generation of listeners.' },
-  abhijit: { id: 'abhijit', name: 'Abhijit', image: 'logo.png', bio: 'Abhijit explores the intersection of melody and machine. From late-night synth sessions to sunrise mixes, each track is a journey through sound.' }
+  prabir: { id: 'prabir', name: 'Prabir', bio: 'Prabir creates atmospheric electronic soundscapes blending ambient textures with rhythmic pulses. Based in the studio, crafting demo tracks for the next generation of listeners.' },
+  abhijit: { id: 'abhijit', name: 'Abhijit', bio: 'Abhijit explores the intersection of melody and machine. From late-night synth sessions to sunrise mixes, each track is a journey through sound.' }
 };
 
 // Demo tracks - single editable array for future audio server
@@ -20,21 +50,21 @@ let trackList = [
 ];
 
 let playlists = [
-  { id: 'playlist1', title: 'Late Night Coding', description: 'Perfect beats for deep focus sessions', cover: 'logo.png', trackIds: [1, 2, 6, 8], owner: 'You' },
-  { id: 'playlist2', title: 'Chill Vibes Only', description: 'Wind down with atmospheric sounds', cover: 'logo.png', trackIds: [3, 4, 7], owner: 'You' },
-  { id: 'playlist3', title: 'Weekend Energy', description: 'High energy tracks for the weekend', cover: 'logo.png', trackIds: [2, 5, 6, 9], owner: 'You' },
+  { id: 'playlist1', title: 'Late Night Coding', description: 'Perfect beats for deep focus sessions', trackIds: [1, 2, 6, 8], owner: 'You' },
+  { id: 'playlist2', title: 'Chill Vibes Only', description: 'Wind down with atmospheric sounds', trackIds: [3, 4, 7], owner: 'You' },
+  { id: 'playlist3', title: 'Weekend Energy', description: 'High energy tracks for the weekend', trackIds: [2, 5, 6, 9], owner: 'You' },
 ];
 
 const albums = [
-  { id: 'album1', title: 'Midnight Sessions', artist: 'Prabir', artistId: 'prabir', cover: 'logo.png', year: '2024', trackIds: [1, 2, 3, 4, 5] },
-  { id: 'album2', title: 'Electric Sunrise', artist: 'Abhijit', artistId: 'abhijit', cover: 'logo.png', year: '2024', trackIds: [6, 7, 8, 9] },
+  { id: 'album1', title: 'Midnight Sessions', artist: 'Prabir', artistId: 'prabir', year: '2024', trackIds: [1, 2, 3, 4, 5] },
+  { id: 'album2', title: 'Electric Sunrise', artist: 'Abhijit', artistId: 'abhijit', year: '2024', trackIds: [6, 7, 8, 9] },
 ];
 
 const categories = [
-  { id: 'chill', name: 'Chill', cover: 'logo.png' },
-  { id: 'focus', name: 'Focus', cover: 'logo.png' },
-  { id: 'energy', name: 'Energy', cover: 'logo.png' },
-  { id: 'electronic', name: 'Electronic', cover: 'logo.png' },
+  { id: 'chill', name: 'Chill' },
+  { id: 'focus', name: 'Focus' },
+  { id: 'energy', name: 'Energy' },
+  { id: 'electronic', name: 'Electronic' },
 ];
 
 // ============ ONLINE SEARCH — free sources, tried in order ============
@@ -93,7 +123,7 @@ function normalizeSaavn(data) {
       artist: (r.artists && r.artists.primary && r.artists.primary.map(a => a.name).join(', ')) || '',
       durationSec: r.duration || 0, duration: formatTime(r.duration || 0),
       audioUrl: dl ? dl.url : '', source: 'saavn',
-      cover: img ? img.url : 'logo.png', album: '', albumId: '', playlistIds: [],
+      cover: img ? img.url : '', album: '', albumId: '', playlistIds: [],
     };
   }).filter(t => t.audioUrl);
 }
@@ -295,7 +325,7 @@ async function renderDownloaded() {
     <div class="track-row downloaded-row" data-id="${e.id}">
       <div class="track-num">↓</div>
       <div class="track-main">
-        <img src="logo.png" alt="${e.title}">
+        ${coverTileHTML(e.id || e.title, (e.title || 'T')[0].toUpperCase())}
         <div class="track-text">
           <div class="title">${e.title}</div>
           <div class="artist">${e.artist}</div>
@@ -594,6 +624,11 @@ function setupAudioEvents() {
   audio.addEventListener('ended', () => handleTrackEnded());
   audio.addEventListener('timeupdate', () => updateProgress());
   audio.addEventListener('loadedmetadata', () => updateDuration());
+  audio.addEventListener('waiting', () => setPlayerStatus('লোড হচ্ছে…'));
+  audio.addEventListener('stalled', () => setPlayerStatus('লোড হচ্ছে…'));
+  audio.addEventListener('playing', () => setPlayerStatus(''));
+  audio.addEventListener('canplay', () => setPlayerStatus(''));
+  audio.addEventListener('error', () => setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো'));
 }
 
 async function playTrack(index) {
@@ -603,14 +638,19 @@ async function playTrack(index) {
   // Revoke the previous downloaded blob URL when switching tracks
   if (audio._dlUrl) { URL.revokeObjectURL(audio._dlUrl); audio._dlUrl = null; }
   // In-app download? Play the stored file — works offline, no network needed.
-  const dl = await getDownloadedTrack(track.id);
+  const dlPromise = getDownloadedTrack(track.id);
+  const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(null), 1500));
+  const dl = await Promise.race([dlPromise, timeoutPromise]);
   if (dl && dl.blob) {
     if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
     stopYtProgress();
     activeEngine = 'audio';
     audio._dlUrl = URL.createObjectURL(dl.blob);
     audio.src = audio._dlUrl;
-    audio.play().catch(err => console.log('Playback failed:', err));
+    audio.play().catch(err => {
+      console.log('Playback failed:', err);
+      setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
+    });
     updateNowPlayingBar();
     updateFullscreenNowPlaying();
     updateTrackModal(track);
@@ -634,6 +674,7 @@ async function playTrack(index) {
       stopYtProgress();
       isPlaying = false;
       updatePlayButtons();
+      setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
       return;
     }
   } else {
@@ -641,7 +682,10 @@ async function playTrack(index) {
     stopYtProgress();
     activeEngine = 'audio';
     audio.src = track.audioUrl;
-    audio.play().catch(err => console.log('Playback failed:', err));
+    audio.play().catch(err => {
+      console.log('Playback failed:', err);
+      setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
+    });
   }
   updateNowPlayingBar();
   updateFullscreenNowPlaying();
@@ -651,6 +695,10 @@ async function playTrack(index) {
 }
 
 function playPause() {
+  if (queue.length === 0) {
+    playQueue(trackList.map(t => t.id), 0);
+    return;
+  }
   if (activeEngine === 'youtube' && ytPlayer && ytPlayer.getPlayerState) {
     const s = ytPlayer.getPlayerState();
     if (s === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
@@ -658,7 +706,10 @@ function playPause() {
     return;
   }
   if (isPlaying) audio.pause();
-  else audio.play().catch(err => console.log('Playback failed:', err));
+  else audio.play().catch(err => {
+    console.log('Playback failed:', err);
+    setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
+  });
 }
 
 function playNext() {
@@ -789,23 +840,32 @@ function renderAll() {
 }
 
 function renderHome() {
-  // Featured track
-  const featuredTrack = trackList[0];
-  document.getElementById('featuredCover').src = featuredTrack.audioUrl ? 'logo.png' : 'logo.png';
-  document.getElementById('featuredTitle').textContent = featuredTrack.title;
-  document.getElementById('featuredArtist').textContent = featuredTrack.artist;
-  document.getElementById('featuredCover').onclick = () => openTrackModal(featuredTrack);
+  // Playlists grid
+  const playlistGrid = document.getElementById('playlistGrid');
+  if (playlistGrid) {
+    playlistGrid.innerHTML = playlists.map(p => createCard(p, 'playlist')).join('');
+    attachCardListeners(playlistGrid);
+  }
 
-  // Card grid - playlists and albums
-  const cardGrid = document.getElementById('cardGrid');
-  cardGrid.innerHTML = playlists.map(p => createCard(p, 'playlist')).join('') + albums.map(a => createCard(a, 'album')).join('');
-  attachCardListeners(cardGrid);
+  // Albums grid
+  const albumGrid = document.getElementById('albumGrid');
+  if (albumGrid) {
+    albumGrid.innerHTML = albums.map(a => createCard(a, 'album')).join('');
+    attachCardListeners(albumGrid);
+  }
+
+  // Server song count
+  const serverCount = trackList.filter(t => (typeof t.id === 'number' ? t.id : parseInt(t.id, 10)) > 9).length;
+  const countEl = document.getElementById('serverSongCount');
+  if (countEl) countEl.textContent = `${serverCount} songs`;
 
   // Recently played - last 4 unique tracks
   const recentTracks = getRecentlyPlayed();
   const recentGrid = document.getElementById('recentGrid');
-  recentGrid.innerHTML = recentTracks.map(t => createCard(t, 'track')).join('');
-  attachCardListeners(recentGrid);
+  if (recentGrid) {
+    recentGrid.innerHTML = recentTracks.map(t => createCard(t, 'track')).join('');
+    attachCardListeners(recentGrid);
+  }
 }
 
 function renderSearch() {
@@ -910,7 +970,7 @@ function renderPlaylistDetail() {
   const playlist = [...playlists, ...userPlaylists].find(p => p.id === currentPlaylistId);
   if (!playlist) { navigateTo('home'); return; }
   
-  document.getElementById('playlistCover').src = playlist.cover;
+  setCoverTile(document.getElementById('playlistCover'), playlist.id || playlist.title, (playlist.title || 'P')[0].toUpperCase());
   document.getElementById('playlistTitle').textContent = playlist.title;
   document.getElementById('playlistDescription').textContent = playlist.description;
   
@@ -927,7 +987,7 @@ function renderAlbumDetail() {
   const album = albums.find(a => a.id === currentAlbumId);
   if (!album) { navigateTo('home'); return; }
   
-  document.getElementById('albumCover').src = album.cover;
+  setCoverTile(document.getElementById('albumCover'), album.id || album.title, (album.title || 'A')[0].toUpperCase());
   document.getElementById('albumTitle').textContent = album.title;
   document.getElementById('albumArtist').textContent = album.artist;
   
@@ -944,7 +1004,7 @@ function renderArtistDetail() {
   const artist = artists[currentArtistId];
   if (!artist) { navigateTo('home'); return; }
   
-  document.getElementById('artistCover').src = artist.image;
+  setCoverTile(document.getElementById('artistCover'), artist.id || artist.name, (artist.name || 'A')[0].toUpperCase());
   document.getElementById('artistName').textContent = artist.name;
   document.getElementById('artistAbout').textContent = artist.bio;
   
@@ -983,7 +1043,7 @@ function renderFullscreenNowPlaying() {
 function updateFullscreenNowPlaying() {
   if (queue.length === 0) return;
   const track = queue[currentTrackIndex];
-  document.getElementById('fullscreenCover').src = track.cover || 'logo.png';
+  setCoverTile(document.getElementById('fullscreenCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
   document.getElementById('fullscreenTitle').textContent = track.title;
   document.getElementById('fullscreenArtist').textContent = track.artist;
   updatePlayButtons();
@@ -997,7 +1057,7 @@ function renderQueue() {
   }
   list.innerHTML = queue.map((t, i) => `
     <div class="queue-item" data-index="${i}">
-      <img src="${t.cover || 'logo.png'}" alt="${t.title}">
+      ${coverTileHTML(t.id || t.title, (t.title || 'T')[0].toUpperCase())}
       <div class="queue-info">
         <div class="queue-title">${t.title}</div>
         <div class="queue-artist">${t.artist}</div>
@@ -1031,57 +1091,74 @@ function createCard(item, type) {
   const dlBtn = type === 'track' ? `<button class="track-download" data-id="${item.id}" title="Download">${downloadedIds.has(item.id) ? '✓' : '⬇'}</button>` : '';
   
   switch (type) {
-    case 'playlist':
+    case 'playlist': {
+      const count = (item.trackIds || []).length;
+      const seed = item.id || item.title;
+      const label = (item.title || 'P')[0].toUpperCase();
       return `
         <div class="card" data-type="playlist" data-id="${item.id}">
-          <img src="${item.cover}" alt="${item.title}">
+          ${coverTileHTML(seed, label)}
           <div class="info">
             <div class="title">${item.title}</div>
-            <div class="artist">${item.description}</div>
+            <div class="artist">${count} song${count !== 1 ? 's' : ''}</div>
           </div>
         </div>
       `;
-    case 'album':
+    }
+    case 'album': {
+      const count = (item.trackIds || []).length;
+      const seed = item.id || item.title;
+      const label = (item.title || 'A')[0].toUpperCase();
       return `
         <div class="card" data-type="album" data-id="${item.id}">
-          <img src="${item.cover}" alt="${item.title}">
+          ${coverTileHTML(seed, label)}
           <div class="info">
             <div class="title">${item.title}</div>
-            <div class="artist">${item.artist || item.owner}</div>
+            <div class="artist">${item.artist || item.owner || ''} • ${count} song${count !== 1 ? 's' : ''}</div>
           </div>
         </div>
       `;
-    case 'artist':
+    }
+    case 'artist': {
+      const seed = item.id || item.name;
+      const label = (item.name || 'A')[0].toUpperCase();
       return `
         <div class="card" data-type="artist" data-id="${item.id}">
-          <img src="${item.image}" alt="${item.name}" style="border-radius: 50%;">
+          ${coverTileHTML(seed, label)}
           <div class="info">
             <div class="title">${item.name}</div>
             <div class="artist">Artist</div>
           </div>
         </div>
       `;
-    case 'track':
+    }
+    case 'track': {
+      const seed = item.id || item.title;
+      const label = (item.title || 'T')[0].toUpperCase();
       return `
         <div class="card" data-type="track" data-id="${item.id}">
-          <img src="${item.cover || 'logo.png'}" alt="${item.title}">
+          ${coverTileHTML(seed, label)}
           <div class="info">
             <div class="title">${item.title}</div>
             <div class="artist">${item.artist}</div>
+            <div class="card-actions">${heart}${dlBtn}</div>
           </div>
-          ${heart}${dlBtn}
         </div>
       `;
-    case 'category':
+    }
+    case 'category': {
+      const seed = item.id || item.name;
+      const label = (item.name || 'C')[0].toUpperCase();
       return `
         <div class="card" data-type="category" data-id="${item.id}">
-          <img src="${item.cover}" alt="${item.name}">
+          ${coverTileHTML(seed, label)}
           <div class="info">
             <div class="title">${item.name}</div>
             <div class="artist">Category</div>
           </div>
         </div>
       `;
+    }
   }
 }
 
@@ -1092,7 +1169,7 @@ function createTrackRow(track, displayIndex, actualIndex, showAlbum = false) {
     <div class="track-row${isPlayingNow ? ' playing' : ''}" data-id="${track.id}" data-index="${actualIndex}">
       <div class="track-num${isPlayingNow ? ' playing' : ''}">${displayIndex + 1}</div>
       <div class="track-main">
-        <img src="logo.png" alt="${track.title}">
+        ${coverTileHTML(track.id || track.title, (track.title || 'T')[0].toUpperCase())}
         <div class="track-text">
           <div class="title">${track.title}</div>
           <div class="artist">${track.artist}</div>
@@ -1265,20 +1342,20 @@ function updateNowPlayingBar() {
   if (queue.length === 0) {
     document.getElementById('nowPlayingTitle').textContent = 'Dreamy Tone';
     document.getElementById('nowPlayingArtist').textContent = 'Prabir';
-    document.getElementById('nowPlayingCover').src = 'logo.png';
+    setCoverTile(document.getElementById('nowPlayingCover'), 'Dreamy Tone', 'D');
     document.getElementById('progressBar').value = 0;
     return;
   }
   const track = queue[currentTrackIndex];
   document.getElementById('nowPlayingTitle').textContent = track.title;
   document.getElementById('nowPlayingArtist').textContent = track.artist;
-  document.getElementById('nowPlayingCover').src = track.cover || 'logo.png';
+  setCoverTile(document.getElementById('nowPlayingCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
 }
 
 // ============ TRACK MODAL ============
 function openTrackModal(track) {
   if (!track) return;
-  document.getElementById('modalCover').src = track.cover || 'logo.png';
+  setCoverTile(document.getElementById('modalCover'), track.id || track.title, (track.title || 'D')[0].toUpperCase());
   document.getElementById('modalTitle').textContent = track.title;
   document.getElementById('modalArtist').textContent = track.artist;
   document.getElementById('modalDuration').textContent = track.duration;
@@ -1317,7 +1394,6 @@ function createPlaylist() {
     id: 'playlist_' + Date.now(),
     title: name,
     description: desc || 'Your new playlist',
-    cover: 'logo.png',
     trackIds: [],
     owner: 'You'
   };
