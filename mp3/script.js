@@ -218,9 +218,9 @@ function startYtProgress() {
     const c = ytPlayer.getCurrentTime() || 0;
     if (!d) return;
     const percent = (c / d) * 100;
-    const pb = document.getElementById('progressBar'); if (pb) pb.value = percent;
-    const fpb = document.getElementById('fullscreenProgressBar'); if (fpb) fpb.value = percent;
-    const mpb = document.getElementById('modalProgressBar'); if (mpb) mpb.value = percent;
+    const pb = document.getElementById('progressBar'); if (pb) { pb.value = percent; paintProgress(pb, percent); }
+    const fpb = document.getElementById('fullscreenProgressBar'); if (fpb) { fpb.value = percent; paintProgress(fpb, percent); }
+    const mpb = document.getElementById('modalProgressBar'); if (mpb) { mpb.value = percent; paintProgress(mpb, percent); }
     const tc = document.getElementById('timeCurrent'); if (tc) tc.textContent = formatTime(c);
     const tt = document.getElementById('timeTotal'); if (tt) tt.textContent = formatTime(d);
   }, 500);
@@ -413,7 +413,7 @@ function initEventListeners() {
   document.getElementById('pauseBtn').addEventListener('click', () => playPause());
   document.getElementById('nextBtn').addEventListener('click', () => playNext());
   document.getElementById('prevBtn').addEventListener('click', () => playPrev());
-  document.getElementById('progressBar').addEventListener('input', (e) => seek(e.target.value));
+  document.getElementById('progressBar').addEventListener('input', (e) => { paintProgress(e.target, e.target.value); seek(e.target.value); });
   document.getElementById('volumeControl').addEventListener('input', (e) => setVolume01(e.target.value / 100));
   document.getElementById('queueBtn').addEventListener('click', () => navigateTo('fullscreenNowPlaying'));
 
@@ -584,11 +584,10 @@ function handleTrackEnded() {
 function updateProgress() {
   if (!audio.duration) return;
   const percent = (audio.currentTime / audio.duration) * 100;
-  document.getElementById('progressBar').value = percent;
-  document.getElementById('fullscreenProgressBar').value = percent;
-  document.getElementById('modalProgressBar').value = percent;
+  const pb = document.getElementById('progressBar'); pb.value = percent; paintProgress(pb, percent);
+  const fpb = document.getElementById('fullscreenProgressBar'); fpb.value = percent; paintProgress(fpb, percent);
+  const mpb = document.getElementById('modalProgressBar'); mpb.value = percent; paintProgress(mpb, percent);
   document.getElementById('timeCurrent').textContent = formatTime(audio.currentTime);
-  document.getElementById('modalProgressBar').value = percent;
 }
 
 function updateDuration() {
@@ -1124,16 +1123,23 @@ function clearQueue() {
 
 function toggleShuffle() {
   shuffle = !shuffle;
-  document.getElementById('shuffleBtn').style.color = shuffle ? '#ff0000' : '#fff';
+  document.getElementById('shuffleBtn').style.color = shuffle ? '#1DB954' : '';
   // For simplicity, not implementing full shuffle logic
 }
 
 function toggleRepeat() {
   repeat = (repeat + 1) % 3;
   const btn = document.getElementById('repeatBtn');
-  btn.textContent = repeat === 0 ? '🔁' : repeat === 1 ? '🔁' : '🔂';
-  btn.style.color = repeat === 0 ? '#fff' : '#ff0000';
-  if (repeat === 2) btn.textContent = '🔂';
+  btn.style.color = repeat === 0 ? '' : '#1DB954';
+  const badge = document.getElementById('repeatOneBadge');
+  if (badge) badge.style.display = repeat === 2 ? 'block' : 'none';
+}
+
+// Spotify-style seek bar: white played part, grey rest
+function paintProgress(input, percent) {
+  if (!input) return;
+  const p = Math.max(0, Math.min(100, percent));
+  input.style.background = `linear-gradient(90deg, #fff ${p}%, #4d4d4d ${p}%)`;
 }
 
 // ============ NOW PLAYING BAR ============
