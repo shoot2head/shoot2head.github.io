@@ -190,7 +190,8 @@ function initYouTubePlayer() {
         onReady: () => { ytReady = true; },
         onStateChange: (e) => {
           if (e.data === YT.PlayerState.ENDED) handleTrackEnded();
-          else if (e.data === YT.PlayerState.PLAYING) { isPlaying = true; updatePlayButtons(); }
+          else if (e.data === YT.PlayerState.PLAYING) { isPlaying = true; setPlayerStatus(''); updatePlayButtons(); }
+          else if (e.data === YT.PlayerState.BUFFERING) { setPlayerStatus('লোড হচ্ছে…'); }
           else if (e.data === YT.PlayerState.PAUSED) { isPlaying = false; updatePlayButtons(); }
         },
       },
@@ -631,6 +632,49 @@ function setupAudioEvents() {
   audio.addEventListener('error', () => setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো'));
 }
 
+function ytState() {
+  try {
+    if (!ytPlayer || !ytPlayer.getPlayerState) return null;
+    return ytPlayer.getPlayerState();
+  } catch (e) { return null; }
+}
+async function watchYoutubeStart() {
+  // True once the hidden player is playing or buffering. A newer track
+  // taking over also counts (this watchdog must not fight it).
+  const myIndex = currentTrackIndex;
+  for (let i = 0; i < 16; i++) {
+    if (currentTrackIndex !== myIndex) return true;
+    const s = ytState();
+    if (s === 1 || s === 3) return true; // PLAYING or BUFFERING
+    await new Promise(r => setTimeout(r, 500));
+  }
+  if (currentTrackIndex !== myIndex) return true;
+  try { if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo(); } catch (e) {}
+  for (let i = 0; i < 4; i++) {
+    if (currentTrackIndex !== myIndex) return true;
+    const s = ytState();
+    if (s === 1 || s === 3) return true;
+    await new Promise(r => setTimeout(r, 500));
+  }
+  return currentTrackIndex !== myIndex;
+}
+async function playYoutubeViaAudio(track) {
+  // Fallback: play the song's direct audio stream through the built-in
+  // player, using the same Invidious audio URL the download button uses.
+  const dl = await resolveDownload(track);
+  if (!dl || !dl.url) return false;
+  if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+  stopYtProgress();
+  activeEngine = 'audio';
+  audio.src = dl.url;
+  try {
+    await audio.play();
+    return true;
+  } catch (e) {
+    console.log('Fallback playback failed:', e);
+    return false;
+  }
+}
 async function playTrack(index) {
   if (index < 0 || index >= queue.length) return;
   currentTrackIndex = index;
@@ -660,6 +704,7 @@ async function playTrack(index) {
   }
   if (track.source === 'youtube') {
     audio.pause();
+    setPlayerStatus('লোড হচ্ছে…');
     activeEngine = 'youtube';
     const ok = await loadYouTubeAPI();
     if (ok && ytPlayer && ytPlayer.loadVideoById) {
@@ -668,14 +713,31 @@ async function playTrack(index) {
       ytPlayer.setVolume(Math.round(audio.volume * 100));
       ytPlayer.loadVideoById(track.videoId);
       startYtProgress();
+      // Watchdog: if the hidden player never starts (autoplay blocked or a
+      // slow network), fall back to the direct audio stream.
+      const started = await watchYoutubeStart();
+      if (!started) {
+        const played = await playYoutubeViaAudio(track);
+        if (!played) {
+          activeEngine = 'audio';
+          stopYtProgress();
+          isPlaying = false;
+          updatePlayButtons();
+          setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
+          return;
+        }
+      }
     } else {
-      // Hidden player could not start — stop here, do not auto-advance.
-      activeEngine = 'audio';
-      stopYtProgress();
-      isPlaying = false;
-      updatePlayButtons();
-      setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
-      return;
+      // Hidden player could not start — try the direct audio stream instead.
+      const played = await playYoutubeViaAudio(track);
+      if (!played) {
+        activeEngine = 'audio';
+        stopYtProgress();
+        isPlaying = false;
+        updatePlayButtons();
+        setPlayerStatus('গান লোড হয়নি — নেট চেক করে আবার চেষ্টা করো');
+        return;
+      }
     }
   } else {
     if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
