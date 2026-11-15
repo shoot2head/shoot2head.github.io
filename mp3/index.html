@@ -93,6 +93,11 @@
               <h3>Playlists</h3>
               <div class="card-grid" id="searchPlaylistsGrid"></div>
             </div>
+            <div class="search-section" id="onlineSection" style="display:none">
+              <h3>More Songs</h3>
+              <div id="onlineStatus" style="color:#888;font-size:13px;padding:6px 0;"></div>
+              <div class="card-grid" id="searchOnlineGrid"></div>
+            </div>
           </div>
           <div class="browse-categories" id="browseCategories">
             <h3>Browse Categories</h3>
@@ -279,6 +284,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Hidden audio engine for online songs: 1px, off-screen, no video shown -->
+  <div id="ytPlayer" aria-hidden="true" style="position:fixed;width:1px;height:1px;left:-20px;top:-20px;opacity:0;pointer-events:none;overflow:hidden;"></div>
 
   <script src="script.js"></script>
 </body>
