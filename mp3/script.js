@@ -1,4 +1,4 @@
-// shoot2head.mp3 - Complete Spotify-style player
+// shoot2head.mp3 - Complete player
 
 // ============ COVER TILE HELPERS ============
 function gradFor(seed) {
@@ -276,20 +276,24 @@ function initYouTubePlayer() {
 }
 
 function startYtProgress() {
-  stopYtProgress();
-  ytProgressTimer = setInterval(() => {
-    if (activeEngine !== 'youtube' || !ytPlayer || !ytPlayer.getDuration) return;
-    const d = ytPlayer.getDuration() || 0;
-    const c = ytPlayer.getCurrentTime() || 0;
-    if (!d) return;
-    const percent = (c / d) * 100;
-    const pb = document.getElementById('progressBar'); if (pb) { pb.value = percent; paintProgress(pb, percent); }
-    const fpb = document.getElementById('fullscreenProgressBar'); if (fpb) { fpb.value = percent; paintProgress(fpb, percent); }
-    const mpb = document.getElementById('modalProgressBar'); if (mpb) { mpb.value = percent; paintProgress(mpb, percent); }
-    const tc = document.getElementById('timeCurrent'); if (tc) tc.textContent = formatTime(c);
-    const tt = document.getElementById('timeTotal'); if (tt) tt.textContent = formatTime(d);
-  }, 500);
-}
+    stopYtProgress();
+    ytProgressTimer = setInterval(() => {
+      if (activeEngine !== 'youtube' || !ytPlayer || !ytPlayer.getDuration) return;
+      const d = ytPlayer.getDuration() || 0;
+      const c = ytPlayer.getCurrentTime() || 0;
+      if (!d) return;
+      const percent = (c / d) * 100;
+      const pb = document.getElementById('progressBar'); if (pb) { pb.value = percent; paintProgress(pb, percent); }
+      const fpb = document.getElementById('fullscreenProgressBar'); if (fpb) { fpb.value = percent; paintProgress(fpb, percent); }
+      const mpb = document.getElementById('modalProgressBar'); if (mpb) { mpb.value = percent; paintProgress(mpb, percent); }
+      const tc = formatTime(c);
+      const tcEl = document.getElementById('timeCurrent'); if (tcEl) tcEl.textContent = tc;
+      const ptcEl = document.getElementById('playerTimeCurrent'); if (ptcEl) ptcEl.textContent = tc;
+      const tt = formatTime(d);
+      const ttEl = document.getElementById('timeTotal'); if (ttEl) ttEl.textContent = tt;
+      const pttEl = document.getElementById('playerTimeTotal'); if (pttEl) pttEl.textContent = tt;
+    }, 500);
+  }
 
 function stopYtProgress() { if (ytProgressTimer) { clearInterval(ytProgressTimer); ytProgressTimer = null; } }
 
@@ -621,50 +625,55 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============ EVENT LISTENERS ============
-function initEventListeners() {
-  // Sidebar navigation
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => navigateTo(btn.dataset.view));
-  });
+  function initEventListeners() {
+    // Sidebar navigation
+    document.querySelectorAll('.nav-item').forEach(btn => {
+      btn.addEventListener('click', () => navigateTo(btn.dataset.view));
+    });
 
-  // Now playing bar controls
-  document.getElementById('playBtn').addEventListener('click', () => playPause());
-  document.getElementById('pauseBtn').addEventListener('click', () => playPause());
-  document.getElementById('nextBtn').addEventListener('click', () => playNext());
-  document.getElementById('prevBtn').addEventListener('click', () => playPrev());
-  document.getElementById('progressBar').addEventListener('input', (e) => { paintProgress(e.target, e.target.value); seek(e.target.value); });
-  document.getElementById('volumeControl').addEventListener('input', (e) => setVolume01(e.target.value / 100));
-  document.getElementById('queueBtn').addEventListener('click', () => navigateTo('fullscreenNowPlaying'));
+    // Mobile bottom navigation
+    document.querySelectorAll('.mobile-nav-item').forEach(btn => {
+      btn.addEventListener('click', () => navigateTo(btn.dataset.view));
+    });
 
-  // Fullscreen now playing
-  document.getElementById('closeFullscreen').addEventListener('click', () => goBack());
-  document.getElementById('fsPlayBtn').addEventListener('click', () => playPause());
-  document.getElementById('fsPauseBtn').addEventListener('click', () => playPause());
-  document.getElementById('fsPrevBtn').addEventListener('click', () => playPrev());
-  document.getElementById('fsNextBtn').addEventListener('click', () => playNext());
-  document.getElementById('fullscreenProgressBar').addEventListener('input', (e) => seek(e.target.value));
-  document.getElementById('fsVolumeControl').addEventListener('input', (e) => setVolume01(e.target.value / 100));
-  document.getElementById('shuffleBtn').addEventListener('click', toggleShuffle);
-  document.getElementById('repeatBtn').addEventListener('click', toggleRepeat);
-  document.getElementById('fsDownloadBtn').addEventListener('click', (e) => {
-    const t = queue[currentTrackIndex];
-    if (!t) return;
-    if (downloadedIds.has(t.id)) playDownloadedById(t.id);
-    else downloadTrack(t, e.target);
-  });
-  document.getElementById('clearQueueBtn').addEventListener('click', clearQueue);
+    // Now playing bar controls
+    document.getElementById('playBtn').addEventListener('click', () => playPause());
+    document.getElementById('pauseBtn').addEventListener('click', () => playPause());
+    document.getElementById('nextBtn').addEventListener('click', () => playNext());
+    document.getElementById('prevBtn').addEventListener('click', () => playPrev());
+    document.getElementById('progressBar').addEventListener('input', (e) => { paintProgress(e.target, e.target.value); seek(e.target.value); });
+    document.getElementById('volumeControl').addEventListener('input', (e) => setVolume01(e.target.value / 100));
+    document.getElementById('queueBtn').addEventListener('click', () => navigateTo('fullscreenNowPlaying'));
 
-  // Track modal
-  document.querySelector('#trackModal .close-btn').addEventListener('click', () => closeModal());
-  document.getElementById('modalPlayBtn').addEventListener('click', () => playPause());
-  document.getElementById('modalDownloadBtn').addEventListener('click', (e) => {
-    const t = findTrackById(trackModal.dataset.trackId);
-    if (!t) return;
-    if (downloadedIds.has(t.id)) playDownloadedById(t.id);
-    else downloadTrack(t, e.target);
-  });
-  document.getElementById('modalProgressBar').addEventListener('input', (e) => seek(e.target.value));
-  trackModal.addEventListener('click', (e) => { if (e.target === trackModal) closeModal(); });
+    // Fullscreen now playing
+    document.getElementById('closeFullscreen').addEventListener('click', () => goBack());
+    document.getElementById('fsPlayBtn').addEventListener('click', () => playPause());
+    document.getElementById('fsPauseBtn').addEventListener('click', () => playPause());
+    document.getElementById('fsPrevBtn').addEventListener('click', () => playPrev());
+    document.getElementById('fsNextBtn').addEventListener('click', () => playNext());
+    document.getElementById('fullscreenProgressBar').addEventListener('input', (e) => seek(e.target.value));
+    document.getElementById('fsVolumeControl').addEventListener('input', (e) => setVolume01(e.target.value / 100));
+    document.getElementById('shuffleBtn').addEventListener('click', toggleShuffle);
+    document.getElementById('repeatBtn').addEventListener('click', toggleRepeat);
+    document.getElementById('fsDownloadBtn').addEventListener('click', (e) => {
+      const t = queue[currentTrackIndex];
+      if (!t) return;
+      if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+      else downloadTrack(t, e.target);
+    });
+    document.getElementById('clearQueueBtn').addEventListener('click', clearQueue);
+
+    // Track modal
+    document.querySelector('#trackModal .modal-close').addEventListener('click', () => closeModal());
+    document.getElementById('modalPlayBtn').addEventListener('click', () => playPause());
+    document.getElementById('modalDownloadBtn').addEventListener('click', (e) => {
+      const t = findTrackById(trackModal.dataset.trackId);
+      if (!t) return;
+      if (downloadedIds.has(t.id)) playDownloadedById(t.id);
+      else downloadTrack(t, e.target);
+    });
+    document.getElementById('modalProgressBar').addEventListener('input', (e) => seek(e.target.value));
+    trackModal.addEventListener('click', (e) => { if (e.target === trackModal) closeModal(); });
 
   // Lock-screen / notification buttons (play, pause, previous, next)
   if ('mediaSession' in navigator) {
@@ -677,7 +686,7 @@ function initEventListeners() {
   }
 
   // Create playlist modal
-  document.querySelector('#createPlaylistModal .close-btn').addEventListener('click', () => closeCreatePlaylistModal());
+  document.querySelector('#createPlaylistModal .modal-close').addEventListener('click', () => closeCreatePlaylistModal());
   document.getElementById('cancelCreatePlaylist').addEventListener('click', () => closeCreatePlaylistModal());
   document.getElementById('confirmCreatePlaylist').addEventListener('click', createPlaylist);
   createPlaylistModal.addEventListener('click', (e) => { if (e.target === createPlaylistModal) closeCreatePlaylistModal(); });
@@ -918,17 +927,24 @@ function handleTrackEnded() {
 }
 
 function updateProgress() {
-  if (!audio.duration) return;
-  const percent = (audio.currentTime / audio.duration) * 100;
-  const pb = document.getElementById('progressBar'); pb.value = percent; paintProgress(pb, percent);
-  const fpb = document.getElementById('fullscreenProgressBar'); fpb.value = percent; paintProgress(fpb, percent);
-  const mpb = document.getElementById('modalProgressBar'); mpb.value = percent; paintProgress(mpb, percent);
-  document.getElementById('timeCurrent').textContent = formatTime(audio.currentTime);
-}
+    if (!audio.duration) return;
+    const percent = (audio.currentTime / audio.duration) * 100;
+    const pb = document.getElementById('progressBar'); pb.value = percent; paintProgress(pb, percent);
+    const fpb = document.getElementById('fullscreenProgressBar'); fpb.value = percent; paintProgress(fpb, percent);
+    const mpb = document.getElementById('modalProgressBar'); mpb.value = percent; paintProgress(mpb, percent);
+    const tc = formatTime(audio.currentTime);
+    document.getElementById('timeCurrent').textContent = tc;
+    document.getElementById('playerTimeCurrent').textContent = tc;
+    const tt = formatTime(audio.duration);
+    document.getElementById('timeTotal').textContent = tt;
+    document.getElementById('playerTimeTotal').textContent = tt;
+  }
 
 function updateDuration() {
-  document.getElementById('timeTotal').textContent = formatTime(audio.duration);
-}
+    const tt = formatTime(audio.duration);
+    document.getElementById('timeTotal').textContent = tt;
+    document.getElementById('playerTimeTotal').textContent = tt;
+  }
 
 function formatTime(sec) {
   if (!sec || isNaN(sec)) return '0:00';
@@ -939,10 +955,10 @@ function formatTime(sec) {
 
 function updatePlayButtons() {
   const showPlay = !isPlaying;
-  document.getElementById('playBtn').style.display = showPlay ? 'flex' : 'none';
-  document.getElementById('pauseBtn').style.display = showPlay ? 'none' : 'flex';
-  document.getElementById('fsPlayBtn').style.display = showPlay ? 'flex' : 'none';
-  document.getElementById('fsPauseBtn').style.display = showPlay ? 'none' : 'flex';
+  document.getElementById('playBtn').hidden = !showPlay;
+  document.getElementById('pauseBtn').hidden = showPlay;
+  document.getElementById('fsPlayBtn').hidden = !showPlay;
+  document.getElementById('fsPauseBtn').hidden = showPlay;
 }
 
 // ============ NAVIGATION ============
@@ -965,7 +981,11 @@ function navigateTo(view, data = {}) {
   if (targetView) targetView.classList.add('active');
   
   // Update sidebar active state
-  document.querySelectorAll('.nav-btn').forEach(btn => {
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.view === view);
+  });
+  // Update mobile bottom nav active state
+  document.querySelectorAll('.mobile-nav-item').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.view === view);
   });
 
@@ -1352,12 +1372,12 @@ function toggleRepeat() {
   if (badge) badge.style.display = repeat === 2 ? 'block' : 'none';
 }
 
-// Spotify-style seek bar: white played part, grey rest
-function paintProgress(input, percent) {
-  if (!input) return;
-  const p = Math.max(0, Math.min(100, percent));
-  input.style.background = `linear-gradient(90deg, #fff ${p}%, #4d4d4d ${p}%)`;
-}
+// Seek bar: green played part, grey rest (uses CSS custom property --p)
+  function paintProgress(input, percent) {
+    if (!input) return;
+    const p = Math.max(0, Math.min(100, percent));
+    input.style.setProperty('--p', p + '%');
+  }
 
 // ============ NOW PLAYING BAR ============
 function updateNowPlayingBar() {

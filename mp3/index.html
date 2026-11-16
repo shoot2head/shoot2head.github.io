@@ -4,180 +4,231 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shoot2head.mp3</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="shoot2head.mp3">
 </head>
 <body>
   <div class="app">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="logo">
-        <img src="logo.png" alt="shoot2head.mp3">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="logo.png" alt="shoot2head.mp3">
+        </div>
       </div>
-      <nav>
-        <button class="nav-btn active" data-view="home">Home</button>
-        <button class="nav-btn" data-view="search">Search</button>
-        <button class="nav-btn" data-view="library">Your Library</button>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="home" aria-label="Home">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" data-view="search" aria-label="Search">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          <span class="nav-label">Search</span>
+        </button>
+        <button class="nav-item" data-view="library" aria-label="Your Library">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span class="nav-label">Your Library</span>
+        </button>
       </nav>
+      <div class="sidebar-footer">
+        <button class="nav-item premium-btn" aria-label="Get Premium">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          <span class="nav-label">Premium</span>
+        </button>
+      </div>
     </aside>
 
-    <!-- Main content -->
-    <main class="main">
-      <!-- Now playing bar (fixed at bottom) -->
-      <div class="now-playing-bar" id="nowPlayingBar">
-        <div class="album-cover">
-          <div id="nowPlayingCover" class="cover-tile"></div>
-        </div>
-        <div class="track-info">
-          <span class="track-title" id="nowPlayingTitle">কোনো গান চলছে না</span>
-          <span class="track-artist" id="nowPlayingArtist">—</span>
-          <span class="track-status" id="nowPlayingStatus"></span>
-        </div>
-        <div class="controls">
-          <button class="btn prev-btn" title="Previous" id="prevBtn"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5.14v13.72c0 .8-.87 1.3-1.56.88L8.5 12.88a1.03 1.03 0 0 1 0-1.76L18.44 4.26A1.03 1.03 0 0 1 20 5.14z"/></svg></button>
-          <button class="btn play-btn" title="Play" id="playBtn"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
-          <button class="btn pause-btn" title="Pause" id="pauseBtn" style="display: none;"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
-          <button class="btn next-btn" title="Next" id="nextBtn"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5.14v13.72c0 .8.87 1.3 1.56.88l9.94-6.86a1.03 1.03 0 0 0 0-1.76L5.56 4.26A1.03 1.03 0 0 0 4 5.14z"/></svg></button>
-          <div class="progress">
-            <input type="range" class="progress-bar" min="0" max="100" value="0" id="progressBar">
-          </div>
-          <div class="volume">
-            <input type="range" min="0" max="100" value="80" id="volumeControl">
-          </div>
-        </div>
-        <div class="queue" id="queueBtn">Queue</div>
-      </div>
-
-      <!-- View container - all screens render here -->
+    <!-- Main Content Area -->
+    <main class="main" role="main">
+      <!-- View Container -->
       <div class="view-container" id="viewContainer">
         <!-- Home View -->
-        <div class="view active" id="homeView">
-          <!-- Playlists section -->
-          <section class="browse">
-            <h3>Playlists</h3>
-            <div id="serverSongCount" style="color: #888; font-size: 13px; margin-bottom: 12px;"></div>
-            <div class="playlist-list" id="playlistGrid"></div>
-          </section>
+        <div class="view active" id="homeView" data-view="home">
+          <div class="content-area">
+            <header class="page-header">
+              <h1 class="page-title">Home</h1>
+            </header>
+            <div class="content-grid">
+              <!-- Playlists Section -->
+              <section class="section" aria-labelledby="playlists-heading">
+                <div class="section-header">
+                  <h2 id="playlists-heading" class="section-title">Playlists</h2>
+                </div>
+                <div id="serverSongCount" class="song-count" aria-live="polite"></div>
+                <div class="playlist-grid" id="playlistGrid" role="list"></div>
+              </section>
+            </div>
+          </div>
         </div>
 
         <!-- Search View -->
-        <div class="view" id="searchView">
-          <div class="search-header">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search tracks and playlists...">
-          </div>
-          <div class="search-results" id="searchResults">
-            <div class="search-section" id="tracksSection">
-              <h3>Tracks</h3>
-              <div class="card-grid" id="searchTracksGrid"></div>
-            </div>
-            <div class="search-section" id="playlistsSection">
-              <h3>Playlists</h3>
-              <div class="playlist-list" id="searchPlaylistsGrid"></div>
-            </div>
-            <div class="search-section" id="onlineSection" style="display:none">
-              <h3>More Songs</h3>
-              <div id="onlineStatus" style="color:#888;font-size:13px;padding:6px 0;"></div>
-              <div class="card-grid" id="searchOnlineGrid"></div>
+        <div class="view" id="searchView" data-view="search">
+          <div class="content-area">
+            <header class="page-header">
+              <h1 class="page-title">Search</h1>
+            </header>
+            <div class="search-container">
+              <div class="search-input-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search tracks and playlists..." aria-label="Search">
+              </div>
+              <div class="search-results" id="searchResults">
+                <section class="search-section" id="tracksSection" aria-labelledby="tracks-heading">
+                  <h3 id="tracks-heading" class="section-title">Tracks</h3>
+                  <div class="card-grid" id="searchTracksGrid" role="list"></div>
+                </section>
+                <section class="search-section" id="playlistsSection" aria-labelledby="playlists-search-heading">
+                  <h3 id="playlists-search-heading" class="section-title">Playlists</h3>
+                  <div class="playlist-grid" id="searchPlaylistsGrid" role="list"></div>
+                </section>
+                <section class="search-section" id="onlineSection" aria-labelledby="online-heading" hidden>
+                  <h3 id="online-heading" class="section-title">More Songs</h3>
+                  <div id="onlineStatus" class="status-text"></div>
+                  <div class="card-grid" id="searchOnlineGrid" role="list"></div>
+                </section>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Your Library View -->
-        <div class="view" id="libraryView">
-          <div class="library-header">
-            <h2>Your Library</h2>
-            <button class="create-btn" id="createPlaylistBtn">+ Create Playlist</button>
-          </div>
-          <div class="downloads-bar" id="downloadsBar">
-            <span>Downloads: <span id="downloadUsage">0 MB / 1 GB</span></span>
-            <span id="downloadStatus"></span>
-            <button class="btn" id="resetDownloadsBtn">Clear</button>
-          </div>
-          <div class="download-usage-track"><div class="download-usage-fill" id="downloadUsageBar"></div></div>
-          <div class="filter-chips" id="libraryFilters">
-            <button class="filter-chip active" data-filter="playlists">Playlists</button>
-            <button class="filter-chip" data-filter="liked">Liked Songs</button>
-          </div>
-          <div class="library-content" id="libraryContent">
-            <div class="playlist-list" id="libraryGrid"></div>
-          </div>
-          <div class="downloaded-section" id="downloadedSection">
-            <h3>Downloaded — plays offline</h3>
-            <div class="track-list" id="downloadedList"></div>
-            <div class="empty-state" id="downloadedEmpty" style="padding: 20px; text-align: center; color: #888;">No songs downloaded yet. Tap ⬇ on any song to save it inside the app and play it offline.</div>
+        <div class="view" id="libraryView" data-view="library">
+          <div class="content-area">
+            <header class="page-header">
+              <h1 class="page-title">Your Library</h1>
+              <button class="create-btn" id="createPlaylistBtn" aria-label="Create playlist">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Create Playlist</span>
+              </button>
+            </header>
+            <div class="downloads-bar" id="downloadsBar" role="status" aria-live="polite">
+              <div class="downloads-info">
+                <span>Downloads:</span>
+                <span id="downloadUsage">0 MB / 1 GB</span>
+              </div>
+              <span id="downloadStatus" class="status-text"></span>
+              <button class="btn-reset" id="resetDownloadsBtn" aria-label="Clear all downloads">Clear</button>
+            </div>
+            <div class="download-usage-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Download storage usage">
+              <div class="download-usage-fill" id="downloadUsageBar"></div>
+            </div>
+            <div class="filter-chips" id="libraryFilters" role="tablist" aria-label="Library filters">
+              <button class="filter-chip active" data-filter="playlists" role="tab" aria-selected="true">Playlists</button>
+              <button class="filter-chip" data-filter="liked" role="tab" aria-selected="false">Liked Songs</button>
+            </div>
+            <div class="library-content" id="libraryContent">
+              <div class="playlist-grid" id="libraryGrid" role="list"></div>
+            </div>
+            <section class="downloaded-section" id="downloadedSection" aria-labelledby="downloaded-heading">
+              <h2 id="downloaded-heading" class="section-title">Downloaded — plays offline</h2>
+              <div class="track-list" id="downloadedList" role="list"></div>
+              <div class="empty-state" id="downloadedEmpty" hidden>No songs downloaded yet. Tap ⬇ on any song to save it inside the app and play it offline.</div>
+            </section>
           </div>
         </div>
 
         <!-- Playlist Detail View -->
-        <div class="view" id="playlistDetailView">
-          <button class="back-btn" id="playlistBackBtn">← Back</button>
-          <div class="detail-header" id="playlistHeader">
-            <div class="detail-cover">
-              <div id="playlistCover" class="cover-tile"></div>
-            </div>
-            <div class="detail-info">
-              <span class="detail-type">Playlist</span>
-              <h2 class="detail-title" id="playlistTitle"></h2>
-              <p class="detail-description" id="playlistDescription">Playlist description</p>
-              <div class="detail-meta" id="playlistMeta">3 songs, 8 min</div>
-              <div class="detail-actions">
-                <button class="btn play-all-btn" id="playlistPlayAll" title="Play all"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
-                <button class="btn save-btn" id="playlistSave">Save</button>
+        <div class="view" id="playlistDetailView" data-view="playlistDetail">
+          <div class="content-area">
+            <button class="back-btn" id="playlistBackBtn" aria-label="Back">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
+            <div class="detail-header" id="playlistHeader">
+              <div class="detail-cover">
+                <div id="playlistCover" class="cover-tile" aria-hidden="true"></div>
+              </div>
+              <div class="detail-info">
+                <span class="detail-type">Playlist</span>
+                <h2 class="detail-title" id="playlistTitle"></h2>
+                <p class="detail-description" id="playlistDescription"></p>
+                <div class="detail-meta" id="playlistMeta"></div>
+                <div class="detail-actions">
+                  <button class="btn-play-all" id="playlistPlayAll" aria-label="Play all" title="Play all">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg>
+                  </button>
+                  <button class="btn-save" id="playlistSave" aria-label="Save playlist">Save</button>
+                </div>
               </div>
             </div>
+            <div class="track-list" id="playlistTracks" role="list"></div>
           </div>
-          <div class="track-list" id="playlistTracks"></div>
         </div>
 
         <!-- Liked Songs View -->
-        <div class="view" id="likedSongsView">
-          <button class="back-btn" id="likedBackBtn">← Back</button>
-          <div class="liked-header">
-            <div class="detail-cover">
-              <div class="cover-tile cover-grad-3"><span>♥</span></div>
+        <div class="view" id="likedSongsView" data-view="likedSongs">
+          <div class="content-area">
+            <button class="back-btn" id="likedBackBtn" aria-label="Back">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
+            <div class="detail-header liked-header">
+              <div class="detail-cover">
+                <div class="cover-tile cover-grad-3" aria-hidden="true"><span>♥</span></div>
+              </div>
+              <div class="detail-info">
+                <h2 class="detail-title">Liked Songs</h2>
+                <div class="detail-meta" id="likedMeta">0 songs</div>
+              </div>
             </div>
-            <div class="detail-info">
-              <h2 class="detail-title">Liked Songs</h2>
-              <div class="detail-meta" id="likedMeta">0 songs</div>
-            </div>
+            <div class="track-list" id="likedTracks" role="list"></div>
           </div>
-          <div class="track-list" id="likedTracks"></div>
         </div>
 
         <!-- Full-screen Now Playing View -->
-        <div class="view fullscreen-now-playing" id="fullscreenNowPlayingView">
-          <button class="close-fullscreen" id="closeFullscreen">✕</button>
+        <div class="view fullscreen-now-playing" id="fullscreenNowPlayingView" data-view="fullscreenNowPlaying">
+          <button class="close-fullscreen" id="closeFullscreen" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          </button>
           <div class="fullscreen-content">
-            <div class="fullscreen-cover">
-              <div id="fullscreenCover" class="cover-tile"></div>
+            <div class="fullscreen-cover" id="fullscreenCoverContainer">
+              <div id="fullscreenCover" class="cover-tile" aria-hidden="true"></div>
             </div>
             <div class="fullscreen-info">
-              <span class="fullscreen-title" id="fullscreenTitle">কোনো গান চলছে না</span>
-              <span class="fullscreen-artist" id="fullscreenArtist">—</span>
+              <h2 class="fullscreen-title" id="fullscreenTitle">কোনো গান চলছে না</h2>
+              <p class="fullscreen-artist" id="fullscreenArtist">—</p>
             </div>
             <div class="fullscreen-progress">
               <span class="time-current" id="timeCurrent">0:00</span>
-              <input type="range" class="progress-bar fullscreen-bar" min="0" max="100" value="0" id="fullscreenProgressBar">
+              <input type="range" class="progress-bar fullscreen-bar" min="0" max="100" value="0" id="fullscreenProgressBar" aria-label="Playback progress">
               <span class="time-total" id="timeTotal">0:00</span>
             </div>
-            <div class="fullscreen-controls">
-              <button class="btn fs-btn shuffle-btn" id="shuffleBtn" title="Shuffle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg></button>
-              <button class="btn fs-btn prev-btn" id="fsPrevBtn" title="Previous"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5.14v13.72c0 .8-.87 1.3-1.56.88L8.5 12.88a1.03 1.03 0 0 1 0-1.76L18.44 4.26A1.03 1.03 0 0 1 20 5.14z"/></svg></button>
-              <button class="btn fs-btn play-btn large" id="fsPlayBtn" title="Play"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
-              <button class="btn fs-btn pause-btn large" id="fsPauseBtn" title="Pause" style="display: none;"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
-              <button class="btn fs-btn next-btn" id="fsNextBtn" title="Next"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5.14v13.72c0 .8.87 1.3 1.56.88l9.94-6.86a1.03 1.03 0 0 0 0-1.76L5.56 4.26A1.03 1.03 0 0 0 4 5.14z"/></svg></button>
-              <button class="btn fs-btn repeat-btn" id="repeatBtn" title="Repeat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg><span class="repeat-one-badge" id="repeatOneBadge" style="display: none;">1</span></button>
-              <button class="btn fs-btn" id="fsDownloadBtn" title="Download">⬇</button>
+            <div class="fullscreen-controls" role="group" aria-label="Playback controls">
+              <button class="fs-btn shuffle-btn" id="shuffleBtn" aria-label="Shuffle" title="Shuffle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+              </button>
+              <button class="fs-btn prev-btn" id="fsPrevBtn" aria-label="Previous" title="Previous">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5.14v13.72c0 .8-.87 1.3-1.56.88L8.5 12.88a1.03 1.03 0 0 1 0-1.76L18.44 4.26A1.03 1.03 0 0 1 20 5.14z"/></svg>
+              </button>
+              <button class="fs-btn play-btn large" id="fsPlayBtn" aria-label="Play" title="Play">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg>
+              </button>
+              <button class="fs-btn pause-btn large" id="fsPauseBtn" aria-label="Pause" title="Pause" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              </button>
+              <button class="fs-btn next-btn" id="fsNextBtn" aria-label="Next" title="Next">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5.14v13.72c0 .8.87 1.3 1.56.88l9.94-6.86a1.03 1.03 0 0 0 0-1.76L5.56 4.26A1.03 1.03 0 0 0 4 5.14z"/></svg>
+              </button>
+              <button class="fs-btn repeat-btn" id="repeatBtn" aria-label="Repeat" title="Repeat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                <span class="repeat-one-badge" id="repeatOneBadge" hidden>1</span>
+              </button>
+              <button class="fs-btn" id="fsDownloadBtn" aria-label="Download" title="Download">⬇</button>
             </div>
             <div class="fullscreen-volume">
-              <span class="volume-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span>
-              <input type="range" min="0" max="100" value="80" id="fsVolumeControl">
+              <span class="volume-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </span>
+              <input type="range" min="0" max="100" value="80" id="fsVolumeControl" aria-label="Volume">
             </div>
             <div class="fullscreen-queue">
               <div class="queue-header">
                 <h3>Queue</h3>
-                <button class="btn clear-queue" id="clearQueueBtn">Clear</button>
+                <button class="btn-clear-queue" id="clearQueueBtn" aria-label="Clear queue">Clear</button>
               </div>
-              <div class="queue-list" id="queueList"></div>
+              <div class="queue-list" id="queueList" role="list"></div>
             </div>
           </div>
         </div>
@@ -185,43 +236,104 @@
     </main>
   </div>
 
+  <!-- Bottom Player Bar (Fixed) -->
+  <footer class="now-playing-bar" id="nowPlayingBar" role="region" aria-label="Now playing">
+    <div class="player-track">
+      <div class="album-cover" id="playerCoverContainer">
+        <div id="nowPlayingCover" class="cover-tile" aria-hidden="true"></div>
+      </div>
+      <div class="track-info">
+        <p class="track-title" id="nowPlayingTitle">কোনো গান চলছে না</p>
+        <p class="track-artist" id="nowPlayingArtist">—</p>
+      </div>
+    </div>
+    <div class="player-controls" role="group" aria-label="Playback controls">
+      <button class="control-btn prev-btn" id="prevBtn" aria-label="Previous" title="Previous">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5.14v13.72c0 .8-.87 1.3-1.56.88L8.5 12.88a1.03 1.03 0 0 1 0-1.76L18.44 4.26A1.03 1.03 0 0 1 20 5.14z"/></svg>
+      </button>
+      <button class="control-btn play-btn" id="playBtn" aria-label="Play" title="Play">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg>
+      </button>
+      <button class="control-btn pause-btn" id="pauseBtn" aria-label="Pause" title="Pause" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      </button>
+      <button class="control-btn next-btn" id="nextBtn" aria-label="Next" title="Next">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5.14v13.72c0 .8.87 1.3-1.56.88l9.94-6.86a1.03 1.03 0 0 0 0-1.76L5.56 4.26A1.03 1.03 0 0 0 4 5.14z"/></svg>
+      </button>
+    </div>
+    <div class="player-progress">
+      <span class="time-current" id="playerTimeCurrent">0:00</span>
+      <div class="progress-wrapper">
+        <input type="range" class="progress-bar" min="0" max="100" value="0" id="progressBar" aria-label="Playback progress">
+      </div>
+      <span class="time-total" id="playerTimeTotal">0:00</span>
+    </div>
+    <div class="player-volume">
+      <button class="volume-btn" id="volumeBtn" aria-label="Volume" title="Volume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+      <input type="range" min="0" max="100" value="80" id="volumeControl" aria-label="Volume" class="volume-slider">
+    </div>
+    <div class="player-queue" id="queueBtn" role="button" aria-label="Open queue" tabindex="0">Queue</div>
+  </footer>
+
   <!-- Track Modal -->
-  <div class="track-modal" id="trackModal">
+  <div class="track-modal" id="trackModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <div class="album-cover">
-        <div id="modalCover" class="cover-tile"></div>
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
+      <div class="modal-cover">
+        <div id="modalCover" class="cover-tile" aria-hidden="true"></div>
       </div>
-      <div class="track-details">
-        <span class="track-title" id="modalTitle">কোনো গান চলছে না</span>
-        <span class="track-artist" id="modalArtist">—</span>
-        <span class="track-duration" id="modalDuration">0:00</span>
+      <div class="modal-info">
+        <h2 class="track-title" id="modalTitle">কোনো গান চলছে না</h2>
+        <p class="track-artist" id="modalArtist">—</p>
+        <p class="track-duration" id="modalDuration">0:00</p>
       </div>
-      <button class="play-modal-btn" id="modalPlayBtn" title="Play"><svg viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg></button>
-      <button class="modal-download-btn" id="modalDownloadBtn" title="Download">⬇</button>
-      <div class="progress-container">
-        <input type="range" class="progress-bar" min="0" max="100" value="0" id="modalProgressBar">
+      <div class="modal-actions">
+        <button class="btn-play-modal" id="modalPlayBtn" aria-label="Play">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.5-6.86a1.03 1.03 0 0 0 0-1.76L9.56 4.26A1.03 1.03 0 0 0 8 5.14z"/></svg>
+        </button>
+        <button class="btn-download-modal" id="modalDownloadBtn" aria-label="Download">⬇</button>
+      </div>
+      <div class="modal-progress">
+        <input type="range" class="progress-bar" min="0" max="100" value="0" id="modalProgressBar" aria-label="Playback progress">
       </div>
     </div>
   </div>
 
   <!-- Create Playlist Modal -->
-  <div class="track-modal" id="createPlaylistModal">
+  <div class="track-modal" id="createPlaylistModal" role="dialog" aria-modal="true" aria-labelledby="createPlaylistTitle">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h3>Create Playlist</h3>
-      <input type="text" id="newPlaylistName" placeholder="Playlist name">
-      <textarea id="newPlaylistDesc" placeholder="Description (optional)"></textarea>
+      <button class="modal-close" id="createPlaylistCloseBtn" aria-label="Close">&times;</button>
+      <h2 id="createPlaylistTitle">Create Playlist</h2>
+      <input type="text" id="newPlaylistName" placeholder="Playlist name" aria-label="Playlist name">
+      <textarea id="newPlaylistDesc" placeholder="Description (optional)" aria-label="Description"></textarea>
       <div class="modal-actions">
-        <button class="btn cancel-btn" id="cancelCreatePlaylist">Cancel</button>
-        <button class="btn create-btn" id="confirmCreatePlaylist">Create</button>
+        <button class="btn-cancel" id="cancelCreatePlaylist">Cancel</button>
+        <button class="btn-create" id="confirmCreatePlaylist">Create</button>
       </div>
     </div>
   </div>
 
-  <!-- Hidden audio engine for online songs: 1px, off-screen, no video shown -->
+  <!-- Mobile Bottom Navigation (app style) -->
+  <nav class="mobile-bottom-nav" role="navigation" aria-label="Mobile navigation">
+    <button class="mobile-nav-item active" data-view="home" aria-label="Home">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span class="mobile-nav-label">Home</span>
+    </button>
+    <button class="mobile-nav-item" data-view="search" aria-label="Search">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      <span class="mobile-nav-label">Search</span>
+    </button>
+    <button class="mobile-nav-item" data-view="library" aria-label="Your Library">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <span class="mobile-nav-label">Your Library</span>
+    </button>
+  </nav>
+
+  <!-- Hidden audio engine for online songs -->
   <div id="ytPlayer" aria-hidden="true" style="position:fixed;width:1px;height:1px;left:-20px;top:-20px;opacity:0;pointer-events:none;overflow:hidden;"></div>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
