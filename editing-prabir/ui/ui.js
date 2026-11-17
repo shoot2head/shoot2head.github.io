@@ -73,17 +73,32 @@
         els.tabButtons = document.querySelectorAll('.pe-tab-btn');
         els.tabPanels = document.querySelectorAll('.pe-tab-panel');
 
+        // Media tab - two-mode imports
         els.mediaUpload = document.getElementById('pe-media-upload');
+        els.mediaUploadFolder = document.getElementById('pe-media-upload-folder');
+        els.btnMediaFiles = document.getElementById('pe-btn-media-files');
+        els.btnMediaFolder = document.getElementById('pe-btn-media-folder');
+        // Video-only import
+        els.mediaVideoUpload = document.getElementById('pe-media-video-upload');
+        els.mediaVideoUploadFolder = document.getElementById('pe-media-video-upload-folder');
+        els.btnMediaVideoFiles = document.getElementById('pe-btn-media-video-files');
+        els.btnMediaVideoFolder = document.getElementById('pe-btn-media-video-folder');
         els.mediaList = document.getElementById('pe-media-list');
         els.toolbarImportAudio = document.getElementById('pe-toolbar-import-audio');
+        els.toolbarImportAudioFolder = document.getElementById('pe-toolbar-import-audio-folder');
         els.toolbarImportSrt = document.getElementById('pe-toolbar-import-srt');
+        els.toolbarImportSrtFolder = document.getElementById('pe-toolbar-import-srt-folder');
 
+        // Text tab - two-mode SRT
         els.textInput = document.getElementById('pe-text-input');
         els.textFontSize = document.getElementById('pe-text-font-size');
         els.textColor = document.getElementById('pe-text-color');
         els.textAnimation = document.getElementById('pe-text-animation');
         els.btnAddText = document.getElementById('pe-btn-add-text');
         els.textSrtUpload = document.getElementById('pe-text-srt-upload');
+        els.textSrtUploadFolder = document.getElementById('pe-text-srt-upload-folder');
+        els.btnTextSrtFiles = document.getElementById('pe-btn-text-srt-files');
+        els.btnTextSrtFolder = document.getElementById('pe-btn-text-srt-folder');
         els.btnExportSrt = document.getElementById('pe-btn-export-srt');
 
         els.filterButtons = document.getElementById('pe-filter-buttons');
@@ -95,13 +110,24 @@
 
         els.clipVolume = document.getElementById('pe-clip-volume');
         els.clipVolumeValue = document.getElementById('pe-clip-volume-value');
+        // Audio tab - two-mode music/sfx
         els.musicUpload = document.getElementById('pe-music-upload');
+        els.musicUploadFolder = document.getElementById('pe-music-upload-folder');
+        els.btnMusicFiles = document.getElementById('pe-btn-music-files');
+        els.btnMusicFolder = document.getElementById('pe-btn-music-folder');
         els.sfxUpload = document.getElementById('pe-sfx-upload');
+        els.sfxUploadFolder = document.getElementById('pe-sfx-upload-folder');
+        els.btnSfxFiles = document.getElementById('pe-btn-sfx-files');
+        els.btnSfxFolder = document.getElementById('pe-btn-sfx-folder');
 
         els.svgStickerGrid = document.getElementById('pe-svg-sticker-grid');
         els.emojiStickerGrid = document.getElementById('pe-emoji-sticker-grid');
 
+        // Photo Animation tab - two-mode
         els.photoAnimUpload = document.getElementById('pe-photoanim-upload');
+        els.photoAnimUploadFolder = document.getElementById('pe-photoanim-upload-folder');
+        els.btnPhotoAnimFiles = document.getElementById('pe-btn-photoanim-files');
+        els.btnPhotoAnimFolder = document.getElementById('pe-btn-photoanim-folder');
         els.photoAnimFps = document.getElementById('pe-photoanim-fps');
         els.btnPhotoAnimPlay = document.getElementById('pe-btn-photoanim-play');
         els.photoAnimOnionSkin = document.getElementById('pe-photoanim-onionskin');
@@ -127,14 +153,20 @@
         els.trackAudio = document.getElementById('pe-track-audio');
         els.trackText = document.getElementById('pe-track-text');
         els.playhead = document.getElementById('pe-playhead');
+        
+        // Toolbar buttons (with folder variants)
         els.toolbarImportAudioMain = document.getElementById('pe-toolbar-import-audio-main');
+        els.toolbarImportAudioMainFolder = document.getElementById('pe-toolbar-import-audio-main-folder');
         els.toolbarImportSrtMain = document.getElementById('pe-toolbar-import-srt-main');
+        els.toolbarImportSrtMainFolder = document.getElementById('pe-toolbar-import-srt-main-folder');
         els.btnAddMarker = document.getElementById('pe-btn-add-marker');
         els.snapToggle = document.getElementById('pe-snap-toggle');
 
         for (let i = 2; i <= 6; i++) {
             els['toolbarImportAudio' + i] = document.getElementById('pe-toolbar-import-audio-' + i);
+            els['toolbarImportAudio' + i + 'Folder'] = document.getElementById('pe-toolbar-import-audio-' + i + '-folder');
             els['toolbarImportSrt' + i] = document.getElementById('pe-toolbar-import-srt-' + i);
+            els['toolbarImportSrt' + i + 'Folder'] = document.getElementById('pe-toolbar-import-srt-' + i + '-folder');
         }
     }
 
@@ -483,12 +515,126 @@
 
     // ==================== MEDIA TAB ====================
     function initMediaTab() {
+        // Media import - files mode
+        els.btnMediaFiles.addEventListener('click', () => els.mediaUpload.click());
         els.mediaUpload.addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
             for (const file of files) {
                 await addMediaFile(file);
             }
             els.mediaUpload.value = '';
+        });
+
+        // Media import - folder mode
+        els.btnMediaFolder.addEventListener('click', () => els.mediaUploadFolder.click());
+        els.mediaUploadFolder.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                await addMediaFile(file);
+            }
+            els.mediaUploadFolder.value = '';
+        });
+
+        // Video-only import - files mode
+        els.btnMediaVideoFiles.addEventListener('click', () => els.mediaVideoUpload.click());
+        els.mediaVideoUpload.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                if (file.type.startsWith('video/')) {
+                    await addMediaFile(file);
+                }
+            }
+            els.mediaVideoUpload.value = '';
+        });
+
+        // Video-only import - folder mode
+        els.btnMediaVideoFolder.addEventListener('click', () => els.mediaVideoUploadFolder.click());
+        els.mediaVideoUploadFolder.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                if (file.type.startsWith('video/')) {
+                    await addMediaFile(file);
+                }
+            }
+            els.mediaVideoUploadFolder.value = '';
+        });
+
+        // Toolbar Import Audio - files mode (existing button)
+        els.toolbarImportAudio.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'audio/*';
+            input.multiple = true;
+            input.style.display = 'none';
+            document.body.appendChild(input);
+            input.addEventListener('change', async (e) => {
+                const files = Array.from(e.target.files);
+                for (const file of files) {
+                    await handleAudioImport(file);
+                }
+                input.value = '';
+                document.body.removeChild(input);
+            });
+            input.click();
+        });
+
+        // Toolbar Import Audio - folder mode
+        els.toolbarImportAudioFolder.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'audio/*';
+            input.multiple = true;
+            input.webkitdirectory = true;
+            input.style.display = 'none';
+            document.body.appendChild(input);
+            input.addEventListener('change', async (e) => {
+                const files = Array.from(e.target.files);
+                for (const file of files) {
+                    await handleAudioImport(file);
+                }
+                input.value = '';
+                document.body.removeChild(input);
+            });
+            input.click();
+        });
+
+        // Toolbar Import SRT - files mode (existing button)
+        els.toolbarImportSrt.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.srt';
+            input.multiple = true;
+            input.style.display = 'none';
+            document.body.appendChild(input);
+            input.addEventListener('change', async (e) => {
+                const files = Array.from(e.target.files);
+                for (const file of files) {
+                    await handleSrtImport(file);
+                }
+                input.value = '';
+                document.body.removeChild(input);
+            });
+            input.click();
+        });
+
+        // Toolbar Import SRT - folder mode
+        els.toolbarImportSrtFolder.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.srt';
+            input.multiple = true;
+            input.webkitdirectory = true;
+            input.style.display = 'none';
+            document.body.appendChild(input);
+            input.addEventListener('change', async (e) => {
+                const files = Array.from(e.target.files);
+                for (const file of files) {
+                    await handleSrtImport(file);
+                }
+                input.value = '';
+                document.body.removeChild(input);
+            });
+            input.click();
         });
     }
 
@@ -584,12 +730,24 @@
             els.textInput.value = '';
         });
 
-        els.textSrtUpload?.addEventListener('change', async (e) => {
+        // SRT import - files mode
+        els.btnTextSrtFiles.addEventListener('click', () => els.textSrtUpload.click());
+        els.textSrtUpload.addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
             for (const file of files) {
                 await handleSrtImport(file);
             }
             els.textSrtUpload.value = '';
+        });
+
+        // SRT import - folder mode
+        els.btnTextSrtFolder.addEventListener('click', () => els.textSrtUploadFolder.click());
+        els.textSrtUploadFolder.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                await handleSrtImport(file);
+            }
+            els.textSrtUploadFolder.value = '';
         });
 
         els.btnExportSrt?.addEventListener('click', exportSrt);
@@ -799,6 +957,8 @@
             }
         });
 
+        // Music import - files mode
+        els.btnMusicFiles.addEventListener('click', () => els.musicUpload.click());
         els.musicUpload.addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
             for (const file of files) {
@@ -807,6 +967,18 @@
             els.musicUpload.value = '';
         });
 
+        // Music import - folder mode
+        els.btnMusicFolder.addEventListener('click', () => els.musicUploadFolder.click());
+        els.musicUploadFolder.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                await handleAudioImport(file);
+            }
+            els.musicUploadFolder.value = '';
+        });
+
+        // SFX import - files mode
+        els.btnSfxFiles.addEventListener('click', () => els.sfxUpload.click());
         els.sfxUpload.addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
             for (const file of files) {
@@ -814,6 +986,102 @@
             }
             els.sfxUpload.value = '';
         });
+
+        // SFX import - folder mode
+        els.btnSfxFolder.addEventListener('click', () => els.sfxUploadFolder.click());
+        els.sfxUploadFolder.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                await handleAudioImport(file);
+            }
+            els.sfxUploadFolder.value = '';
+        });
+
+        // Toolbar Import Audio - files mode (existing button)
+        const audioBtn = els['toolbarImportAudio' + 4];
+        const audioBtnFolder = els['toolbarImportAudio' + 4 + 'Folder'];
+        if (audioBtn) {
+            audioBtn.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleAudioImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (audioBtnFolder) {
+            audioBtnFolder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleAudioImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+
+        // Toolbar Import SRT - files mode (existing button)
+        const srtBtn = els['toolbarImportSrt' + 4];
+        const srtBtnFolder = els['toolbarImportSrt' + 4 + 'Folder'];
+        if (srtBtn) {
+            srtBtn.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleSrtImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtnFolder) {
+            srtBtnFolder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleSrtImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
     }
 
     function setClipVolume(vol) {
@@ -888,10 +1156,20 @@
 
     // ==================== PHOTO ANIMATION TAB ====================
     function initPhotoAnimTab() {
+        // Photo import - files mode
+        els.btnPhotoAnimFiles.addEventListener('click', () => els.photoAnimUpload.click());
         els.photoAnimUpload.addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
             await loadPhotoAnimFiles(files);
             els.photoAnimUpload.value = '';
+        });
+
+        // Photo import - folder mode
+        els.btnPhotoAnimFolder.addEventListener('click', () => els.photoAnimUploadFolder.click());
+        els.photoAnimUploadFolder.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            await loadPhotoAnimFiles(files);
+            els.photoAnimUploadFolder.value = '';
         });
 
         els.photoAnimFps.addEventListener('change', (e) => {
@@ -909,6 +1187,92 @@
         });
 
         els.btnPhotoAnimAddTimeline.addEventListener('click', addPhotoAnimToTimeline);
+
+        // Toolbar Import Audio - files mode (existing button)
+        const audioBtn = els['toolbarImportAudio' + 6];
+        const audioBtnFolder = els['toolbarImportAudio' + 6 + 'Folder'];
+        if (audioBtn) {
+            audioBtn.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleAudioImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (audioBtnFolder) {
+            audioBtnFolder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleAudioImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+
+        // Toolbar Import SRT - files mode (existing button)
+        const srtBtn = els['toolbarImportSrt' + 6];
+        const srtBtnFolder = els['toolbarImportSrt' + 6 + 'Folder'];
+        if (srtBtn) {
+            srtBtn.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleSrtImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtnFolder) {
+            srtBtnFolder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) {
+                        await handleSrtImport(file);
+                    }
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
 
         els.frameStripViewport.addEventListener('scroll', onFrameStripScroll);
 
@@ -2369,60 +2733,321 @@
     }
 
     // ==================== SHARED TOOLBAR HANDLERS ====================
+    // This function is now a no-op - toolbar handlers are wired in their respective tab init functions
     function initSharedToolbarHandlers() {
-        const audioButtons = [
-            els.toolbarImportAudio, els.toolbarImportAudio2, els.toolbarImportAudio3,
-            els.toolbarImportAudio4, els.toolbarImportAudio5, els.toolbarImportAudio6,
-            els.toolbarImportAudioMain
-        ].filter(Boolean);
-
-        const srtButtons = [
-            els.toolbarImportSrt, els.toolbarImportSrt2, els.toolbarImportSrt3,
-            els.toolbarImportSrt4, els.toolbarImportSrt5, els.toolbarImportSrt6,
-            els.toolbarImportSrtMain
-        ].filter(Boolean);
-
-        audioButtons.forEach(btn => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'audio/*';
-            input.multiple = true;
-            input.webkitdirectory = true;
-            input.style.display = 'none';
-            document.body.appendChild(input);
-            btn.addEventListener('click', () => input.click());
-            input.addEventListener('change', async (e) => {
-                const files = Array.from(e.target.files);
-                for (const file of files) {
-                    await handleAudioImport(file);
-                }
-                input.value = '';
+        // All toolbar import handlers are now initialized in their respective tab init functions:
+        // - initMediaTab() handles pe-toolbar-import-audio / pe-toolbar-import-srt (Media tab)
+        // - initAudioTab() handles pe-toolbar-import-audio-4 / pe-toolbar-import-srt-4 (Audio tab)
+        // - initPhotoAnimTab() handles pe-toolbar-import-audio-6 / pe-toolbar-import-srt-6 (Photo Animation tab)
+        // The remaining toolbar buttons (-2, -3, -5, -main) are wired here
+        
+        // Effects tab toolbar (-2)
+        const audioBtn2 = els.toolbarImportAudio2;
+        const audioBtn2Folder = els.toolbarImportAudio2Folder;
+        const srtBtn2 = els.toolbarImportSrt2;
+        const srtBtn2Folder = els.toolbarImportSrt2Folder;
+        
+        if (audioBtn2) {
+            audioBtn2.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
             });
-        });
-
-        srtButtons.forEach(btn => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.srt';
-            input.multiple = true;
-            input.webkitdirectory = true;
-            input.style.display = 'none';
-            document.body.appendChild(input);
-            btn.addEventListener('click', () => input.click());
-            input.addEventListener('change', async (e) => {
-                const files = Array.from(e.target.files);
-                for (const file of files) {
-                    await handleSrtImport(file);
-                }
-                input.value = '';
+        }
+        if (audioBtn2Folder) {
+            audioBtn2Folder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
             });
-        });
-
-        if (els.mediaUpload) els.mediaUpload.webkitdirectory = true;
-        if (els.textSrtUpload) els.textSrtUpload.webkitdirectory = true;
-        if (els.musicUpload) els.musicUpload.webkitdirectory = true;
-        if (els.sfxUpload) els.sfxUpload.webkitdirectory = true;
-        if (els.photoAnimUpload) els.photoAnimUpload.webkitdirectory = true;
+        }
+        if (srtBtn2) {
+            srtBtn2.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtn2Folder) {
+            srtBtn2Folder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        
+        // Transitions tab toolbar (-3)
+        const audioBtn3 = els.toolbarImportAudio3;
+        const audioBtn3Folder = els.toolbarImportAudio3Folder;
+        const srtBtn3 = els.toolbarImportSrt3;
+        const srtBtn3Folder = els.toolbarImportSrt3Folder;
+        
+        if (audioBtn3) {
+            audioBtn3.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (audioBtn3Folder) {
+            audioBtn3Folder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtn3) {
+            srtBtn3.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtn3Folder) {
+            srtBtn3Folder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        
+        // Stickers tab toolbar (-5)
+        const audioBtn5 = els.toolbarImportAudio5;
+        const audioBtn5Folder = els.toolbarImportAudio5Folder;
+        const srtBtn5 = els.toolbarImportSrt5;
+        const srtBtn5Folder = els.toolbarImportSrt5Folder;
+        
+        if (audioBtn5) {
+            audioBtn5.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (audioBtn5Folder) {
+            audioBtn5Folder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtn5) {
+            srtBtn5.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtn5Folder) {
+            srtBtn5Folder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        
+        // Main timeline toolbar
+        const audioBtnMain = els.toolbarImportAudioMain;
+        const audioBtnMainFolder = els.toolbarImportAudioMainFolder;
+        const srtBtnMain = els.toolbarImportSrtMain;
+        const srtBtnMainFolder = els.toolbarImportSrtMainFolder;
+        
+        if (audioBtnMain) {
+            audioBtnMain.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (audioBtnMainFolder) {
+            audioBtnMainFolder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'audio/*';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleAudioImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtnMain) {
+            srtBtnMain.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+        if (srtBtnMainFolder) {
+            srtBtnMainFolder.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.srt';
+                input.multiple = true;
+                input.webkitdirectory = true;
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', async (e) => {
+                    const files = Array.from(e.target.files);
+                    for (const file of files) await handleSrtImport(file);
+                    input.value = '';
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
     }
 
     // ==================== EXPORT ====================
