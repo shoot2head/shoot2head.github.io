@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="ui/styles.css">
+</head>
+<body>
+    <div class="pe-app">
+        <!-- Top Bar -->
+        <header class="pe-top-bar">
+            <div class="pe-top-bar-left">
+            </div>
+            <div class="pe-top-bar-center">
+                <input type="text" id="pe-project-name" class="pe-project-name-input" value="Untitled Project" placeholder="Project name">
+            </div>
+            <div class="pe-top-bar-right">
+                <button id="pe-btn-undo" class="pe-btn pe-btn-secondary" title="Undo (Ctrl+Z)" disabled>↶ Undo</button>
+                <button id="pe-btn-redo" class="pe-btn pe-btn-secondary" title="Redo (Ctrl+Y)" disabled>↷ Redo</button>
+                <button id="pe-btn-save-project" class="pe-btn pe-btn-secondary">Save Project</button>
+                <button id="pe-btn-load-project" class="pe-btn pe-btn-secondary">Load Project</button>
+                <input type="file" id="pe-load-project-file" accept=".json" style="display: none;">
+                <button id="pe-export-btn" class="pe-btn pe-btn-primary">Export / এক্সপোর্ট</button>
+                <div id="pe-export-progress" class="pe-export-progress" style="display: none;">
+                    <div class="pe-progress-bar"><div class="pe-progress-fill"></div></div>
+                    <span class="pe-progress-text">0%</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Engine Missing Banner -->
+        <div id="pe-engine-missing-banner" class="pe-engine-banner" style="display: none;">
+            Engine not loaded yet — UI is in demo mode
+        </div>
+
+        <!-- Main Layout -->
+        <div class="pe-main-layout">
+            <!-- Left Panel -->
+            <aside class="pe-left-panel">
+                <div class="pe-tab-bar" role="tablist">
+                    <button class="pe-tab-btn pe-is-active" data-tab="media" role="tab" aria-selected="true">Media / মিডিয়া</button>
+                    <button class="pe-tab-btn" data-tab="text" role="tab" aria-selected="false">Text / টেক্সট</button>
+                    <button class="pe-tab-btn" data-tab="effects" role="tab" aria-selected="false">Effects</button>
+                    <button class="pe-tab-btn" data-tab="transitions" role="tab" aria-selected="false">Transitions</button>
+                    <button class="pe-tab-btn" data-tab="audio" role="tab" aria-selected="false">Audio</button>
+                    <button class="pe-tab-btn" data-tab="stickers" role="tab" aria-selected="false">Stickers</button>
+                    <button class="pe-tab-btn" data-tab="photoanim" role="tab" aria-selected="false">Photo Animation / ফটো অ্যানিমেশন</button>
+                </div>
+
+                <!-- Media Tab -->
+                <div class="pe-tab-panel pe-is-active" id="pe-tab-media" role="tabpanel">
+                    <input type="file" id="pe-media-upload" accept="video/*,audio/*,image/*" multiple webkitdirectory>
+                    <div class="pe-media-list" id="pe-media-list"></div>
+                    <div class="pe-timeline-toolbar">
+                        <button id="pe-toolbar-import-audio" class="pe-btn pe-btn-secondary">Import Audio</button>
+                        <button id="pe-toolbar-import-srt" class="pe-btn pe-btn-secondary">Import SRT</button>
+                    </div>
+                </div>
+
+                <!-- Text Tab -->
+                <div class="pe-tab-panel" id="pe-tab-text" role="tabpanel">
+                    <div class="pe-form-group">
+                        <label>Caption Text</label>
+                        <textarea id="pe-text-input" placeholder="Enter caption text..."></textarea>
+                    </div>
+                    <div class="pe-form-row">
+                        <div class="pe-form-group">
+                            <label>Font Size</label>
+                            <input type="number" id="pe-text-font-size" value="48" min="12" max="200">
+                        </div>
+                        <div class="pe-form-group">
+                            <label>Color</label>
+                            <input type="color" id="pe-text-color" value="#ffffff">
+                        </div>
+                    </div>
+                    <div class="pe-form-group">
+                        <label>Animation</label>
+                        <select id="pe-text-animation">
+                            <option value="word-reveal">Word Reveal</option>
+                            <option value="typewriter">Typewriter</option>
+                            <option value="pop">Pop</option>
+                            <option value="slide-up">Slide Up</option>
+                            <option value="fade">Fade</option>
+                            <option value="bounce">Bounce</option>
+                            <option value="kinetic-big">Kinetic Big</option>
+                        </select>
+                    </div>
+                    <button id="pe-btn-add-text" class="pe-btn pe-btn-primary">Add Caption</button>
+                    <div class="pe-section">
+                        <h4>Captions (SRT)</h4>
+                        <input type="file" id="pe-text-srt-upload" accept=".srt" multiple webkitdirectory>
+                        <button id="pe-btn-export-srt" class="pe-btn pe-btn-secondary">Export SRT</button>
+                    </div>
+                </div>
+
+                <!-- Effects Tab -->
+                <div class="pe-tab-panel" id="pe-tab-effects" role="tabpanel">
+                    <div class="pe-section">
+                        <h4>Filters</h4>
+                        <div class="pe-button-grid" id="pe-filter-buttons"></div>
+                    </div>
+                    <div class="pe-section">
+                        <h4>Effects</h4>
+                        <div class="pe-button-grid" id="pe-effect-buttons"></div>
+                    </div>
+                    <div class="pe-timeline-toolbar">
+                        <button id="pe-toolbar-import-audio-2" class="pe-btn pe-btn-secondary">Import Audio</button>
+                        <button id="pe-toolbar-import-srt-2" class="pe-btn pe-btn-secondary">Import SRT</button>
+                    </div>
+                </div>
+
+                <!-- Transitions Tab -->
+                <div class="pe-tab-panel" id="pe-tab-transitions" role="tabpanel">
+                    <div class="pe-form-group">
+                        <label>Transition Type</label>
+                        <select id="pe-transition-type">
+                            <option value="none">None</option>
+                            <option value="fade">Fade</option>
+                            <option value="dissolve">Dissolve</option>
+                            <option value="wipe">Wipe</option>
+                            <option value="slide">Slide</option>
+                        </select>
+                    </div>
+                    <div class="pe-form-group">
+                        <label>Duration (seconds)</label>
+                        <input type="number" id="pe-transition-duration" value="0.5" min="0" max="5" step="0.1">
+                    </div>
+                    <button id="pe-btn-apply-transition" class="pe-btn pe-btn-primary">Apply to Selected</button>
+                    <div class="pe-timeline-toolbar">
+                        <button id="pe-toolbar-import-audio-3" class="pe-btn pe-btn-secondary">Import Audio</button>
+                        <button id="pe-toolbar-import-srt-3" class="pe-btn pe-btn-secondary">Import SRT</button>
+                    </div>
+                </div>
+
+                <!-- Audio Tab -->
+                <div class="pe-tab-panel" id="pe-tab-audio" role="tabpanel">
+                    <div class="pe-section">
+                        <h4>Selected Clip Volume</h4>
+                        <input type="range" id="pe-clip-volume" min="0" max="100" value="100">
+                        <span id="pe-clip-volume-value">100%</span>
+                    </div>
+                    <div class="pe-section">
+                        <h4>Add Music</h4>
+                        <input type="file" id="pe-music-upload" accept="audio/*" multiple webkitdirectory>
+                    </div>
+                    <div class="pe-section">
+                        <h4>Add SFX</h4>
+                        <input type="file" id="pe-sfx-upload" accept="audio/*" multiple webkitdirectory>
+                    </div>
+                    <div class="pe-timeline-toolbar">
+                        <button id="pe-toolbar-import-audio-4" class="pe-btn pe-btn-secondary">Import Audio</button>
+                        <button id="pe-toolbar-import-srt-4" class="pe-btn pe-btn-secondary">Import SRT</button>
+                    </div>
+                </div>
+
+                <!-- Stickers Tab -->
+                <div class="pe-tab-panel" id="pe-tab-stickers" role="tabpanel">
+                    <div class="pe-section">
+                        <h4>SVG Stickers</h4>
+                        <div class="pe-sticker-grid" id="pe-svg-sticker-grid"></div>
+                    </div>
+                    <div class="pe-section">
+                        <h4>Emoji</h4>
+                        <div class="pe-sticker-grid" id="pe-emoji-sticker-grid"></div>
+                    </div>
+                    <div class="pe-timeline-toolbar">
+                        <button id="pe-toolbar-import-audio-5" class="pe-btn pe-btn-secondary">Import Audio</button>
+                        <button id="pe-toolbar-import-srt-5" class="pe-btn pe-btn-secondary">Import SRT</button>
+                    </div>
+                </div>
+
+                <!-- Photo Animation Tab -->
+                <div class="pe-tab-panel" id="pe-tab-photoanim" role="tabpanel">
+                    <div class="pe-section">
+                        <h4>Import Photos</h4>
+                        <input type="file" id="pe-photoanim-upload" accept="image/*" multiple webkitdirectory>
+                        <div class="pe-property-row">
+                            <label>FPS</label>
+                            <input type="number" id="pe-photoanim-fps" value="30" min="1" max="60" step="1" style="width:80px;">
+                        </div>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">On Android, if no folder choice appears, pick many files from the Files app instead.</p>
+                    </div>
+                    <div class="pe-section">
+                        <h4>Frame Strip</h4>
+                        <div class="pe-photoanim-toolbar">
+                            <button id="pe-btn-photoanim-play" class="pe-btn pe-btn-primary">Preview</button>
+                            <label class="pe-checkbox-inline">
+                                <input type="checkbox" id="pe-photoanim-onionskin"> Onion Skin
+                            </label>
+                        </div>
+                        <div class="pe-frame-strip-container">
+                            <div class="pe-frame-strip-spacer" id="pe-frame-strip-spacer"></div>
+                            <div class="pe-frame-strip-viewport" id="pe-frame-strip-viewport"></div>
+                        </div>
+                    </div>
+                    <div class="pe-section">
+                        <button id="pe-btn-photoanim-add-timeline" class="pe-btn pe-btn-primary" style="width:100%;">Add to Timeline</button>
+                    </div>
+                    <div class="pe-timeline-toolbar">
+                        <button id="pe-toolbar-import-audio-6" class="pe-btn pe-btn-secondary">Import Audio</button>
+                        <button id="pe-toolbar-import-srt-6" class="pe-btn pe-btn-secondary">Import SRT</button>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Center: Preview -->
+            <main class="pe-center-panel">
+                <canvas id="pe-preview-canvas" width="640" height="360"></canvas>
+                <div class="pe-transport-controls">
+                    <button id="pe-btn-play-pause" class="pe-btn pe-btn-large" aria-label="Play/Pause">▶</button>
+                    <div class="pe-time-display">
+                        <span id="pe-current-time">00:00.0</span> / <span id="pe-total-duration">00:00.0</span>
+                    </div>
+                    <input type="range" id="pe-seek-bar" min="0" max="100" value="0" step="0.01" aria-label="Seek">
+                </div>
+                <div class="pe-aspect-ratio-switcher">
+                    <label>Aspect Ratio</label>
+                    <div class="pe-aspect-ratio-buttons">
+                        <button class="pe-btn pe-btn-secondary pe-aspect-btn pe-is-active" data-ratio="16:9" title="16:9">16:9</button>
+                        <button class="pe-btn pe-btn-secondary pe-aspect-btn" data-ratio="9:16" title="9:16">9:16</button>
+                        <button class="pe-btn pe-btn-secondary pe-aspect-btn" data-ratio="1:1" title="1:1">1:1</button>
+                        <button class="pe-btn pe-btn-secondary pe-aspect-btn" data-ratio="4:5" title="4:5">4:5</button>
+                    </div>
+                    <span id="pe-aspect-ratio-display" class="pe-aspect-ratio-display">16:9</span>
+                </div>
+            </main>
+
+            <!-- Right Panel: Properties -->
+            <aside class="pe-right-panel">
+                <h3>Properties / গুণাবলী</h3>
+                <div id="pe-properties-content"><div class="pe-no-selection">No clip selected</div></div>
+            </aside>
+        </div>
+
+        <!-- Bottom: Timeline -->
+        <section class="pe-timeline-panel">
+            <div class="pe-timeline-header">
+                <div class="pe-track-labels">
+                    <div class="pe-track-label">Tracks</div>
+                </div>
+                <div class="pe-timeline-ruler" id="pe-timeline-ruler"></div>
+                <div class="pe-timeline-zoom">
+                    <label>Zoom</label>
+                    <input type="range" id="pe-timeline-zoom" min="10" max="200" value="40">
+                </div>
+            </div>
+            <div class="pe-timeline-tracks" id="pe-timeline-tracks">
+                <!-- Video Track -->
+                <div class="pe-track" data-track="video">
+                    <div class="pe-track-header">Video / ভিডিও</div>
+                    <div class="pe-track-lane" id="pe-track-video"></div>
+                </div>
+                <!-- Audio Track -->
+                <div class="pe-track" data-track="audio">
+                    <div class="pe-track-header">Audio / অডিও</div>
+                    <div class="pe-track-lane" id="pe-track-audio"></div>
+                </div>
+                <!-- Text Track -->
+                <div class="pe-track" data-track="text">
+                    <div class="pe-track-header">Text / টেক্সট</div>
+                    <div class="pe-track-lane" id="pe-track-text"></div>
+                </div>
+            </div>
+            <div class="pe-playhead" id="pe-playhead" style="display: none;"></div>
+            <div class="pe-timeline-toolbar">
+                <button id="pe-toolbar-import-audio-main" class="pe-btn pe-btn-secondary">Import Audio</button>
+                <button id="pe-toolbar-import-srt-main" class="pe-btn pe-btn-secondary">Import SRT</button>
+                <button id="pe-btn-add-marker" class="pe-btn pe-btn-secondary">Add Marker</button>
+                <label class="pe-checkbox-inline" style="margin-left: 8px;">
+                    <input type="checkbox" id="pe-snap-toggle" checked> Snap
+                </label>
+            </div>
+        </section>
+    </div>
+
+    <script src="engine/engine.js"></script>
+    <script src="ui/ui.js"></script>
+</body>
+</html>
