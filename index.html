@@ -2365,7 +2365,7 @@
           const grids = view.querySelectorAll(".prompt-grid");
           if (!grids.length) return;
           grids[0].innerHTML = items.map(function (p) { return promptCardHTML(p, kind); }).join("");
-          for (let i = 1; i < grids.length; i++) grids[i].remove();
+          /* Keep hardcoded grids after the first one (PHOTO 09-11 + accessory references) — do NOT remove them, or new cards never show on the live site. */
           bindCopyButtons(grids[0]);
         }, function () { /* keep the hardcoded cards */ });
       }
